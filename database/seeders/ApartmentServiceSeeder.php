@@ -14,10 +14,11 @@ class ApartmentServiceSeeder extends Seeder
      */
     public function run(): void
     
-    {    Schema::withoutForeignKeyConstraints(function () {
+    {    
+    //      Schema::withoutForeignKeyConstraints(function () {
 
-        Apartment::truncate();
-    });
+    //      Apartment::truncate();
+    //  });
         $apartments = Apartment::all();
         $services = Service::all()->pluck('id')->toArray();
 

@@ -29,7 +29,7 @@ return new class extends Migration {
                 ->onDelete('cascade');
 
             $table->timestamps();
-            $table->date('end_date');
+            $table->date('end_date')->nullable();
             $table->primary(['apartment_id', 'sponsorship_id']);
         });
     }
