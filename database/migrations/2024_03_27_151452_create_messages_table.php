@@ -15,6 +15,7 @@ return new class extends Migration {
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('apartment_id')->nullable();
             $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('set null')->onUpdate('cascade');
             $table->text('text');
             $table->date('submission_date');

@@ -59,3 +59,18 @@ Tutte queste 4 view, saranno messe in una cartella dentro views, nominata come l
 - Comando per eseguire migrate + db:seed: php artisan migrate --seed / php artisan migrate:refresh --seed
 - Comando per vedere la lista delle rotte definite nell'applicazione: php artisan route:list
 - Comando per creare un model, una migration, un seeder e un resource controller tutto insieme: php artisan make:model NomeRisorsa -msr
+
+
+
+
+$allServices = [
+            'Wifi' => '<i class="fa-solid fa-wifi"></i>',
+            'Aria Condizionata' => '<i class="fa-solid fa-wind"></i>',
+            'Piscina' => '<i class="fa-solid fa-water-ladder"></i>',
+            'Spiaggia Privata' => '<i class="fa-solid fa-umbrella-beach"></i>',
+            'Parcheggio' => '<i class="fa-solid fa-car"></i>',
+            'Navetta' => '<i class="fa-solid fa-van-shuttle"></i>',
+            'Lavanderia' => ' <i class="fa-solid fa-jug-detergent"></i>',
+            'Fumatori' => ' <i class="fa-solid fa-smoking"></i>',
+            'Animali Consentiti' => '<i class="fa-solid fa-paw"></i>',
+        ];

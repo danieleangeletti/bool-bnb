@@ -19,17 +19,18 @@ return new class extends Migration {
                 ->onDelete('cascade');
                                
             
-            $table->date('end_date')->after('created_at');
+            
 
             $table->unsignedBigInteger('sponsorship_id');
             $table->foreign('sponsorship_id')
                 ->references('id')
-                ->on('services')
+                ->on('sponsorships')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
             $table->timestamps();
-            $table->primary(['apartment_id', 'service_id']);
+            $table->date('end_date');
+            $table->primary(['apartment_id', 'sponsorship_id']);
         });
     }
 

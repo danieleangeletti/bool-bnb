@@ -15,6 +15,7 @@ return new class extends Migration {
     {
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
             $table->string('name', 100)->unique();
             $table->string('type_of_accomodation', 100);
@@ -23,7 +24,7 @@ return new class extends Migration {
             $table->tinyInteger('n_beds')->unsigned();
             $table->tinyInteger('n_baths')->unsigned();
             $table->float('price', 6, 2)->unsigned();
-            $table->tinyInteger('availability')->unsigned();
+            $table->boolean('availability')->default(true);
             $table->string('latitude', 100);
             $table->string('longitude', 100);
             $table->string('slug', 100);
