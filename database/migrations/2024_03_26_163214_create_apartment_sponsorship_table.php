@@ -17,6 +17,9 @@ return new class extends Migration {
                 ->on('apartments')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+                               
+            
+            $table->date('end_date')->after('created_at');
 
             $table->unsignedBigInteger('sponsorship_id');
             $table->foreign('sponsorship_id')
