@@ -15,7 +15,7 @@ return new class extends Migration {
     {
         Schema::create('views', function (Blueprint $table) {
             $table->id();
-            $table->foreign('apartments_id')->references('id')->on('apartments')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('set null')->onUpdate('cascade');
             $table->date('date');
             $table->ipAddress('ip_address');
             $table->timestamps();
