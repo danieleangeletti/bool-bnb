@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// Helpers
+use Illuminate\Support\Facades\Auth;
+
 class StoreApartmentRequest extends FormRequest
 {
     /**
@@ -11,7 +14,7 @@ class StoreApartmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -22,7 +25,22 @@ class StoreApartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => 'nullable|exists:users,id',
+            'name' => 'required|string|max:100',
+            'type_of_accomodation' => 'required|string|max:100',
+            'n_guests' => 'required|numeric|gte:0|max:255',
+            'n_rooms' => 'required|numeric|gte:0|max:255',
+            'n_beds' => 'required|numeric|gte:0|max:255',
+            'n_baths' => 'required|numeric|gte:0|max:255',
+            'price' => 'required|numeric|max:10000',
+            'availability' => 'required|boolean',
+            'latitude' => 'required|string|max:100',
+            'longitude' => 'required|string|max:100',
+            'slug' => 'required|string|max:100',
+            'address' => 'required|string|max:100',
+            'is_active' => 'required|boolean',
+            'img_cover_path' => 'nullable|string|max:1000',
+            // L'img_cover_path è nullable solo momentaneamente, poi dovrà essere required.
         ];
     }
 }
