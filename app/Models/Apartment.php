@@ -6,7 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Apartment extends Model
-{
+{   
+    protected $fillable = [
+        'name',
+        'type_of_accomodation',
+        'number_of_guests',
+        'n_rooms',
+        'n_beds',
+        'n_bath',
+        'price',
+        'availability',
+        'latitude',
+        'longitude',
+        'slug', 
+        'address',
+        'deleted_at',
+        'img_cover_path'
+    ];
     use HasFactory;
 
     // Relationships

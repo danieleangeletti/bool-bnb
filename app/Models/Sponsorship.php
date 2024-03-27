@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sponsorship extends Model
 {
+    protected $fillable = [
+        'title',
+        'description',
+        'cost',
+        'hour_duration'
+    ];
     use HasFactory;
 
     // Relationships

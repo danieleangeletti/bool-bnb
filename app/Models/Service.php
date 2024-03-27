@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
+    protected $fillable = [
+        'type_of_service',
+        'icon'
+    ];
     use HasFactory;
 
     // Relationships

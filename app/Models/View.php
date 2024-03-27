@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class View extends Model
 {
+    protected $fillable = [
+        'date',
+        'ip_address'
+    ];
     use HasFactory;
 
     // Relationships

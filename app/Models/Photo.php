@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
+    protected $fillable = [
+        'photo', 
+    ];
     use HasFactory;
 
     // Relationships
