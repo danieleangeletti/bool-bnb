@@ -3,6 +3,7 @@
 @section('page-title', 'Add apartment')
 
 @section('main-content')
+
     <div class=" container ">
         <div class="mb-4">
             <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary">
@@ -22,7 +23,7 @@
         <h1>Create Apartment</h1>
 
 
-        <form action="{{ route(admin . apartments . store) }}" method="POST">
+        <form action="{{ route('admin.apartments.store') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label ">Add name</label>
@@ -40,10 +41,10 @@
                     <option value="" {{ old('type_of_accomodation') == null ? 'selected' : '' }}>
                         Add Type of Accomodation
                     </option>
-                    @for ($i = 0; $i < count($allTypesOfAccomodation); $i++)
-                        <option value="{{ $allTypesOfAccomodation[$i] }}"
-                            {{ old('type_of_accomodation') == $allTypesOfAccomodation[$i] ? 'selected' : '' }}>
-                            {{ $allTypesOfAccomodation[$i]->name }}
+                    @for ($i = 0; $i < count($accomodation); $i++)
+                        <option value="{{ $accomodation[$i] }}"
+                            {{ old('type_of_accomodation') == $accomodation[$i] ? 'selected' : '' }}>
+                            {{ $accomodation[$i]}}
                         </option>
                     @endfor
                     {{-- da chiedere ^ --}}
@@ -116,6 +117,27 @@
                     @endforeach
                 </select>
             </div>
+       
+            <div class="mb-3">
+                <label for="latitude" class="form-label ">Add latitude</label>
+                <input value="{{ old('latitude') }}" class="form-control @error('latitude') is-invalid @enderror" type="text"
+                    id="latitude" name="latitude" maxlength="64">
+                @error('latitude')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="longitude" class="form-label ">Add longitude</label>
+                <input value="{{ old('longitude') }}" class="form-control @error('longitude') is-invalid @enderror" type="text"
+                    id="longitude" name="longitude" maxlength="64">
+                @error('longitude')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
             {{-- <label for="latitude">Latitude:</label><br>
             <input type="text" id="latitude" name="latitude"><br>
             <label for="longitude">Longitude:</label><br>
@@ -132,7 +154,7 @@
             </div>
             <div class="mb-3">
                 <label for="img_cover_path" class="form-label">Apartment image</label>
-                <input class="form-control" type="file" id="img_cover_path" name="img_cover_path">
+                <input class="form-control" type="text" id="img_cover_path" name="img_cover_path">
             </div>
             {{-- da vedere --}}
             <button type="submit" class="btn btn-success w-100">

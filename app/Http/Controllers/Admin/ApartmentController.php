@@ -35,9 +35,10 @@ class ApartmentController extends Controller
     public function create()
     {
         $apartments = Apartment::all();
+        $accomodation = config('db.allTypeOfAccomodation');
         $sponsorhips = Sponsorship::all();
         $services = Service::all();
-        return view("admin.apartments.create",compact('apartments','sponsorhips', 'services'));
+        return view("admin.apartments.create",compact('apartments','sponsorhips', 'services','accomodation'));
     }
 
     /**
@@ -56,7 +57,7 @@ class ApartmentController extends Controller
         $apartment->n_beds = $validated_data['n_beds'];
         $apartment->n_baths = $validated_data['n_baths'];
         $apartment->price = $validated_data['price'];
-        $apartment->availability = $validated_data['availability'];
+        // $apartment->availability = $validated_data['availability'];
         $apartment->latitude = $validated_data['latitude'];
         $apartment->longitude = $validated_data['longitude'];
         $apartment->slug = Str::slug($validated_data['name']);
@@ -83,15 +84,19 @@ class ApartmentController extends Controller
     public function edit(string $slug)
     {
         $apartment = Apartment::where("slug", $slug)->firstOrFail();
-        return view("admin.apartments.edit", compact("apartment"));
+        $accomodation = config('db.allTypeOfAccomodation');
+        $services = Service::all();
+ 
+        return view("admin.apartments.edit", compact("apartment","accomodation","services"));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateApartmentRequest $request, string $slug)
-    {
+    {   
         $validated_data = $request->validated();
+       
         $apartment = Apartment::where("slug", $slug)->firstOrFail();
 
          $apartment->name = $validated_data['name'];
@@ -101,12 +106,12 @@ class ApartmentController extends Controller
         $apartment->n_beds = $validated_data['n_beds'];
         $apartment->n_baths = $validated_data['n_baths'];
         $apartment->price = $validated_data['price'];
-        $apartment->availability = $validated_data['availability'];
-        $apartment->latitude = $validated_data['latitude'];
-        $apartment->longitude = $validated_data['longitude'];
+        // $apartment->availability = $validated_data['availability'];
+        // $apartment->latitude = $validated_data['latitude'];
+        // $apartment->longitude = $validated_data['longitude'];
         $apartment->slug = Str::slug($validated_data['name']);
         $apartment->address = $validated_data['address'];
-        $apartment->img_cover_path = $validated_data['img_cover_path'];
+        // $apartment->img_cover_path = $validated_data['img_cover_path'];
 
         $apartment->save();
 
