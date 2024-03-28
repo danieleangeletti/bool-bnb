@@ -61,9 +61,30 @@
                                                 <form onsubmit="return confirm('Are you sure you want to delete this project?')" action="{{route ('admin.apartments.destroy', ['apartment' => $apartment->slug])}}" method="POST" class="d-inline-block">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">
-                                                        DELETE
-                                                    </button>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="offcanvas"
+                                            data-bs-target="#deleteConfirmation{{ $apartment->id }}">
+                                            Elimina
+                                        </button>
+
+                                        <div class="offcanvas offcanvas-end d" tabindex="-1"
+                                            id="deleteConfirmation{{ $apartment->id }}">
+                                            <div class="offcanvas-header">
+                                                <h5 class="offcanvas-title" id="deleteConfirmationLabel{{ $apartment->id }}">
+                                                    Conferma eliminazione
+                                                </h5>
+                                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="offcanvas-body">
+                                                <p>Vuoi davvero eliminare <h5 class=" d-inline-block ">{{ $apartment->name }}</h5> ?</p>
+                                                <form class="mt-5" id="deleteForm{{ $apartment->slug }}"
+                                                    action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->slug]) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Conferma eliminazione</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                                 </form>
                                             </div>
                                         </div>
