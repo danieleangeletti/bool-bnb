@@ -33,10 +33,10 @@ class StoreApartmentRequest extends FormRequest
             'n_beds' => 'required|numeric|gte:0|max:255',
             'n_baths' => 'required|numeric|gte:0|max:255',
             'price' => 'required|numeric|max:10000',
-            'availability' => 'required|boolean',
+            // 'availability' => 'required|boolean',
             'latitude' => 'required|string|max:100',
             'longitude' => 'required|string|max:100',
-            'slug' => 'required|string|max:100',
+            // 'slug' => 'required|string|max:100',
             'address' => 'required|string|max:100',
             'img_cover_path' => 'nullable|string|max:1000',
             // L'img_cover_path è nullable solo momentaneamente, poi dovrà essere required.
