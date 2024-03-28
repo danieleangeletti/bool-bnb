@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('page-title', $apartment->title . ' EDIT')
+@section('page-title', $apartment->slug . ' EDIT')
 
 @section('main-content')
+{{-- @dd($accomodation); --}}
     <div class=" container ">
         <div class="mb-4">
             <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary">
@@ -19,7 +20,7 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.apartments.edit', ['apartment' => $apartment->id]) }}" method="POST">
+        <form action="{{ route('admin.apartments.update', ['apartment' => $apartment->slug]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -35,13 +36,17 @@
                         value="">
                         Select type of accomodation
                     </option>
-                    @for ($i = 0; $i < count($allTypesOfAccomodation); $i++)
+                   
+                    @for ($i = 0; $i < count($accomodation); $i++)
+                   
                         <option
-                            {{ old('type_of_accomodation', $apartment->type_of_accomodation) == $allTypesOfAccomodation[$i] ? 'selected' : '' }}
-                            value="{{ $allTypesOfAccomodation[$i] }}">
-                            {{ $apartment->type_of_accomodation }}
+                          
+                            value="{{ $accomodation[$i] }}">
+                            {{ $accomodation[$i] }}
                         </option>
+
                     @endfor
+                   
                 </select>
             </div>
             <div class="mb-3">
@@ -62,12 +67,12 @@
             <div class="mb-3">
                 <label for="n_baths" class="form-label">Baths <span class="text-danger">*</span></label>
                 <input value="{{ old('n_baths', $apartment->n_baths) }}" type="number" min="1" max="3"
-                    class="form-control" id="n_baths" name="n_beds" placeholder="Insert Baths..." required>
+                    class="form-control" id="n_baths" name="n_baths" placeholder="Insert Baths..." required>
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Price <span class="text-danger">*</span></label>
                 <input value="{{ old('price', $apartment->price) }}" type="number" min="1.00" max="1000.00"
-                    class="form-control" id="price" name="n_beds" placeholder="Insert Price..." required>
+                    class="form-control" id="price" name="price" placeholder="Insert Price..." required>
             </div>
             <div>
                 @foreach ($services as $service)
