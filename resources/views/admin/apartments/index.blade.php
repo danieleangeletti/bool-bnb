@@ -3,5 +3,5 @@
 @section('page-title', 'All apartments')
 
 @section('main-content')
-    INDEX
+    INDEX DANIELE
 @endsection
