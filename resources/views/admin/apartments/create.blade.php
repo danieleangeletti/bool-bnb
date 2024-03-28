@@ -4,7 +4,11 @@
 
 @section('main-content')
     <div class=" container ">
-
+        <div class="mb-4">
+            <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary">
+                Torna alla Home
+            </a>
+        </div>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul class="mb-0">
@@ -16,6 +20,8 @@
         @endif
 
         <h1>Create Apartment</h1>
+
+
         <form action="{{ route(admin . apartments . store) }}" method="POST">
             @csrf
             <div class="mb-3">
@@ -93,6 +99,23 @@
                     </div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label for="service_id" class="form-label">Service</label>
+                <select name="service_id" id="service_id" class="form-select">
+                    <option
+                        value=""
+                        {{ old('service_id') == null ? 'selected' : '' }}>
+                        Add service
+                    </option>
+                    @foreach ($services as $service)
+                        <option
+                            value="{{ $service->id }}"
+                            {{ old('service_id') == $service->id ? 'selected' : '' }}>
+                            {{ $service->type_of_service }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
             {{-- <label for="latitude">Latitude:</label><br>
             <input type="text" id="latitude" name="latitude"><br>
             <label for="longitude">Longitude:</label><br>
@@ -107,7 +130,11 @@
                     </div>
                 @enderror
             </div>
-
+            <div class="mb-3">
+                <label for="img_cover_path" class="form-label">Apartment image</label>
+                <input class="form-control" type="file" id="img_cover_path" name="img_cover_path">
+            </div>
+            {{-- da vedere --}}
             <button type="submit" class="btn btn-success w-100">
                 Create
             </button>
