@@ -28,7 +28,7 @@ Route::prefix('admin')
         Route::get('/dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
 
         Route::resource('apartments', AdminApartmentController::class);
-
+        Route::get('/restore',[ AdminApartmentController::class, 'restore'])->name('restore');
     });
 
 require __DIR__ . '/auth.php';

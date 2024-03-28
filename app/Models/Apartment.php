@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Apartment extends Model
 {   
+    use SoftDeletes;
     protected $fillable = [
         'name',
         'type_of_accomodation',
@@ -51,4 +53,5 @@ class Apartment extends Model
     {
         return $this->belongsToMany(Sponsorship::class);
     }
+    
 }
