@@ -118,7 +118,7 @@
                 </select>
             </div>
        
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="latitude" class="form-label ">Add latitude</label>
                 <input value="{{ old('latitude') }}" class="form-control @error('latitude') is-invalid @enderror" type="text"
                     id="latitude" name="latitude" maxlength="64">
@@ -127,17 +127,17 @@
                         {{ $message }}
                     </div>
                 @enderror
-            </div>
-            <div class="mb-3">
+            </div> --}}
+            {{-- <div class="mb-3">
                 <label for="longitude" class="form-label ">Add longitude</label>
                 <input value="{{ old('longitude') }}" class="form-control @error('longitude') is-invalid @enderror" type="text"
-                    id="longitude" name="longitude" maxlength="64">
-                @error('longitude')
+                    id="longitude" name="address" maxlength="64">
+                @error('address')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                 @enderror
-            </div>
+            </div> --}}
             {{-- <label for="latitude">Latitude:</label><br>
             <input type="text" id="latitude" name="latitude"><br>
             <label for="longitude">Longitude:</label><br>
