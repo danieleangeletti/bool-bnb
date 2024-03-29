@@ -96,6 +96,11 @@
                 <input value="{{ old('address', $apartment->address) }}" type="text" class="form-control"
                     id="address" name="address" placeholder="Insert address..." maxlength="64" required>
             </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City <span class="text-danger">*</span></label>
+                <input value="{{ old('city', $apartment->city) }}" type="text" class="form-control" id="city"
+                    city="city" placeholder="Insert city..." maxlength="64" required>
+            </div>
 
             <div class="mb-3">
                 <label for="img_cover_path" class="form-label">Apartment image</label>
