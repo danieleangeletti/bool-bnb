@@ -12,6 +12,22 @@
             <input type="text" id="name" name="name">
         </div>
 
+        {{-- Last name --}}
+        <div class="mt-4">
+            <label for="last_name">
+                Last name
+            </label>
+            <input type="text" id="last_name" name="last_name">
+        </div>
+
+        {{-- Date of birth --}}
+        <div class="mt-4">
+            <label for="date_of_birth">
+                Date of birth
+            </label>
+            <input type="date" id="date_of_birth" name="date_of_birth">
+        </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <label for="email">
