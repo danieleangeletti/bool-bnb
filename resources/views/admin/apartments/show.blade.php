@@ -37,7 +37,7 @@
                                 Numero di bagni: {{ $apartment->n_baths }}
                             </li>
                             <li>
-                                {{ $apartment->img_cover_path }}
+                                <img src="{{ $apartment->img_cover_path }}" alt=""> 
                             </li>
                         </ul>
                     </div>
