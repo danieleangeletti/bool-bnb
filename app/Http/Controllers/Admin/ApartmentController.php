@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
 
 // Models
 use App\Models\Apartment;
@@ -49,7 +50,12 @@ class ApartmentController extends Controller
         $validated_data = $request->validated();
 
         $apartment = new Apartment($validated_data);
-
+         $client = new Client([
+            'verify' => false, // Impostare a true per abilitare la verifica del certificato SSL
+             // Specificare il percorso del certificato CA
+        ]);
+        $response = $client->get('https://api.tomtom.com/search/2/geocode/query='. $apartment['address'].'.json?key=03zxGHB5yWE9tQEW9M7m9s46vREYKHct' );
+        $data = json_decode($response->getBody(), true);
         $apartment->name = $validated_data['name'];
         $apartment->type_of_accomodation = $validated_data['type_of_accomodation'];
         $apartment->n_guests = $validated_data['n_guests'];
@@ -58,8 +64,8 @@ class ApartmentController extends Controller
         $apartment->n_baths = $validated_data['n_baths'];
         $apartment->price = $validated_data['price'];
         // $apartment->availability = $validated_data['availability'];
-        $apartment->latitude = $validated_data['latitude'];
-        $apartment->longitude = $validated_data['longitude'];
+        $apartment->latitude = $data['results'][0]['position']['lat'];
+        $apartment->longitude = $data['results'][0]['position']['lon'];
         $apartment->slug = Str::slug($validated_data['name']);
         $apartment->address = $validated_data['address'];
         $apartment->img_cover_path = $validated_data['img_cover_path'];
@@ -99,7 +105,7 @@ class ApartmentController extends Controller
        
         $apartment = Apartment::where("slug", $slug)->firstOrFail();
 
-         $apartment->name = $validated_data['name'];
+        $apartment->name = $validated_data['name'];
         $apartment->type_of_accomodation = $validated_data['type_of_accomodation'];
         $apartment->n_guests = $validated_data['n_guests'];
         $apartment->n_rooms = $validated_data['n_rooms'];
