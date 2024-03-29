@@ -15,6 +15,7 @@ use App\Models\Apartment;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
+
 class ApartmentSeeder extends Seeder
 {
     /**
@@ -30,7 +31,7 @@ class ApartmentSeeder extends Seeder
         $apartmentAccomodation = config('db.allTypeOfAccomodation');
         $apartmentAddress = config('db.addressesWithCoordinates');
 
-        $imagePaths = Storage::disk('public')->files('img');
+        $imagePath = Storage::disk('public')->files('img');
      
 
             for ($i = 0; $i < count($apartmentName); $i++) {
@@ -48,8 +49,7 @@ class ApartmentSeeder extends Seeder
                 $apartment->slug = Str::slug($apartmentName[$i]);
                 $apartment->address =  $apartmentAddress[$i]['address'];
                 $apartment->city = $apartmentAddress[$i]['city'];
-                $randomImagePath = $imagePaths[$i];
-                $apartment->img_cover_path = $randomImagePath;
+                $apartment->img_cover_path = $imagePath[$i];
                 $apartment->save();
             }
         }

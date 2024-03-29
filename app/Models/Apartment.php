@@ -27,6 +27,17 @@ class Apartment extends Model
     ];
     use HasFactory;
 
+    //full_cover_img
+    public function getFullCoverImgAttribute() {
+        // Se c'è una cover_img
+        if ($this->img_cover_path) {
+            // Allora mi restituisci il percorso completo
+            return asset('storage/'.$this->img_cover_path);
+        } else {
+            return null;
+        }
+    }
+
     // Relationships
 
     public function user()

@@ -34,7 +34,7 @@
                                 <tr>
                                     <th scope="row">{{ $apartment->id }}</th>
                                     <td>
-                                        <img src="{{ $apartment->img_cover_path }}" class="cover-img">
+                                        <img src="{{ $apartment->full_cover_img }}" class="cover-img">
                                     </td>
                                     <td>{{ $apartment->name }}</td>
                                     <td>

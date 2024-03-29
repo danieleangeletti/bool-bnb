@@ -32,7 +32,7 @@ return new class extends Migration {
             $table->string('address', 100);
             $table->string('free_form_address',64)->nullable();
             $table->date('deleted_at')->nullable()->default(null);
-            $table->string('img_cover_path', 1000);
+            $table->string('img_cover_path', 1000)->nullable();
             $table->timestamps();
         });
     }
