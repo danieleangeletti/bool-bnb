@@ -25,10 +25,12 @@ return new class extends Migration {
             $table->tinyInteger('n_baths')->unsigned();
             $table->float('price', 6, 2)->unsigned();
             $table->boolean('availability')->default(true);
-            $table->string('latitude', 100);
-            $table->string('longitude', 100);
+            $table->string('latitude', 100)->nullable();
+            $table->string('longitude', 100)->nullable();
+            $table->string('city',64);
             $table->string('slug', 100);
             $table->string('address', 100);
+            $table->string('free_form_address',64)->nullable();
             $table->date('deleted_at')->nullable()->default(null);
             $table->string('img_cover_path', 1000);
             $table->timestamps();

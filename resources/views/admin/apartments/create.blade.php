@@ -153,6 +153,16 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label for="city" class="form-label ">Add city</label>
+                <input value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" type="text"
+                    id="city" city="city" maxlength="64">
+                @error('city')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
                 <label for="img_cover_path" class="form-label">Apartment image</label>
                 <input class="form-control" type="text" id="img_cover_path" name="img_cover_path">
             </div>

@@ -38,6 +38,7 @@ class StoreApartmentRequest extends FormRequest
             // 'longitude' => 'required|string|max:100',
             // 'slug' => 'required|string|max:100',
             'address' => 'required|string|max:100',
+            'city' => 'required|string|max:64',
             'img_cover_path' => 'nullable|string|max:1000',
             // L'img_cover_path è nullable solo momentaneamente, poi dovrà essere required.
         ];
