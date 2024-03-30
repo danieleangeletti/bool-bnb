@@ -14,7 +14,7 @@ class ApartmentController extends Controller
 {
     public function index()
     {
-        $apartment = Apartment::all();
+        $apartment = Apartment::with('users','apartment_service','apartment_sponsorhip','photos','services','sponsorhips');
         return response()->json([
             'success'=>true,
             'result'=>$apartment
@@ -23,7 +23,7 @@ class ApartmentController extends Controller
 
     public function show(string $slug)
     {
-        $apartment = Apartment::where("slug", $slug)->firstOrFail();
+        $apartment = Apartment::with('users','apartment_service','apartment_sponsorhip','photos','services','sponsorhips')->where("slug", $slug)->firstOrFail();
         return response()->json([
             'success'=>true,
             'result'=>$apartment
