@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center text-success">
-                        All apartments
+                        All apartments 
                     </h1>
 
                     <a href="{{ route('admin.apartments.create') }}" class="btn btn-primary w-100">ADD APARTMENT</a>
