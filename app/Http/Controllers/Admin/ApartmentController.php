@@ -54,7 +54,7 @@ class ApartmentController extends Controller
             'verify' => false, // Impostare a true per abilitare la verifica del certificato SSL
              // Specificare il percorso del certificato CA
         ]);
-        $response = $client->get('https://api.tomtom.com/search/2/geocode/query='. $apartment['address'].$apartment['city'].'.json?key=03zxGHB5yWE9tQEW9M7m9s46vREYKHct' );
+        $response = $client->get('https://api.tomtom.com/search/2/geocode/query='. $apartment['address'].' '.$apartment['city'].'.json?key=03zxGHB5yWE9tQEW9M7m9s46vREYKHct' );
         $data = json_decode($response->getBody(), true);
         $apartment->name = $validated_data['name'];
         $apartment->type_of_accomodation = $validated_data['type_of_accomodation'];
@@ -69,6 +69,7 @@ class ApartmentController extends Controller
         $apartment->slug = Str::slug($validated_data['name']);
         $apartment->address = $validated_data['address'];
         $apartment->address = $validated_data['city'];
+        $apartment->free_form_address = $data['results'][0]['address']['freeformAddress'];
         $apartment->img_cover_path = $validated_data['img_cover_path'];
 
         $apartment->save();
@@ -109,9 +110,10 @@ class ApartmentController extends Controller
             'verify' => false, // Impostare a true per abilitare la verifica del certificato SSL
              // Specificare il percorso del certificato CA
         ]);
-        $response = $client->get('https://api.tomtom.com/search/2/geocode/query='. $apartment['address'].$apartment['city'].'.json?key=03zxGHB5yWE9tQEW9M7m9s46vREYKHct' );
+        $response = $client->get('https://api.tomtom.com/search/2/geocode/query='. $apartment['address'].' '.$apartment['city'].'.json?key=03zxGHB5yWE9tQEW9M7m9s46vREYKHct' );
         $data = json_decode($response->getBody(), true);
 
+        
         $apartment->name = $validated_data['name'];
         $apartment->type_of_accomodation = $validated_data['type_of_accomodation'];
         $apartment->n_guests = $validated_data['n_guests'];
@@ -120,13 +122,16 @@ class ApartmentController extends Controller
         $apartment->n_baths = $validated_data['n_baths'];
         $apartment->price = $validated_data['price'];
         // $apartment->availability = $validated_data['availability'];
-        // $apartment->latitude = $validated_data['latitude'];
-        // $apartment->longitude = $validated_data['longitude'];
+        if(isset($data['results'][0]['position']['lat']) && isset($data['results'][0]['position']['lon']) != null){
+
+           $apartment->latitude = $data['results'][0]['position']['lat'];
+           $apartment->longitude = $data['results'][0]['position']['lon'];
+        }
         $apartment->slug = Str::slug($validated_data['name']);
         $apartment->address = $validated_data['address'];
         $apartment->city = $validated_data['city'];
-        $apartment->free_form_address = $data['results'][0]['address']['free_form_address'];
-        $apartment->img_cover_path = $validated_data['img_cover_path'];
+        $apartment->free_form_address = $data['results'][0]['address']['freeformAddress'];
+        // $apartment->img_cover_path = $validated_data['img_cover_path'];
 
         $apartment->save();
 
