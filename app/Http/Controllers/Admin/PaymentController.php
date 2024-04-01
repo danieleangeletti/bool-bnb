@@ -6,6 +6,9 @@ use Braintree\Gateway;
 
 use Illuminate\Http\Request;
 
+// Models
+use App\Models\Apartment;
+
 class PaymentController extends Controller
 {
     protected $gateway;
@@ -31,24 +34,23 @@ class PaymentController extends Controller
 
     public function processPayment(Request $request)
     {   
-        
-        // $nonce = $request->input('payment_method_nonce');
+        $nonce = $request->input('payment_method_nonce');
 
-        // $result = $this->gateway->transaction()->sale([
-        //     'amount' => '10.00',
-        //     'paymentMethodNonce' => $nonce,
-        //     'options' => [
-        //         'submitForSettlement' => true
-        //     ]
-        // ]);
+        $result = $this->gateway->transaction()->sale([
+            'amount' => '10.00',
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => true
+            ]
+        ]);
 
-        // if ($result->success) {
-        //     // Pagamento completato con successo
-        //     return redirect()->back()->with('success_message', 'Pagamento completato con successo.');
-        // } else {
-        //     // Gestire errori di pagamento
-        //     $error = $result->message;
-        //     return redirect()->back()->withErrors([$error]);
-        // }
+        if ($result->success) {
+            // Pagamento completato con successo
+            return redirect()->back()->with('success_message', 'Pagamento completato con successo.');
+        } else {
+            // Gestire errori di pagamento
+            $error = $result->message;
+            return redirect()->back()->withErrors([$error]);
+        }
     }
 }

@@ -6,6 +6,7 @@
     THIS IS THE CHECKOUT PAGE
     {{ $sponsorship_id }}
     <form id="payment-form" action="processPayment" method="POST">
+        @csrf
         <div id="dropin-container"></div>
         <input type="submit" />
         <input type="hidden" id="nonce" name="payment_method_nonce" />

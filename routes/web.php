@@ -33,7 +33,7 @@ Route::prefix('admin')
 
         // payment
         Route::get('/checkout', [AdminPaymentController::class, 'checkout'])->name('checkout');
-        Route::post('/process-payment', [AdminPaymentController::class, 'processPayment'])->name('process-payment');
+        Route::post('/processPayment', [AdminPaymentController::class, 'processPayment'])->name('processPayment');
     });
 
 require __DIR__ . '/auth.php';
