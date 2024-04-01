@@ -39,6 +39,18 @@
                             <li>
                                 <img src="{{ $apartment->full_cover_img }}" alt=""> 
                             </li>
+                            <form action="{{ route('admin.checkout')}}" method="GET">
+                                @csrf
+                                <div class="mt-3 d-flex">
+                                    <select id="sponsorship_id" name="sponsorship_id" class="form-select w-25 me-3">
+                                    <option value="">Choose sponsorship</option>
+                                    @foreach ($sponsorships as $sponsorship)
+                                        <option value="{{ $sponsorship->id }}">{{ $sponsorship->title }} {{ $sponsorship->hour_duration }}h: {{ $sponsorship->cost }}€</option>
+                                    @endforeach
+                                    </select>
+                                    <button type="submit" class="btn btn-success">BUY</button>
+                                </div>
+                            </form>
                         </ul>
                     </div>
                 </div>

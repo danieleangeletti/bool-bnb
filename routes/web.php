@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
 use App\Http\Controllers\Admin\ApartmentController as AdminApartmentController;
+use App\Http\Controllers\Admin\PaymentController as AdminPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,10 @@ Route::prefix('admin')
 
         Route::resource('apartments', AdminApartmentController::class);
         Route::get('/restore',[ AdminApartmentController::class, 'restore'])->name('restore');
+
+        // payment
+        Route::get('/checkout', [AdminPaymentController::class, 'checkout'])->name('checkout');
+        Route::post('/process-payment', [AdminPaymentController::class, 'processPayment'])->name('process-payment');
     });
 
 require __DIR__ . '/auth.php';
