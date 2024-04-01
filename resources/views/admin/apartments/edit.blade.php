@@ -71,7 +71,7 @@
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Price <span class="text-danger">*</span></label>
-                <input value="{{ old('price', $apartment->price) }}" type="number" min="1.00" max="1000.00"
+                <input value="{{ old('price', $apartment->price) }}" type="number" min="1,00" max="1000,00"
                     class="form-control" id="price" name="price" placeholder="Insert Price..." required>
             </div>
             <div>
@@ -99,7 +99,7 @@
             <div class="mb-3">
                 <label for="city" class="form-label">City <span class="text-danger">*</span></label>
                 <input value="{{ old('city', $apartment->city) }}" type="text" class="form-control" id="city"
-                    city="city" placeholder="Insert city..." maxlength="64" required>
+                    name="city" placeholder="Insert city..." maxlength="64" required>
             </div>
 
             <div class="mb-3">

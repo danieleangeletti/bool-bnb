@@ -39,6 +39,7 @@ class UpdateApartmentRequest extends FormRequest
             
             'address' => 'required|string|max:100',
             'img_cover_path' => 'nullable|string|max:1000',
+            'city'=> 'required|string|max:100'
             
         ];
     }
