@@ -37,16 +37,16 @@ class ApartmentController extends Controller
     {
         $apartments = Apartment::all();
         $accomodation = config('db.allTypeOfAccomodation');
-        $sponsorhips = Sponsorship::all();
+        $sponsorships = Sponsorship::all();
         $services = Service::all();
-        return view("admin.apartments.create",compact('apartments','sponsorhips', 'services','accomodation'));
+        return view("admin.apartments.create",compact('apartments','sponsorships', 'services','accomodation'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreApartmentRequest $request)
-    {
+    {   
         $validated_data = $request->validated();
 
         $apartment = new Apartment($validated_data);
@@ -81,9 +81,10 @@ class ApartmentController extends Controller
      * Display the specified resource.
      */
     public function show(string $slug)
-    {
+    {   
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
-        return view("admin.apartments.show", compact("apartment"));
+        $sponsorships = Sponsorship::all();
+        return view("admin.apartments.show", compact("apartment", "sponsorships"));
     }
 
     /**
