@@ -6,7 +6,7 @@ use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
-
+use Illuminate\Support\Facades\Auth;
 // Models
 use App\Models\Apartment;
 use App\Models\Sponsorship;
@@ -23,7 +23,8 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $user = Auth::user();
+        $apartments = Apartment::where('user_id',$user->id)->get();
         $sponsorhips = Sponsorship::all();
         $services = Service::all();
         $messages = Message::all();
@@ -48,7 +49,7 @@ class ApartmentController extends Controller
     public function store(StoreApartmentRequest $request)
     {   
         $validated_data = $request->validated();
-
+        $user = Auth::user();
         $apartment = new Apartment($validated_data);
          $client = new Client([
             'verify' => false, // Impostare a true per abilitare la verifica del certificato SSL
@@ -57,6 +58,7 @@ class ApartmentController extends Controller
         $response = $client->get('https://api.tomtom.com/search/2/geocode/query='. $apartment['address'].' '.$apartment['city'].'.json?key=03zxGHB5yWE9tQEW9M7m9s46vREYKHct' );
         $data = json_decode($response->getBody(), true);
         $apartment->name = $validated_data['name'];
+        $apartment->user_id = $user->id;
         $apartment->type_of_accomodation = $validated_data['type_of_accomodation'];
         $apartment->n_guests = $validated_data['n_guests'];
         $apartment->n_rooms = $validated_data['n_rooms'];

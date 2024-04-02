@@ -8,3 +8,12 @@ main {
     width: 80px;
     height: 80px;
 }
+
+.error-ul{
+    width: 200px;
+    height: 50px;
+    .error-li{
+        list-style: disc;
+    }
+}
+    

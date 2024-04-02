@@ -3,6 +3,7 @@
 @section('page-title', 'All apartments')
 
 @section('main-content')
+    
     <div class="row">
         <div class="col">
             <div class="card">

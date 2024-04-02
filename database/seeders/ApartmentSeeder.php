@@ -12,6 +12,7 @@ use Illuminate\Database\Seeder;
 use App\Controller\Admin\ApartmentController;
 use Illuminate\Support\Str;
 use App\Models\Apartment;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
@@ -44,13 +45,22 @@ class ApartmentSeeder extends Seeder
                 $apartment->n_beds = fake()->numberBetween(1, 9);
                 $apartment->n_baths = fake()->numberBetween(1, 3);
                 $apartment->price = fake()->randomFloat(2, 1, 1000);
-                // $apartment->latitude =  $apartmentAddress[$i]['latitude'];
-                // $apartment->longitude=  $apartmentAddress[$i]['longitude'];
                 $apartment->slug = Str::slug($apartmentName[$i]);
                 $apartment->address =  $apartmentAddress[$i]['address'];
                 $apartment->city = $apartmentAddress[$i]['city'];
                 $apartment->img_cover_path = $imagePath[$i];
-                $apartment->save();
+                
+                //   $user = User::inRandomOrder()->first();
+
+                //     // Verifica se l'appartamento è già assegnato a un altro utente
+                //     while (Apartment::where('id', $apartment->id)->whereNotNull('user_id')->exists()) {
+                //         $user = User::inRandomOrder()->first();
+                //     }
+
+                //     $apartment->user_id = $user->id;
+                    $user = User::inRandomOrder()->first();
+                    $apartment->user_id = $user->id;
+                    $apartment->save();
             }
         }
     }

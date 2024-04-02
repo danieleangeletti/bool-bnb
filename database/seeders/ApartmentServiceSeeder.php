@@ -31,7 +31,7 @@ class ApartmentServiceSeeder extends Seeder
             $servicesForApartment = array_slice($services, 0, rand(1, count($services)));
             $apartment->services()->attach($servicesForApartment); 
         });
+        
+            }
+        }
     
-
-    }
-}
