@@ -44,9 +44,17 @@
                                 <div class="mt-3 d-flex">
                                     <select id="sponsorship_id" name="sponsorship_id" class="form-select w-25 me-3">
                                     <option value="">Choose sponsorship</option>
-                                    @foreach ($sponsorships as $sponsorship)
-                                        <option value="{{ $sponsorship->id }}">{{ $sponsorship->title }} {{ $sponsorship->hour_duration }}h: {{ $sponsorship->cost }}€</option>
-                                    @endforeach
+                                    @for ($i = 0; $i < count($sponsorships); $i++)
+                                    @if ($i == 2)
+                                        
+                                        <option value="{{ $sponsorships[$i]->id }}">{{ $sponsorships[$i]->title }} {{ '144' }}h: {{ $sponsorships[$i]->cost }}€</option>
+                                        @endif
+                                        @if ($i < 2)
+                                        
+                                        <option value="{{ $sponsorships[$i]->id }}">{{ $sponsorships[$i]->title }} {{ $sponsorships[$i]->hour_duration  }}h: {{ $sponsorships[$i]->cost }}€</option>
+                                        @endif
+                                    
+                                    @endfor
                                     </select>
                                     <button type="submit" class="btn btn-success">BUY</button>
                                 </div>

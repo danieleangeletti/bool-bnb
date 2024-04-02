@@ -155,7 +155,7 @@
             <div class="mb-3">
                 <label for="city" class="form-label ">Add city</label>
                 <input value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" type="text"
-                    id="city" city="city" maxlength="64">
+                    id="city" name="city" maxlength="64">
                 @error('city')
                     <div class="alert alert-danger">
                         {{ $message }}
