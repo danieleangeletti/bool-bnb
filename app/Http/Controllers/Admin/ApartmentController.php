@@ -1,17 +1,21 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
+
+
 // Models
 use App\Models\Apartment;
 use App\Models\Sponsorship;
 use App\Models\Service;
 use App\Models\Message;
+use App\Models\View;
 
 // Helpers
 use Illuminate\Support\Str;
@@ -21,9 +25,10 @@ class ApartmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
+        $userIP = $request->ips();
         $apartments = Apartment::where('user_id',$user->id)->get();
         $sponsorhips = Sponsorship::all();
         $services = Service::all();
@@ -50,6 +55,7 @@ class ApartmentController extends Controller
     {   
         $validated_data = $request->validated();
         $user = Auth::user();
+        
         $apartment = new Apartment($validated_data);
          $client = new Client([
             'verify' => false, // Impostare a true per abilitare la verifica del certificato SSL
@@ -82,23 +88,54 @@ class ApartmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug)
+    public function show(string $slug , Request $request)
     {   
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
         $sponsorships = Sponsorship::all();
+        $myView = View::where('apartment_id', $apartment->id)->where('ip_address', $request->ip())->get()->last();
+
+        
+        // dd($myView->last());
+        $now = Carbon::now();
+        // $formattedDate = $now->format('Y-m-d');
+        if($myView && $now->diffInHours($myView->created_at) >= 12 ){
+            $view = new View;
+            $view->ip_address = $request->ip();
+            $view->apartment_id = $apartment->id;
+            $view->save();
+        }
+
+        // Verifica se l'appartamento appartiene all'utente loggato
+        if ($apartment->user_id != auth()->id()) {
+            // Gestisci il caso in cui l'appartamento non appartenga all'utente loggato
+            return back()->withErrors('error', 'Something went wrong!');
+        }
         return view("admin.apartments.show", compact("apartment", "sponsorships"));
     }
+        
+        
+         
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $slug)
     {
-        $apartment = Apartment::where("slug", $slug)->firstOrFail();
+        
+        $user = Auth::user();
+        
+        $apartment = Apartment::where('user_id',$user->id)->where('slug', $slug)->firstOrFail();
         $accomodation = config('db.allTypeOfAccomodation');
         $services = Service::all();
- 
-        return view("admin.apartments.edit", compact("apartment","accomodation","services"));
+        if ($apartment->user_id != auth()->id()) {
+                // Gestisci il caso in cui l'appartamento non appartenga all'utente loggato
+                
+            return redirect()->route('admin.apartments.index')->with('error', 'You are not authorized to access this apartment.');
+        }
+        else{
+                
+            return view("admin.apartments.edit", compact("apartment","accomodation","services"));
+        }
     }
 
     /**

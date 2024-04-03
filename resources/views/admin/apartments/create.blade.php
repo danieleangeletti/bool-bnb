@@ -3,7 +3,15 @@
 @section('page-title', 'Add apartment')
 
 @section('main-content')
-
+      @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     <div class=" container ">
         <div class="mb-4">
             <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary">
