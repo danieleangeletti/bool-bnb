@@ -65,6 +65,11 @@
                     class="form-control" id="n_beds" name="n_beds" placeholder="Insert beds..." required>
             </div>
             <div class="mb-3">
+                <label for="mq" class="form-label">Mq <span class="text-danger">*</span></label>
+                <input value="{{ old('mq', $apartment->mq) }}" type="number" min="1" max="9"
+                    class="form-control" id="mq" name="mq" placeholder="Insert mq..." required>
+            </div>
+            <div class="mb-3">
                 <label for="n_baths" class="form-label">Baths <span class="text-danger">*</span></label>
                 <input value="{{ old('n_baths', $apartment->n_baths) }}" type="number" min="1" max="3"
                     class="form-control" id="n_baths" name="n_baths" placeholder="Insert Baths..." required>

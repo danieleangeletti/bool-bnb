@@ -102,6 +102,16 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label for="mq">Mq:</label>
+                <input value="{{ old('mq') }}" class="form-control @error('mq') is-invalid @enderror"
+                    type="number" id="mq" name="mq" min="20" max="150">
+                @error('mq')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
                 <label for="n_rooms">Number Rooms (between 1 and 6):</label>
                 <input value="{{ old('n_rooms') }}" class="form-control @error('n_rooms') is-invalid @enderror"
                     type="number" id="n_rooms" name="n_rooms" min="1" max="6">
