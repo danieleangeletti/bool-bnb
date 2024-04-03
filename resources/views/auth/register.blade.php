@@ -1,6 +1,12 @@
 @extends('layouts.guest')
 
 @section('main-content')
+    @foreach ($errors->all() as $error)
+        <ul class="error-ul" class="p-0">
+            <li class="error-li">{{ $error }}</li>
+        </ul>
+    @endforeach
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -9,7 +15,7 @@
             <label for="name">
                 Name
             </label>
-            <input type="text" id="name" name="name">
+            <input value="{{ old('name') }}" type="text" id="name" name="name" required maxlength="255">
         </div>
 
         {{-- Last name --}}
@@ -17,7 +23,7 @@
             <label for="last_name">
                 Last name
             </label>
-            <input type="text" id="last_name" name="last_name">
+            <input value="{{ old('last_name') }}" type="text" id="last_name" name="last_name" required maxlength="255">
         </div>
 
         {{-- Date of birth --}}
@@ -25,7 +31,7 @@
             <label for="date_of_birth">
                 Date of birth
             </label>
-            <input type="date" id="date_of_birth" name="date_of_birth">
+            <input value="{{ old('date_of_birth') }}" type="date" id="date_of_birth" name="date_of_birth" required>
         </div>
 
         <!-- Email Address -->
@@ -33,7 +39,7 @@
             <label for="email">
                 Email
             </label>
-            <input type="email" id="email" name="email">
+            <input value="{{ old('email') }}" type="email" id="email" name="email" required maxlength="255">
         </div>
 
         <!-- Password -->
@@ -41,7 +47,7 @@
             <label for="password">
                 Password
             </label>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" required>
         </div>
 
         <!-- Confirm Password -->
@@ -49,7 +55,7 @@
             <label for="password_confirmation">
                 Conferma Password
             </label>
-            <input type="password" id="password_confirmation" name="password_confirmation">
+            <input type="password" id="password_confirmation" name="password_confirmation" required>
         </div>
 
         <div>

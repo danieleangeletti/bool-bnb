@@ -3,6 +3,12 @@
 @section('page-title', 'All apartments')
 
 @section('main-content')
+
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
     <div class="row">
         <div class="col">
             <div class="card">
@@ -55,7 +61,7 @@
                                                 <a href="{{ route('admin.apartments.show', ['apartment' => $apartment->slug]) }}" class="btn btn-primary">SHOW</a>
                                             </div>
                                             <div class="ms-1 me-1">
-                                                <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}" class="btn btn-warning">EDIT</a>
+                                                <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug , $apartment->id]) }}" class="btn btn-warning">EDIT</a>
                                             </div>
                                             <div class="ms-1 me-1">
                                                 <form onsubmit="return confirm('Are you sure you want to delete this project?')" action="{{route ('admin.apartments.destroy', ['apartment' => $apartment->slug])}}" method="POST" class="d-inline-block">

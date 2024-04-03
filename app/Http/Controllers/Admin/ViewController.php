@@ -6,7 +6,7 @@ use App\Http\Requests\StoreViewRequest;
 use App\Http\Requests\UpdateViewRequest;
 use App\Models\View;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Http\Request;
 class ViewController extends Controller
 {
     /**
@@ -14,15 +14,16 @@ class ViewController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $view = new View;
+        $view->ip_address = $request->ips();
     }
 
     /**
