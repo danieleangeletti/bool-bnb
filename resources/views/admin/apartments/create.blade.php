@@ -141,22 +141,21 @@
                     </div>
                 @enderror
             </div>
-            <div class="mb-3">
-                <label for="service_id" class="form-label">Service</label>
-                <select name="service_id" id="service_id" class="form-select">
-                    <option
-                        value=""
-                        {{ old('service_id') == null ? 'selected' : '' }}>
-                        Add service
-                    </option>
-                    @foreach ($services as $service)
-                        <option
-                            value="{{ $service->id }}"
-                            {{ old('service_id') == $service->id ? 'selected' : '' }}>
-                            {{ $service->type_of_service }}
-                        </option>
-                    @endforeach
-                </select>
+            <div>
+                @foreach ($services as $service)
+                    <div class="form-check form-check-inline"> 
+                         <input {{--Se c'è l'old, vuol dire che c'è stato un errore --}}
+                            @if ($errors->any())  {{--Faccio le verifiche sull'old --}}
+                          {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}
+                        @else 
+                            {{-- Faccio le verifiche sulla collezione --}}
+                            {{ $services->contains($service->id) ? 'checked' : '' }} @endif
+                            class="form-check-input" type="checkbox" id="service-{{ $service->id }}" name="services[]"
+                            value="{{ $service->id }}">
+                        <label class="form-check-label"
+                            for="service-{{ $service->id }}">{{ $service->type_of_service }}</label>
+                    </div>
+                @endforeach
             </div>
        
             {{-- <div class="mb-3">

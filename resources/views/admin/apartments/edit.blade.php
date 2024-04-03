@@ -74,39 +74,23 @@
                 <input value="{{ old('price', $apartment->price) }}" type="number" min="1,00" max="1000,00"
                     class="form-control" id="price" name="price" placeholder="Insert Price..." required>
             </div>
-            {{-- <div>
+            <div>
                 @foreach ($services as $service)
-                    <div class="form-check form-check-inline"> --}}
-                        {{-- <input Se c'è l'old, vuol dire che c'è stato un errore --}}
-                            {{-- @if ($errors->any()) Faccio le verifiche sull'old --}}
-                            {{-- {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}
-                        @else --}}
+                    <div class="form-check form-check-inline"> 
+                         <input {{--Se c'è l'old, vuol dire che c'è stato un errore --}}
+                            @if ($errors->any())  {{--Faccio le verifiche sull'old --}}
+                          {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}
+                        @else 
                             {{-- Faccio le verifiche sulla collezione --}}
-                            {{-- {{ $apartment->services->contains($service->id) ? 'checked' : '' }} @endif
+                            {{ $apartment->services->contains($service->id) ? 'checked' : '' }} @endif
                             class="form-check-input" type="checkbox" id="service-{{ $service->id }}" name="services[]"
                             value="{{ $service->id }}">
                         <label class="form-check-label"
                             for="service-{{ $service->id }}">{{ $service->type_of_service }}</label>
                     </div>
                 @endforeach
-            </div> --}}
-            <div class="mb-3">
-                <label for="service_id" class="form-label">Service</label>
-                <select name="service_id" id="service_id" class="form-select">
-                    <option
-                        value=""
-                        {{ old('service_id') == null ? 'selected' : '' }}>
-                        Add service
-                    </option>
-                    @foreach ($services as $service)
-                        <option
-                            value="{{ $service->id }}"
-                            {{ old('service_id') == $service->id ? 'selected' : '' }}>
-                            {{ $service->type_of_service }}
-                        </option>
-                    @endforeach
-                </select>
             </div>
+        
 
             <div class="mb-3">
                 <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
