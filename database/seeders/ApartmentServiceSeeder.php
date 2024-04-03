@@ -15,10 +15,10 @@ class ApartmentServiceSeeder extends Seeder
     public function run(): void
     
     {    
-    //      Schema::withoutForeignKeyConstraints(function () {
+         Schema::withoutForeignKeyConstraints(function () {
 
-    //      Apartment::truncate();
-    //  });
+         Apartment::truncate();
+     });
         $apartments = Apartment::all();
         $services = Service::all()->pluck('id')->toArray();
 
@@ -27,11 +27,11 @@ class ApartmentServiceSeeder extends Seeder
             return;
         }
         $apartments->each(function ($apartment) use ($services) {
-            shuffle($services); 
+            shuffle($services);
             $servicesForApartment = array_slice($services, 0, rand(1, count($services)));
             $apartment->services()->attach($servicesForApartment); 
         });
         
-            }
         }
+    }
     
