@@ -75,8 +75,8 @@ class ApartmentController extends Controller
         $apartment->latitude = $data['results'][0]['position']['lat'];
         $apartment->longitude = $data['results'][0]['position']['lon'];
         $apartment->slug = Str::slug($validated_data['name']);
-        $apartment->address = $validated_data['address'];
-        $apartment->city = $validated_data['city'];
+        // $apartment->address = $validated_data['address'];
+        // $apartment->city = $validated_data['city'];
         $apartment->free_form_address = $data['results'][0]['address']['freeformAddress'];
         $apartment->img_cover_path = $validated_data['img_cover_path'];
 
@@ -124,7 +124,7 @@ class ApartmentController extends Controller
         
         $user = Auth::user();
         
-        $apartment = Apartment::where('user_id',$user->id)->where('slug', $slug)->firstOrFail();
+        $apartment = Apartment::where('slug', $slug)->firstOrFail();
         $accomodation = config('db.allTypeOfAccomodation');
         $services = Service::all();
         if ($apartment->user_id != auth()->id()) {
@@ -153,7 +153,6 @@ class ApartmentController extends Controller
         $response = $client->get('https://api.tomtom.com/search/2/geocode/query='. $apartment['address'].' '.$apartment['city'].'.json?key=03zxGHB5yWE9tQEW9M7m9s46vREYKHct' );
         $data = json_decode($response->getBody(), true);
 
-        
         $apartment->name = $validated_data['name'];
         $apartment->type_of_accomodation = $validated_data['type_of_accomodation'];
         $apartment->n_guests = $validated_data['n_guests'];
@@ -168,9 +167,9 @@ class ApartmentController extends Controller
            $apartment->longitude = $data['results'][0]['position']['lon'];
         }
         $apartment->slug = Str::slug($validated_data['name']);
-        $apartment->address = $validated_data['address'];
-        $apartment->city = $validated_data['city'];
-        $apartment->free_form_address = $data['results'][0]['address']['freeformAddress'];
+        // $apartment->address = $validated_data['address'];
+        // $apartment->city = $validated_data['city'];
+        $apartment->address = $data['results'][0]['address']['freeformAddress'];
         // $apartment->img_cover_path = $validated_data['img_cover_path'];
 
         $apartment->save();

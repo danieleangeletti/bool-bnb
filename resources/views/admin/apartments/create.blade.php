@@ -1,3 +1,36 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const addressInput = document.getElementById("address-input");
+        const suggestionsContainer = document.getElementById("suggestions");
+
+        addressInput.addEventListener("input", function() {
+            const input = addressInput.value.trim();
+
+            if (input.length === 0) {
+                suggestionsContainer.innerHTML = "";
+                return;
+            }
+
+            fetch(`https://api.tomtom.com/search/2/search/${input}.json?key=03zxGHB5yWE9tQEW9M7m9s46vREYKHct`)
+                .then(response => response.json())
+                .then(data => {
+                    suggestionsContainer.innerHTML = ""; // Svuota i suggerimenti precedenti
+
+                    data.results.forEach(result => {
+                        const suggestion = document.createElement("div");
+                        suggestion.textContent = result.address.freeformAddress;
+                        suggestion.addEventListener("click", function() {
+                            addressInput.value = result.address.freeformAddress;
+                            suggestionsContainer.innerHTML = "";
+                        });
+                        suggestionsContainer.appendChild(suggestion);
+                    });
+                })
+                .catch(error => console.error("Errore durante il recupero dei suggerimenti:", error));
+        });
+    });
+</script>
+
 @extends('layouts.app')
 
 @section('page-title', 'Add apartment')
@@ -153,7 +186,10 @@
             <div class="mb-3">
                 <label for="address" class="form-label ">Add address</label>
                 <input value="{{ old('address') }}" class="form-control @error('address') is-invalid @enderror"
-                    type="text" id="address" name="address" maxlength="64">
+                    type="text" id="address-input" name="address" maxlength="64">
+                    <div id="suggestions">
+                        
+                    </div>
                 @error('adress')
                     <div class="alert alert-danger">
                         {{ $message }}
