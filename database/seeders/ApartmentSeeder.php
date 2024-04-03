@@ -34,9 +34,17 @@ class ApartmentSeeder extends Seeder
         $apartmentAddress = config('db.addressesWithCoordinates');
 
         $imagePath = Storage::disk('public')->files('img');
-     
+
+        $client = new Client([
+            'verify' => false, // Impostare a true per abilitare la verifica del certificato SSL
+             // Specificare il percorso del certificato CA
+        ]);
 
             for ($i = 0; $i < count($apartmentName); $i++) {
+
+                if ($i > 0 && ($i + 1) %5 == 0){
+                    sleep(1);
+                }
 
                 $apartment = new Apartment();
                 $apartment->name =  $apartmentName[$i];
@@ -48,10 +56,6 @@ class ApartmentSeeder extends Seeder
                 $apartment->n_baths = fake()->numberBetween(1, 3);
                 $apartment->price = fake()->randomFloat(2, 1, 1000);
                 $apartment->slug = Str::slug($apartmentName[$i]);
-                $client = new Client([
-                    'verify' => false, // Impostare a true per abilitare la verifica del certificato SSL
-                     // Specificare il percorso del certificato CA
-                ]);
                 $response = $client->get('https://api.tomtom.com/search/2/geocode/query='. $apartmentAddress[$i]['address'].' '.$apartmentAddress[$i]['city'].'.json?key=QX6VTsLjPwGWSrTRX4kLg6X3qyp5WDlt' );
                 $data = json_decode($response->getBody(), true);
                 $apartment->latitude = $data['results'][0]['position']['lat'];
