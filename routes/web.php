@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\MainController as AdminMainController;
 use App\Http\Controllers\Admin\ApartmentController as AdminApartmentController;
 use App\Http\Controllers\Admin\PaymentController as AdminPaymentController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,11 +30,14 @@ Route::prefix('admin')
         Route::get('/dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
 
         Route::resource('apartments', AdminApartmentController::class);
+        
         Route::get('/restore',[ AdminApartmentController::class, 'restore'])->name('restore');
 
         // payment
         Route::get('/checkout', [AdminPaymentController::class, 'checkout'])->name('checkout');
         Route::post('/processPayment', [AdminPaymentController::class, 'processPayment'])->name('processPayment');
     });
+
+
 
 require __DIR__ . '/auth.php';
