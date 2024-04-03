@@ -74,10 +74,10 @@ class ApartmentController extends Controller
         // $apartment->availability = $validated_data['availability'];
         $apartment->latitude = $data['results'][0]['position']['lat'];
         $apartment->longitude = $data['results'][0]['position']['lon'];
+        $apartment->address = $data['results'][0]['address']['freeformAddress'];
         $apartment->slug = Str::slug($validated_data['name']);
         // $apartment->address = $validated_data['address'];
         // $apartment->city = $validated_data['city'];
-        $apartment->free_form_address = $data['results'][0]['address']['freeformAddress'];
         $apartment->img_cover_path = $validated_data['img_cover_path'];
 
         $apartment->save();

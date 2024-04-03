@@ -11,6 +11,7 @@ class Apartment extends Model
     use SoftDeletes;
     protected $fillable = [
         'name',
+        'mq',
         'type_of_accomodation',
         'number_of_guests',
         'n_rooms',
