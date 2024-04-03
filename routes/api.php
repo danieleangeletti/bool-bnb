@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApartmentController as ApiApartment;
+use App\Http\Controllers\Api\ApartmentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,6 +24,7 @@ Route::name('api.')->group(function(){
             'index',
             'show'
         ]);
+    Route::get('/getApartments', [ApartmentController::class, 'getApartments'])->name('getApartments');
 });
 
 
