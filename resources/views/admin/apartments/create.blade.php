@@ -1,11 +1,13 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        let suggestionsContainer = document.getElementById("suggestions");
         const addressInput = document.getElementById("address-input");
-        const suggestionsContainer = document.getElementById("suggestions");
+        const form = document.getElementById("myForm"); // Ottieni il riferimento al form
 
+         let isChecked = false
         addressInput.addEventListener("input", function() {
             const input = addressInput.value.trim();
-
+            isChecked = false
             if (input.length === 0) {
                 suggestionsContainer.innerHTML = "";
                 return;
@@ -17,17 +19,36 @@
                     suggestionsContainer.innerHTML = ""; // Svuota i suggerimenti precedenti
 
                     data.results.forEach(result => {
-                        const suggestion = document.createElement("div");
+                        const suggestion = document.createElement("li");
                         suggestion.textContent = result.address.freeformAddress;
                         suggestion.addEventListener("click", function() {
                             addressInput.value = result.address.freeformAddress;
                             suggestionsContainer.innerHTML = "";
+                            isChecked = true
                         });
-                        suggestionsContainer.appendChild(suggestion);
+                         suggestionsContainer.appendChild(suggestion);
                     });
                 })
                 .catch(error => console.error("Errore durante il recupero dei suggerimenti:", error));
-        });
+            });
+            form.addEventListener("submit", function(event) {
+                const addressInput = document.getElementById("address-input");
+                const suggestions = document.getElementById("suggestions");
+                const selectedOption = suggestions.querySelector("option:checked");
+
+                // Se non è stata selezionata alcuna opzione, mostra un messaggio di errore e impedisce l'invio del modulo
+                if (isChecked == false) {
+                    console.log('ciao')
+                    event.preventDefault(); // Impedisce l'invio del modulo
+                    alert("Devi selezionare un suggerimento dalla lista dei indirizzi!");
+                    suggestions.classList.add('is-invalid')
+                    return false; // Interrompe l'esecuzione dello script
+                }
+            });
+            document.addEventListener("click", function() {
+                console.log('ciao')
+                suggestionsContainer.innerHTML = "";
+            })
     });
 </script>
 
@@ -55,7 +76,7 @@
         <h1>Create Apartment</h1>
 
 
-        <form action="{{ route('admin.apartments.store') }}" method="POST">
+        <form id="myForm" action="{{ route('admin.apartments.store') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label ">Add name</label>
@@ -160,14 +181,14 @@
                     </div>
                 @endforeach
             </div>
-            <div class="mb-3">
+            <div class="mb-3 position-relative">
                 <label for="address" class="form-label ">Add address</label>
                 <input value="{{ old('address') }}" class="form-control @error('address') is-invalid @enderror"
-                    type="text" id="address-input" name="address" maxlength="64">
-                    <div id="suggestions">
-                    
-                    </div>
-                @error('address')
+                    type="text" id="address-input" name="address" maxlength="64" autocomplete="off">
+                    <ul id="suggestions">
+                        
+                    </ul>
+                @error('adress')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
