@@ -82,6 +82,13 @@ class ApartmentController extends Controller
 
         $apartment->save();
 
+        if (isset($validated_data['services'])) {
+            foreach ($validated_data['services'] as $singleServiceId) {
+                // attach this technology_id to this project
+                $apartment->services()->attach($singleServiceId);
+            }
+        }
+
         return redirect()->route('admin.apartments.show', ['apartment' => $apartment->slug]);
     }
 

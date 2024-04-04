@@ -40,7 +40,8 @@ class StoreApartmentRequest extends FormRequest
             'address' => 'required|string|max:100',
             // 'city' => 'required|string|max:64',
             'img_cover_path' => 'nullable|string|max:1000',
-            'mq' => 'required|numeric|gte:0|max:150'
+            'mq' => 'required|numeric|gte:0|max:150',
+            'services' => 'required|array|exists:services,id'
             // L'img_cover_path è nullable solo momentaneamente, poi dovrà essere required.
         ];
     }
