@@ -9,6 +9,7 @@
                 {{ session('error') }}
             </div>
         @endif
+        <div class="container">
     <div class="row">
         <div class="col">
             <div class="card">
@@ -31,13 +32,14 @@
                                 <th scope="col">Number of rooms</th>
                                 <th scope="col">Number of beds</th>
                                 <th scope="col">Number of baths</th>
+                                <th scope="col">Services</th>
                                 <th scope="col">Price</th>
-                                <th scope="col">Availability</th>
+                                <th scope="col">Avaible</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($apartments as $apartment)
-                                <tr>
+                                <tr class="{{$apartment->availability == 1 ? '' : 'bg-warning !important'}}">
                                     <th scope="row">{{ $apartment->id }}</th>
                                     <td>
                                         <img src="{{ $apartment->full_cover_img }}" class="cover-img">
@@ -53,17 +55,30 @@
                                     <td>{{ $apartment->n_rooms }}</td>
                                     <td>{{ $apartment->n_beds }}</td>
                                     <td>{{ $apartment->n_baths }}</td>
-                                    <td>{{ $apartment->price }}</td>
-                                    <td>{{ $apartment->availability }}</td>
                                     <td>
-                                        <div class="d-flex">
-                                            <div class="ms-1 me-1">
+                                    @foreach ($apartment->services as $singleService)
+                                    @if(count($apartment->services) == 1 )
+                                        <span>
+                                            {{ $singleService->type_of_service }}
+                                        </span>
+                                    @else
+                                    <span>
+                                        {{ $singleService->type_of_service }},
+                                    </span>
+                                    @endif
+                                    @endforeach
+                                </td>
+                                    <td>{{ $apartment->price }}</td>
+                                    <td class="{{$apartment->availability == 1 ? 'bg-success' : 'bg-danger'}}"></td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <div class="ms-1 me-1 my-1 ">
                                                 <a href="{{ route('admin.apartments.show', ['apartment' => $apartment->slug]) }}" class="btn btn-primary">SHOW</a>
                                             </div>
-                                            <div class="ms-1 me-1">
+                                            <div class="ms-1 me-1 my-1">
                                                 <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}" class="btn btn-warning">EDIT</a>
                                             </div>
-                                            <div class="ms-1 me-1">
+                                            <div class="ms-1 me-1 my-1">
                                                 <form onsubmit="return confirm('Are you sure you want to delete this project?')" action="{{route ('admin.apartments.destroy', ['apartment' => $apartment->slug])}}" method="POST" class="d-inline-block">
                                                     @csrf
                                                     @method('DELETE')
@@ -103,4 +118,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

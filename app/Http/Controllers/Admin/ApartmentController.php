@@ -79,7 +79,7 @@ class ApartmentController extends Controller
         $apartment->n_beds = $validated_data['n_beds'];
         $apartment->n_baths = $validated_data['n_baths'];
         $apartment->price = $validated_data['price'];
-        // $apartment->availability = $validated_data['availability'];
+        $apartment->availability = $validated_data['availability'];
         $apartment->latitude = $data['results'][0]['position']['lat'];
         $apartment->longitude = $data['results'][0]['position']['lon'];
         $apartment->address = $data['results'][0]['address']['freeformAddress'];
@@ -188,6 +188,13 @@ class ApartmentController extends Controller
         // $apartment->img_cover_path = $validated_data['img_cover_path'];
 
         $apartment->save();
+
+        if(isset($validated_data['services'])){
+            $apartment->services()->sync($validated_data['services']);
+        }
+        else{
+            $apartment->services()->detach();
+        }
 
         return redirect()->route('admin.apartments.show', ['apartment' => $apartment->slug]);
     }
