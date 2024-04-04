@@ -9,6 +9,7 @@
                 {{ session('error') }}
             </div>
         @endif
+        <div class="container">
     <div class="row">
         <div class="col">
             <div class="card">
@@ -33,12 +34,12 @@
                                 <th scope="col">Number of baths</th>
                                 <th scope="col">Services</th>
                                 <th scope="col">Price</th>
-                                <th scope="col">Availability</th>
+                                <th scope="col">Avaible</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($apartments as $apartment)
-                                <tr>
+                                <tr class="{{$apartment->availability == 1 ? '' : 'bg-warning !important'}}">
                                     <th scope="row">{{ $apartment->id }}</th>
                                     <td>
                                         <img src="{{ $apartment->full_cover_img }}" class="cover-img">
@@ -68,7 +69,7 @@
                                     @endforeach
                                 </td>
                                     <td>{{ $apartment->price }}</td>
-                                    <td>{{ $apartment->availability }}</td>
+                                    <td class="{{$apartment->availability == 1 ? 'bg-success' : 'bg-danger'}}"></td>
                                     <td>
                                         <div class="d-flex flex-column">
                                             <div class="ms-1 me-1 my-1 ">
@@ -117,4 +118,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

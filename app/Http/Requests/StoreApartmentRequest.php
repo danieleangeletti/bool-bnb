@@ -33,12 +33,8 @@ class StoreApartmentRequest extends FormRequest
             'n_beds' => 'required|numeric|gte:0|max:255',
             'n_baths' => 'required|numeric|gte:0|max:255',
             'price' => 'required|numeric|max:10000',
-            // 'availability' => 'required|boolean',
-            // 'latitude' => 'required|string|max:100',
-            // 'longitude' => 'required|string|max:100',
-            // 'slug' => 'required|string|max:100',
+            'availability' => 'required|boolean',
             'address' => 'required|string|max:100',
-            // 'city' => 'required|string|max:64',
             'img_cover_path' => 'nullable',
             'mq' => 'required|numeric|gte:0|max:150',
             'services' => 'required|array|exists:services,id'
