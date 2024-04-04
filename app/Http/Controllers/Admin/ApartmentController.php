@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 
 // Models
@@ -53,7 +54,14 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {   
+        
         $validated_data = $request->validated();
+
+        $img_cover_path = null;
+        if (isset($validated_data['img_cover_path'])) {
+            $img_cover_path = Storage::disk('public')->put('img', $validated_data['img_cover_path']);
+        }
+
         $user = Auth::user();
         
         $apartment = new Apartment($validated_data);
@@ -78,9 +86,16 @@ class ApartmentController extends Controller
         $apartment->slug = Str::slug($validated_data['name']);
         // $apartment->address = $validated_data['address'];
         // $apartment->city = $validated_data['city'];
-        $apartment->img_cover_path = $validated_data['img_cover_path'];
+        $apartment->img_cover_path = $img_cover_path;
 
         $apartment->save();
+
+        if (isset($validated_data['services'])) {
+            foreach ($validated_data['services'] as $singleServiceId) {
+                // attach this technology_id to this project
+                $apartment->services()->attach($singleServiceId);
+            }
+        }
 
         return redirect()->route('admin.apartments.show', ['apartment' => $apartment->slug]);
     }
