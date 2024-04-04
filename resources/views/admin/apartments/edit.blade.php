@@ -225,12 +225,17 @@
                     {{ $message }}
                 </div>
             @enderror
+           <div class="form-check form-check-inline my-2  p-0">
+                <input type="radio" class="btn-check" name="availability" id="option6" autocomplete="off" value="1" {{ old('availability', $apartment->availability) == '1' ? 'checked' : '' }}>
+                <label class="btn btn-outline-dark" for="option6">Available</label>
+
+                <input type="radio" class="btn-check"  name="availability" id="option7" autocomplete="off" value="0" {{ old('availability',$apartment->availability) == '0' ? 'checked' : '' }}>
+                <label class="btn btn-outline-dark" for="option7">Not Available</label>
             </div>
-            <div>
-                <button type="submit" class="btn btn-success">
-                    Edit
-                </button>
-            </div>
+        </div>
+        <button type="submit" class="btn btn-success">
+            Edit
+        </button>
 
 
         </form>

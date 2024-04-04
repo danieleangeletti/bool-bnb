@@ -175,7 +175,7 @@ class ApartmentController extends Controller
         $apartment->n_beds = $validated_data['n_beds'];
         $apartment->n_baths = $validated_data['n_baths'];
         $apartment->price = $validated_data['price'];
-        // $apartment->availability = $validated_data['availability'];
+        $apartment->availability = $validated_data['availability'];
         if(isset($data['results'][0]['position']['lat']) && isset($data['results'][0]['position']['lon']) != null){
 
            $apartment->latitude = $data['results'][0]['position']['lat'];

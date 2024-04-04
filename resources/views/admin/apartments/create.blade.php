@@ -197,26 +197,16 @@
             <div class="mb-3">
                 <label for="img_cover_path" class="form-label">Apartment image</label>
                 <input class="form-control" type="file" id="img_cover_path" name="img_cover_path">
-
-                <div class="mt-2">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="1" id="delete_img_cover_path"
-                            name="delete_img_cover_path">
-                        <label class="form-check-label" for="delete_img_cover_path">
-                            Remove image
-                        </label>
-                    </div>
-                </div>
             </div>
             <div class=" my-4 ">
 
                 <div class="form-check form-check-inline p-0 ">
                     <input type="radio" class="btn-check" name="availability" id="option6" autocomplete="off" value="1"
                         >
-                    <label class="btn  bg-white " for="option6">Avaible</label>
+                    <label class="btn  bg-white " for="option6">Available</label>
 
                     <input type="radio" class="btn-check" value="0"  name="availability" id="option7" autocomplete="off">
-                    <label class="btn  bg-white" for="option7">Not Avaible </label>
+                    <label class="btn  bg-white" for="option7">Not Available </label>
                 </div>
 
             </div>
