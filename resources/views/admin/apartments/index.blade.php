@@ -26,12 +26,14 @@
                                 <th scope="col">Cover</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Type of accomodation</th>
+                                <th scope="col">Mq</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Number of guests</th>
                                 <th scope="col">Number of rooms</th>
                                 <th scope="col">Number of beds</th>
                                 <th scope="col">Number of baths</th>
                                 <th scope="col">Price</th>
+                                <th scope="col">Services</th>
                                 <th scope="col">Availability</th>
                             </tr>
                         </thead>
@@ -46,6 +48,7 @@
                                     <td>
                                         {{ $apartment->type_of_accomodation }}
                                     </td>
+                                    <td>{{ $apartment->mq }}</td>
                                     <td>{{ $apartment->address }}</td>
                                     <td>
                                         {{ $apartment->n_guests }}
@@ -54,6 +57,12 @@
                                     <td>{{ $apartment->n_beds }}</td>
                                     <td>{{ $apartment->n_baths }}</td>
                                     <td>{{ $apartment->price }}</td>
+                                    <td>
+                                        @foreach ($apartment->services as $service)
+                                            {{ $service->type_of_service }}
+                                            @if (!$loop->last) @endif
+                                        @endforeach
+                                    </td>
                                     <td>{{ $apartment->availability }}</td>
                                     <td>
                                         <div class="d-flex">
