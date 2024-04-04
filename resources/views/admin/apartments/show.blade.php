@@ -23,15 +23,18 @@
                                 <h1>
                                    {{ $apartment->name }} 
                                 </h1>
-                                <h3>
+                                <h4>
                                     {{  $apartment->type_of_accomodation }}
-                                </h3>                                
+                                </h4>                                
                             </li>
                             <li>
                                 {{  $apartment->address }}
                             </li>
                             <li>
                                 Prezzo: {{ $apartment->price }} per notte
+                            </li>
+                            <li>
+                                Metri quadrati: {{ $apartment->mq }}
                             </li>
                             <li>
                                 Numero di ospiti ammessi: {{ $apartment->n_guests }}
@@ -44,6 +47,14 @@
                             </li>
                             <li>
                                 Numero di bagni: {{ $apartment->n_baths }}
+                            </li>
+                            <li>
+                                Servizi presenti:
+                                <ul>
+                                    @foreach ($apartment->services as $service)
+                                        <li>{{ $service->type_of_service }}</li>
+                                    @endforeach
+                                </ul>
                             </li>
                             <li>
                                 <img src="{{ $apartment->full_cover_img }}" alt=""> 
