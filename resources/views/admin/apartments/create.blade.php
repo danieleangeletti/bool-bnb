@@ -175,7 +175,16 @@
             </div>
             <div class="mb-3">
                 <label for="img_cover_path" class="form-label">Apartment image</label>
-                <input class="form-control" type="text" id="img_cover_path" name="img_cover_path">
+                <input class="form-control" type="file" id="img_cover_path" name="img_cover_path">
+
+                <div class="mt-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" id="delete_img_cover_path" name="delete_img_cover_path">
+                        <label class="form-check-label" for="delete_img_cover_path">
+                            Remove image
+                        </label>
+                    </div>
+                </div>
             </div>
             {{-- da vedere --}}
             <button type="submit" class="btn btn-success w-100">
