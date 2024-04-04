@@ -1,6 +1,15 @@
 @extends('layouts.guest')
 
 @section('main-content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -9,7 +18,12 @@
             <label for="email">
                 Email
             </label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" required maxlength="255">
+            @error('email')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <!-- Password -->
@@ -17,7 +31,12 @@
             <label for="password">
                 Password
             </label>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" required>
+            @error('password')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <!-- Remember Me -->

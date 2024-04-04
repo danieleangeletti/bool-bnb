@@ -1,13 +1,17 @@
 @extends('layouts.guest')
 
 @section('main-content')
-    @foreach ($errors->all() as $error)
-        <ul class="error-ul" class="p-0">
-            <li class="error-li">{{ $error }}</li>
-        </ul>
-    @endforeach
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <form method="POST" action="{{ route('register') }}">
+    <form id="registrationForm" method="POST" action="{{ route('register') }}">
         @csrf
 
         <!-- Name -->
@@ -15,7 +19,12 @@
             <label for="name">
                 Name
             </label>
-            <input value="{{ old('name') }}" type="text" id="name" name="name" required maxlength="255">
+            <input value="{{ old('name') }}" type="text" id="name" name="name" maxlength="255">
+            @error('name')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+            @enderror
         </div>
 
         {{-- Last name --}}
@@ -23,7 +32,12 @@
             <label for="last_name">
                 Last name
             </label>
-            <input value="{{ old('last_name') }}" type="text" id="last_name" name="last_name" required maxlength="255">
+            <input value="{{ old('last_name') }}" type="text" id="last_name" name="last_name" maxlength="255">
+            @error('last_name')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+            @enderror
         </div>
 
         {{-- Date of birth --}}
@@ -31,7 +45,12 @@
             <label for="date_of_birth">
                 Date of birth
             </label>
-            <input value="{{ old('date_of_birth') }}" type="date" id="date_of_birth" name="date_of_birth" required>
+            <input value="{{ old('date_of_birth') }}" type="date" id="date_of_birth" name="date_of_birth">
+            @error('date_of_birth')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+            @enderror
         </div>
 
         <!-- Email Address -->
@@ -40,6 +59,11 @@
                 Email
             </label>
             <input value="{{ old('email') }}" type="email" id="email" name="email" required maxlength="255">
+            @error('email')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+            @enderror
         </div>
 
         <!-- Password -->
@@ -48,6 +72,11 @@
                 Password
             </label>
             <input type="password" id="password" name="password" required>
+            @error('password')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <!-- Confirm Password -->
@@ -56,6 +85,11 @@
                 Conferma Password
             </label>
             <input type="password" id="password_confirmation" name="password_confirmation" required>
+            @error('password_confirmation')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <div>
@@ -67,5 +101,20 @@
                 Register
             </button>
         </div>
+        <script>
+            document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            var dataNascita = new Date(document.getElementById("date_of_birth").value);
+            var oggi = new Date();
+            var eta = oggi.getFullYear() - dataNascita.getFullYear();
+            var mese = oggi.getMonth() - dataNascita.getMonth();
+            if (mese < 0 || (mese === 0 && oggi.getDate() < dataNascita.getDate())) {
+                eta--;
+            }
+            if (eta < 18) {
+                alert("Devi essere maggiorenne per iscriverti.");
+                event.preventDefault(); // Impedisce l'invio del form
+            }
+            });
+        </script>
     </form>
 @endsection
