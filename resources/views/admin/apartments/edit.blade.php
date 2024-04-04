@@ -36,17 +36,12 @@
                         value="">
                         Select type of accomodation
                     </option>
-                   
-                    @for ($i = 0; $i < count($accomodation); $i++)
-                   
-                        <option
-                          
-                            value="{{ $accomodation[$i] }}">
-                            {{ $accomodation[$i] }}
-                        </option>
 
-                    @endfor
-                   
+                    @for ($i = 0; $i < count($accomodation); $i++)
+                        <option
+                            {{ $accomodation[$i] }} {{ old('type_of_accomodation', $apartment->type_of_accomodation) == $accomodation[$i] ? 'selected' : '' }}>{{ $accomodation[$i] }}
+                        </option>
+                    @endfor   
                 </select>
             </div>
             <div class="mb-3">
