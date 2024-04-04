@@ -35,12 +35,8 @@
                                 <th scope="col">Number of baths</th>
                                 <th scope="col">Services</th>
                                 <th scope="col">Price</th>
-<<<<<<< HEAD
-                                <th scope="col">Avaible</th>
-=======
                                 <th scope="col">Services</th>
-                                <th scope="col">Availability</th>
->>>>>>> ada441894449012a25d1d79456b7c61ecbb8e33c
+                                <th scope="col">Avaiable</th>
                             </tr>
                         </thead>
                         <tbody>
