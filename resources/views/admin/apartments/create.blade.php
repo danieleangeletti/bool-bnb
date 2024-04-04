@@ -51,15 +51,6 @@
                 Torna alla Home
             </a>
         </div>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
 
         <h1>Create Apartment</h1>
 
@@ -90,6 +81,11 @@
                     @endfor
                     {{-- da chiedere ^ --}}
                 </select>
+                @error('n_guests')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="n_guests">Number Guests (between 1 and 10):</label>
@@ -115,28 +111,28 @@
                 <label for="n_rooms">Number Rooms (between 1 and 6):</label>
                 <input value="{{ old('n_rooms') }}" class="form-control @error('n_rooms') is-invalid @enderror"
                     type="number" id="n_rooms" name="n_rooms" min="1" max="6">
-                <div class="alert alert-danger">
                     @error('n_rooms')
-                        {{ $message }}
-                    </div>
-                @enderror
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
             </div>
             <div class="mb-3">
                 <label for="n_beds">Number Beds (between 1 and 9):</label>
                 <input value="{{ old('n_beds') }}" class="form-control @error('n_beds') is-invalid @enderror"
                     type="number" id="n_beds" name="n_beds" min="1" max="9">
-                <div class="alert alert-danger">
                     @error('n_beds')
-                        {{ $message }}
-                    </div>
-                @enderror
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
             </div>
             <div class="mb-3">
-                <label for="n_baths">Number Baths (between 1 and 9):</label>
+                <label for="n_baths">Number Baths (between 1 and 3):</label>
                 <input value="{{ old('n_baths') }}" class="form-control @error('n_baths') is-invalid @enderror"
                     type="number" id="n_baths" name="n_baths" min="1" max="3">
-                <div class="alert alert-danger">
                     @error('n_baths')
+                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                 @enderror
@@ -145,8 +141,8 @@
                 <label for="price">Price</label>
                 <input value="{{ old('price') }}" class="form-control @error('price') is-invalid @enderror" type="number"
                     id="price" name="price" min="1.00" max="1000.00">
-                <div class="alert alert-danger">
                     @error('price')
+                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
                 @enderror
@@ -155,11 +151,8 @@
                 @foreach ($services as $service)
                     <div class="form-check form-check-inline"> 
                          <input {{--Se c'è l'old, vuol dire che c'è stato un errore --}}
-                            @if ($errors->any())  {{--Faccio le verifiche sull'old --}}
-                          {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}
-                        @else 
                             {{-- Faccio le verifiche sulla collezione --}}
-                            {{ $services->contains($service->id) ? 'checked' : '' }} @endif
+                            {{ in_array($service->id, old('services', [])) ? 'checked' : '' }}
                             class="form-check-input" type="checkbox" id="service-{{ $service->id }}" name="services[]"
                             value="{{ $service->id }}">
                         <label class="form-check-label"
@@ -167,49 +160,14 @@
                     </div>
                 @endforeach
             </div>
-       
-            {{-- <div class="mb-3">
-                <label for="latitude" class="form-label ">Add latitude</label>
-                <input value="{{ old('latitude') }}" class="form-control @error('latitude') is-invalid @enderror" type="text"
-                    id="latitude" name="latitude" maxlength="64">
-                @error('latitude')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div> --}}
-            {{-- <div class="mb-3">
-                <label for="longitude" class="form-label ">Add longitude</label>
-                <input value="{{ old('longitude') }}" class="form-control @error('longitude') is-invalid @enderror" type="text"
-                    id="longitude" name="address" maxlength="64">
-                @error('address')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div> --}}
-            {{-- <label for="latitude">Latitude:</label><br>
-            <input type="text" id="latitude" name="latitude"><br>
-            <label for="longitude">Longitude:</label><br>
-            <input type="text" id="longitude" name="longitude"><br> --}}
             <div class="mb-3">
                 <label for="address" class="form-label ">Add address</label>
                 <input value="{{ old('address') }}" class="form-control @error('address') is-invalid @enderror"
                     type="text" id="address-input" name="address" maxlength="64">
                     <div id="suggestions">
-                        
+                    
                     </div>
-                @error('adress')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="city" class="form-label ">Add city</label>
-                <input value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" type="text"
-                    id="city" name="city" maxlength="64">
-                @error('city')
+                @error('address')
                     <div class="alert alert-danger">
                         {{ $message }}
                     </div>
