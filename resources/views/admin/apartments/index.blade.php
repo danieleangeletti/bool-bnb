@@ -27,6 +27,7 @@
                                 <th scope="col">Cover</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Type of accomodation</th>
+                                <th scope="col">Mq</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Number of guests</th>
                                 <th scope="col">Number of rooms</th>
@@ -34,7 +35,12 @@
                                 <th scope="col">Number of baths</th>
                                 <th scope="col">Services</th>
                                 <th scope="col">Price</th>
+<<<<<<< HEAD
                                 <th scope="col">Avaible</th>
+=======
+                                <th scope="col">Services</th>
+                                <th scope="col">Availability</th>
+>>>>>>> ada441894449012a25d1d79456b7c61ecbb8e33c
                             </tr>
                         </thead>
                         <tbody>
@@ -48,6 +54,7 @@
                                     <td>
                                         {{ $apartment->type_of_accomodation }}
                                     </td>
+                                    <td>{{ $apartment->mq }}</td>
                                     <td>{{ $apartment->address }}</td>
                                     <td>
                                         {{ $apartment->n_guests }}

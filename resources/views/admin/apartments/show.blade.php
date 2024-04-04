@@ -23,15 +23,18 @@
                                 <h1>
                                     {{ $apartment->name }}
                                 </h1>
-                                <h3>
-                                    {{ $apartment->type_of_accomodation }}
-                                </h3>
+                                <h4>
+                                    {{  $apartment->type_of_accomodation }}
+                                </h4>                                
                             </li>
                             <li>
                                 {{ $apartment->address }}
                             </li>
                             <li>
                                 Prezzo: {{ $apartment->price }} per notte
+                            </li>
+                            <li>
+                                Metri quadrati: {{ $apartment->mq }}
                             </li>
                             <li>
                                 Numero di ospiti ammessi: {{ $apartment->n_guests }}
@@ -63,7 +66,19 @@
                                 Numero di bagni: {{ $apartment->n_baths }}
                             </li>
                             <li>
+<<<<<<< HEAD
                                 <img src="{{ $apartment->full_cover_img }}" alt="">
+=======
+                                Servizi presenti:
+                                <ul>
+                                    @foreach ($apartment->services as $service)
+                                        <li>{{ $service->type_of_service }}</li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            <li>
+                                <img src="{{ $apartment->full_cover_img }}" alt=""> 
+>>>>>>> ada441894449012a25d1d79456b7c61ecbb8e33c
                             </li>
                             <form action="{{ route('admin.checkout') }}" method="GET">
                                 @csrf

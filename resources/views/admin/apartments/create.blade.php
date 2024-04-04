@@ -77,7 +77,7 @@
         <h1>Create Apartment</h1>
 
 
-        <form id="myForm" action="{{ route('admin.apartments.store') }}" method="POST">
+        <form id="myForm" action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label ">Add name</label>

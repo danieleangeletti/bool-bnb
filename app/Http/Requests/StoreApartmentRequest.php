@@ -35,7 +35,8 @@ class StoreApartmentRequest extends FormRequest
             'price' => 'required|numeric|max:10000',
             'availability' => 'required|boolean',
             'address' => 'required|string|max:100',
-            'img_cover_path' => 'nullable',
+            // 'city' => 'required|string|max:64',
+            'img_cover_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'mq' => 'required|numeric|gte:0|max:150',
             'services' => 'required|array|exists:services,id'
             // L'img_cover_path è nullable solo momentaneamente, poi dovrà essere required.
