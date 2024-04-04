@@ -35,7 +35,6 @@
                                 <th scope="col">Number of baths</th>
                                 <th scope="col">Services</th>
                                 <th scope="col">Price</th>
-                                <th scope="col">Services</th>
                                 <th scope="col">Available</th>
                             </tr>
                         </thead>
