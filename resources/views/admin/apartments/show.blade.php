@@ -66,19 +66,27 @@
                                 Numero di bagni: {{ $apartment->n_baths }}
                             </li>
                             <li>
-<<<<<<< HEAD
-                                <img src="{{ $apartment->full_cover_img }}" alt="">
-=======
                                 Servizi presenti:
                                 <ul>
                                     @foreach ($apartment->services as $service)
-                                        <li>{{ $service->type_of_service }}</li>
-                                    @endforeach
+                                    @if(count($apartment->services) == 1 )
+                                    <span>
+                                        {{ $service->type_of_service }}
+                                    </span>
+                                @else
+                                <span>
+                                    {{ $service->type_of_service }},
+                                </span>
+                                
+                                @endif
+                                @endforeach
+                                   
+                                        
+                                   
                                 </ul>
                             </li>
                             <li>
                                 <img src="{{ $apartment->full_cover_img }}" alt=""> 
->>>>>>> ada441894449012a25d1d79456b7c61ecbb8e33c
                             </li>
                             <form action="{{ route('admin.checkout') }}" method="GET">
                                 @csrf

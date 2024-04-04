@@ -36,7 +36,7 @@
                                 <th scope="col">Services</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Services</th>
-                                <th scope="col">Avaiable</th>
+                                <th scope="col">Available</th>
                             </tr>
                         </thead>
                         <tbody>
