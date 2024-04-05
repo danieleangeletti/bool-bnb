@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
-            $table->string('name', 100)->unique();
+            $table->string('name', 100);
             $table->string('type_of_accomodation', 100);
             $table->tinyInteger('mq')->unsigned()->nullable();
             $table->tinyInteger('n_guests')->unsigned();
