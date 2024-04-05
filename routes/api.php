@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApartmentController as ApiApartment;
 use App\Http\Controllers\Api\ApartmentController;
+use App\Http\Controllers\Api\MessageController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,6 +26,7 @@ Route::name('api.')->group(function(){
             'show'
         ]);
     Route::get('/getApartments', [ApartmentController::class, 'getApartments'])->name('getApartments');
+    Route::post('/store/{slug}',[MessageController::class, 'store']);
 });
 
 

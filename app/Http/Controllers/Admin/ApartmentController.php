@@ -65,9 +65,9 @@ class ApartmentController extends Controller
         $user = Auth::user();
         
         $apartment = new Apartment($validated_data);
-         $client = new Client([
-            'verify' => false, // Impostare a true per abilitare la verifica del certificato SSL
-             // Specificare il percorso del certificato CA
+        $client = new Client([
+        'verify' => false, // Impostare a true per abilitare la verifica del certificato SSL
+            // Specificare il percorso del certificato CA
         ]);
         $response = $client->get('https://api.tomtom.com/search/2/geocode/query='. $apartment['address'].' '.$apartment['city'].'.json?key=03zxGHB5yWE9tQEW9M7m9s46vREYKHct' );
         $data = json_decode($response->getBody(), true);
