@@ -171,7 +171,7 @@
             <div class="row my-3">
                 <div class="col-6">
                     <div class="mb-3">
-                        <label for="mq">Mq:(between 20mq and 150mq)</label>
+                        <label for="mq">Mq(between 20mq and 150mq):</label>
                         <input value="{{ old('mq') }}" class="form-control @error('mq') is-invalid @enderror"
                             type="number" id="mq" name="mq" min="20" max="150" required>
                         @error('mq')
@@ -184,7 +184,7 @@
                 </div>
                 <div class="col-6">
                     <div class="mb-3">
-                        <label for="price">Price</label>
+                        <label for="price">Price(between 1.00$ and 1000.00$):</label>
                         <input value="{{ old('price') }}" class="form-control @error('price') is-invalid @enderror"
                             type="number" id="price" name="price" min="1.00" max="1000.00" required>
                         @error('price')
