@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->unsignedBigInteger('apartment_id')->nullable();
             $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('set null')->onUpdate('cascade');
             $table->text('text');
-            $table->date('submission_date');
             $table->string('name', 100);
             $table->string('last_name', 100);
             $table->string('email', 100);
