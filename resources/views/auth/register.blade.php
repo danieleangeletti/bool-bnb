@@ -71,7 +71,7 @@
             <label for="password">
                 Password
             </label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" minlength="8" required>
             @error('password')
                 <div class="alert alert-danger">
                     {{ $message }}
@@ -84,7 +84,7 @@
             <label for="password_confirmation">
                 Conferma Password
             </label>
-            <input type="password" id="password_confirmation" name="password_confirmation" required>
+            <input type="password" id="password_confirmation" name="password_confirmation" minlength="8" required>
             @error('password_confirmation')
                 <div class="alert alert-danger">
                     {{ $message }}
