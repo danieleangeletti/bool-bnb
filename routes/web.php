@@ -31,8 +31,8 @@ Route::prefix('admin')
 
         Route::resource('apartments', AdminApartmentController::class);
         
-        Route::get('/restore',[ AdminApartmentController::class, 'restore'])->name('restore');
-
+        // Route::put('/restore',[ AdminApartmentController::class, 'restore'])->name('restore');
+        Route::post('/apartments/{slug}/restore', [AdminApartmentController::class, 'restore'])->name('restore');
         // payment
         Route::get('/checkout', [AdminPaymentController::class, 'checkout'])->name('checkout');
         Route::post('/processPayment', [AdminPaymentController::class, 'processPayment'])->name('processPayment');

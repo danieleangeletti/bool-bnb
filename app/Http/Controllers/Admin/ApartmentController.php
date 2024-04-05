@@ -30,7 +30,7 @@ class ApartmentController extends Controller
     {
         $user = Auth::user();
         $userIP = $request->ips();
-        $apartments = Apartment::where('user_id',$user->id)->get();
+        $apartments = Apartment::where('user_id',$user->id)->withTrashed()->get();;
         $sponsorhips = Sponsorship::all();
         $services = Service::all();
         $messages = Message::all();
@@ -212,10 +212,12 @@ class ApartmentController extends Controller
     }
     public function restore(string $slug)
     {
-        $appartamento = Apartment::withTrashed()->findOrFail( $slug);
-        $appartamento->restore();
+        
+        $apartment = Apartment::onlyTrashed()->where('slug',  $slug);
+        
+        $apartment->restore();
 
         // Restituzione della risposta appropriata (ad esempio, reindirizzamento, conferma, ecc.)
-        return redirect()->route('admin.apartments.show',compact("apartment"));
+        return redirect()->route('admin.apartments.index');
     }
 }
