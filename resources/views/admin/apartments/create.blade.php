@@ -75,7 +75,7 @@
             </a>
         </div>
 
-        <h1 class=" text-danger ">Crea il tuo appartamento</h1>
+        <h1 class=" text-danger  mb-5  ">Crea il tuo appartamento</h1>
         <form id="myForm" action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row my-3">
