@@ -9,7 +9,6 @@ class Message extends Model
 {
     protected $fillable = [
         'text',
-        'submission_date',
         'description',
         'name',
         'last_name',

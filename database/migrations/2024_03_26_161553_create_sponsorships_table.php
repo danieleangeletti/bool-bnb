@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('title', 256);
             $table->text('description');
             $table->float('cost', 3, 2);
-            $table->tinyInteger('hour_duration');
+            $table->tinyInteger('hour_duration')->unsigned();
             $table->timestamps();
         });
     }
