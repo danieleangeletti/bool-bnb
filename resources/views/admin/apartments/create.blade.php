@@ -197,7 +197,8 @@
             </div>
             <div class="row my-3">
                 <div class="col-12">
-                    <div>
+                    <span >Choose Services:</span>
+                    <div class=" py-3 ">    
                         @foreach ($services as $service)
                             <div class="form-check form-check-inline">
                                 <input {{-- Se c'è l'old, vuol dire che c'è stato un errore --}} {{-- Faccio le verifiche sulla collezione --}}
