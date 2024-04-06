@@ -42,35 +42,15 @@ class ApartmentController extends Controller
     }
     public function advancedResearch(Request $request)
     {   
-        $request->validate([
-            'nRooms' => 'nullable|integer|min:1|max:6',
-            'nBeds' => 'nullable|integer|min:1|max:9',
-            'services' => 'nullable|array',
-        ]);
+        $allNames = $request->input('allName');
         
-        // $query = Apartment::query();
-
-        // if ($request->has('nRooms')) {
-        //     $query->where('n_rooms', '>=', $request->nRooms);
-        // };
-        // if ($request->has('nBeds')) {
-        //     $query->where('n_beds', '>=', $request->nBeds);
-        // };
-        // if ($request->has('services')) {
-        //     $query->whereHas('services', function ($q) use ($request) {
-        //         $q->whereIn('id', $request->services);
-        //     });
-        // };
-        // $apartments = $query->get();
-
-        // return response()->json($apartments);
-
-        $apartments = Apartment::where('n_rooms', '>=', $request->nRooms)
+        $apartments = Apartment::whereIn('name', $allNames)->get()
+                                ->where('n_rooms', '>=', $request->nRooms)
                                 ->where('n_beds', '>=', $request->nBeds)
                                 ->whereHas('services', function (Builder $q) use ($request) {
                                     $q->whereIn('type_of_service', $request->services);
                                 });
 
-        return response()->json($apartments);
+        return response()->json(['result' => $apartments]);
     }
 }
