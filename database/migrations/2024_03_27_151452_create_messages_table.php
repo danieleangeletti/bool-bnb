@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->text('text');
             $table->string('name', 100);
             $table->string('last_name', 100);
-            $table->boolean('is_read', false);
+            $table->boolean('is_read')->default(false);
             $table->string('email', 100);
             $table->timestamps();
         });
