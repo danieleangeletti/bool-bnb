@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>@yield('page-title') | {{ config('app.name', 'Laravel') }}</title>
+        <link rel="icon" type="image/jpg" href="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" />
+        <title>@yield('page-title') | {{ config('app.name', 'BoolBnb') }}</title>
 
         <!-- Scripts -->
         @vite('resources/js/app.js')

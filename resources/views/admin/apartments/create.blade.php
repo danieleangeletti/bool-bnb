@@ -75,7 +75,7 @@
             </a>
         </div>
 
-        <h1 class=" text-danger  mb-5  ">Crea il tuo appartamento</h1>
+        <h1 class=" text-danger  mb-5 text-center ">Crea il tuo appartamento</h1>
         <form id="myForm" action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row my-3">
@@ -184,7 +184,7 @@
                 </div>
                 <div class="col-6">
                     <div class="mb-3">
-                        <label for="price">Prezzo per notte(tra 1.00$ e 1000.00$):</label>
+                        <label for="price">Prezzo per notte(tra 1.00€ e 1000.00€):</label>
                         <input value="{{ old('price') }}" class="form-control @error('price') is-invalid @enderror"
                             type="number" id="price" name="price" min="1.00" max="1000.00" required>
                         @error('price')

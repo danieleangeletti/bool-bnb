@@ -12,12 +12,14 @@
     @endif
     <form method="POST" action="{{ route('login') }}">
         @csrf
-        <div class=" d-flex flex-column align-items-center ">
-            <h1 class="mb-5 text-danger">
-                BoolBnb da mettere logo
-            </h1>
+        <div class="container d-flex flex-column  align-items-center">
+           
+            <div class=" w-50 h-50 d-flex flex-column  align-items-center">
+                <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" class=" h-50 w-50 " alt="">
+            </div>
         <!-- Email Address -->
         <div>
+          
             <label for="email">
                 Email
             </label>
