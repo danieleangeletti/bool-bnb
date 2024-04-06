@@ -28,6 +28,7 @@ Route::name('api.')->group(function(){
         ]);
     Route::resource('services', ServiceController::class)->only(['index']);
     Route::get('/getApartments', [ApartmentController::class, 'getApartments'])->name('getApartments');
+    Route::get('/advancedResearch', [ApartmentController::class, 'advancedResearch'])->name('advancedResearch');
     Route::post('/store/{slug}',[MessageController::class, 'store']);
 });
 
