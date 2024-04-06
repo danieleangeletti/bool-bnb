@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 // Helpers
 use Illuminate\Support\Str;
@@ -36,6 +37,19 @@ class ApartmentController extends Controller
 
         // Eseguire la logica necessaria per ottenere gli appartamenti
         $apartments = Apartment::whereIn('name', $allNames)->get();
+
+        return response()->json(['result' => $apartments]);
+    }
+    public function advancedResearch(Request $request)
+    {   
+        $allNames = $request->input('allName');
+        
+        $apartments = Apartment::whereIn('name', $allNames)->get()
+                                ->where('n_rooms', '>=', $request->nRooms)
+                                ->where('n_beds', '>=', $request->nBeds)
+                                ->whereHas('services', function (Builder $q) use ($request) {
+                                    $q->whereIn('type_of_service', $request->services);
+                                });
 
         return response()->json(['result' => $apartments]);
     }
