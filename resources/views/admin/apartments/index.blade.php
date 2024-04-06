@@ -92,7 +92,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                
                                     <th scope="col">Cover</th>
                                     <th scope="col">Nome</th>
                                     <th scope="col">Tipo di Struttura</th>
@@ -105,13 +105,15 @@
                                     <th scope="col">Servizi</th>
                                     <th scope="col">Prezzo</th>
                                     <th scope="col">Disponibile</th>
+                                    <th scope="col">Azioni</th>
+                                    <th scope="col">Email ricevute</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($apartments as $apartment)
                                     @if ($apartment->deleted_at == null)
                                         <tr class="{{ $apartment->availability == 1 ? '' : 'bg-warning !important' }}">
-                                            <th scope="row">{{ $apartment->id }}</th>
+                                            
                                             <td>
                                                 <img src="{{ $apartment->full_cover_img }}" class="cover-img">
                                             </td>
@@ -148,6 +150,9 @@
                                                     <div class="ms-1 me-1 my-1 ">
                                                         <a href="{{ route('admin.apartments.show', ['apartment' => $apartment->slug]) }}"
                                                             class="btn btn-primary">SHOW</a>
+                                                            <span class="">
+
+                                                            </span>
                                                     </div>
                                                     <div class="ms-1 me-1 my-1">
                                                         <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}"
@@ -190,6 +195,17 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td scope="row" class="text-center">
+                                                <a href="{{ route('admin.apartments.show', ['apartment' => $apartment->slug]) }}">
+                                               
+                                                    @if($apartment->message && !$apartment->message->is_read == false)
+                                                    <i class="fa-solid fa-envelope fa-xl" style="color: #0c2c64;"></i>
+                                                    @else
+                                                    <i class="fa-solid fa-envelope-open fa-xl"  style="color: #0c2c64;"></i>
+                                                    @endif
+                                                </a>
+                                                
+                                            </td>
                                         </tr>
                                     @endif
                                 @endforeach
@@ -202,6 +218,7 @@
             </div>
         </div>
         </div>
+        
     @endsection
                                             
 
