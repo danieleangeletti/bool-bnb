@@ -51,7 +51,7 @@
 
             <div class="col-md-5">
                 <div style="max-height: 60vh;" class="overflow-hidden">
-                    <img src="{{ $apartment->full_cover_img }}" class="img-fluid w-100 p-3 rounded" alt="">
+                    <img src="{{ $apartment->full_cover_img }}" class="img-fluid w-100 rounded" alt="">
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
                         <form action="{{ route('admin.checkout') }}" method="GET">
                             @csrf
                             <select id="sponsorship_id" name="sponsorship_id" class="form-select mb-3">
-                                <option value="">Choose sponsorship</option>
+                                <option value="">Scegli la tua sponsorship</option>
                                 @for ($i = 0; $i < count($sponsorships); $i++)
                                     @if ($i == 2)
                                         <option value="{{ $sponsorships[$i]->id }}">{{ $sponsorships[$i]->title }}
