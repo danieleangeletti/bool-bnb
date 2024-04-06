@@ -96,7 +96,7 @@
                         <label for="type_of_accomodation" class="form-label">Scegli il tipo</label>
                         <select name="type_of_accomodation" id="type_of_accomodation" class="form-select" required>
                             <option value="" {{ old('type_of_accomodation') == null ? 'selected' : '' }}>
-                                Scegli il tipo
+                                Scegli il tipo di struttura
                             </option>
                             @for ($i = 0; $i < count($accomodation); $i++)
                                 <option value="{{ $accomodation[$i] }}"
