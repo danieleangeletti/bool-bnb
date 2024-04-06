@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApartmentController as ApiApartment;
 use App\Http\Controllers\Api\ApartmentController;
 use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\ServiceController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,6 +26,7 @@ Route::name('api.')->group(function(){
             'index',
             'show'
         ]);
+    Route::resource('services', ServiceController::class)->only(['index']);
     Route::get('/getApartments', [ApartmentController::class, 'getApartments'])->name('getApartments');
     Route::post('/store/{slug}',[MessageController::class, 'store']);
 });
