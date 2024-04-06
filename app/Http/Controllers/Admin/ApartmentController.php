@@ -46,6 +46,7 @@ class ApartmentController extends Controller
         $apartments = Apartment::all();
         $accomodation = config('db.allTypeOfAccomodation');
         $sponsorships = Sponsorship::all();
+        
         $services = Service::all();
         return view("admin.apartments.create", compact('apartments', 'sponsorships', 'services', 'accomodation'));
     }
@@ -109,6 +110,7 @@ class ApartmentController extends Controller
     {
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
         $sponsorships = Sponsorship::all();
+        $messages = Message::where('apartment_id', $apartment->id)->get();
         $myView = View::where('apartment_id', $apartment->id)->where('ip_address', $request->ip())->get()->last();
 
 
@@ -127,7 +129,7 @@ class ApartmentController extends Controller
             // Gestisci il caso in cui l'appartamento non appartenga all'utente loggato
             return back()->withErrors('error', 'Something went wrong!');
         }
-        return view("admin.apartments.show", compact("apartment", "sponsorships"));
+        return view("admin.apartments.show", compact("apartment", "sponsorships","messages"));
     }
 
 

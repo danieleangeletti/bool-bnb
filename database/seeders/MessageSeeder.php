@@ -33,6 +33,7 @@ class MessageSeeder extends Seeder
             $message->text = fake()->sentence();
             $message->name = fake()->firstName();
             $message->last_name = fake()->lastName();
+            $message->is_read = false;
             $message->email = fake()->email();
             $message->save();
         }
