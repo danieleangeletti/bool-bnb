@@ -7,11 +7,16 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="text-center text-success">
-                        Sei loggato!
+                    <h1 class="text-center text-danger">
+                        Ciao {{ auth()->user()->name }}!
                     </h1>
                     <br>
-                    La dashboard è una pagina privata (protetta dal middleware)
+                    <div class=" d-flex justify-content-center">
+                        <h4>
+                            Bentornato nella tua area privata di BoolBnb
+                        </h4>
+                    </div>
+                   
                 </div>
             </div>
         </div>
