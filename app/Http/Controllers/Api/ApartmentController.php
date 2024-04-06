@@ -42,46 +42,35 @@ class ApartmentController extends Controller
     }
     public function advancedResearch(Request $request)
     {   
-        $allNames = $request->input('allName');
+        $allName = $request->input('allName');
+        $nBeds = $request->input('nBeds');
+        $nRooms = $request->input('nRooms');
+        $services = $request->input('services');
 
-        if ($request->has('nRooms') == null) {
-            $apartments = Apartment::whereIn('name', $allNames)->get()
-                                ->where('n_beds', '>=', $request->nBeds)
-                                ->whereHas('services', function (Builder $q) use ($request) {
-                                    $q->whereIn('type_of_service', $request->services);
-                                });
-        } else if ($request->has('nBeds') == null ) {
-            $apartments = Apartment::whereIn('name', $allNames)->get()
-                                ->where('n_rooms', '>=', $request->nRooms)
-                                ->whereHas('services', function (Builder $q) use ($request) {
-                                    $q->whereIn('type_of_service', $request->services);
-                                });
-        } else if ($request->has('services') == null){
-            $apartments = Apartment::whereIn('name', $allNames)->get()
-                                ->where('n_rooms', '>=', $request->nRooms)
-                                ->where('n_beds', '>=', $request->nBeds);
-        } else if ($request->has('nRooms') == null && $request->has('nBeds') == null){
-            $apartments = Apartment::whereIn('name', $allNames)->get()
-                                ->whereHas('services', function (Builder $q) use ($request) {
-                                    $q->whereIn('type_of_service', $request->services);
-                                });
-        } else if ($request->has('nRooms') == null && $request->has('services') == null) {
-            $apartments = Apartment::whereIn('name', $allNames)->get()
-                                ->where('n_beds', '>=', $request->nBeds);
-        } else if ($request->has('nBeds') == null && $request->has('services') == null) {
-            $apartments = Apartment::whereIn('name', $allNames)->get()
-                                ->where('n_rooms', '>=', $request->nRooms);
-        } else if ($request->has('nRooms') == null && $request->has('nBeds') == null && $request->has('services') == null) {
-            $apartments = Apartment::whereIn('name', $allNames)->get();
-        } else if ($request->has('nRooms') !== null && $request->has('nBeds') !== null && $request->has('services') !== null) {
-            $apartments = Apartment::whereIn('name', $allNames)->get()
-                                ->where('n_rooms', '>=', $request->nRooms)
-                                ->where('n_beds', '>=', $request->nBeds)
-                                ->whereHas('services', function (Builder $q) use ($request) {
-                                    $q->whereIn('type_of_service', $request->services);
-                                });
+        if ($nBeds == null) {
+            $nBeds = 0;
         }
+
+        if ($nRooms == null) {
+            $nRooms = 0;
+        }
+
+        $query = Apartment::query();
         
+        if ($allName !== null) {
+            $query->whereIn('name', $allName);
+        }
+
+        $apartments = $query
+            ->where('n_beds', '>=', $nBeds)
+            ->where('n_rooms', '>=', $nRooms)
+            ->whereHas('services', function (Builder $q) use ($services) {
+                if ($services !== null) {
+                    $q = $q->whereIn('type_of_service', $services);
+                }
+
+                return $q;
+            })->get();
 
         return response()->json(['result' => $apartments]);
     }
