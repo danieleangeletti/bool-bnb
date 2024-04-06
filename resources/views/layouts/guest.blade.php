@@ -12,9 +12,12 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <nav class="navbar navbar-expand-lg bg-white">
                 <div class="container">
-                    <a class="navbar-brand" href="/">Template</a>
+                    <div class="box-img-logo">
+                        <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" class=" h-100 w-100 " alt="">
+                    </div>
+                  
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -24,18 +27,18 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" href="#">Link 2</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Link 3</a>
-                                </li>
+                                </li> --}}
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                                    <a class="nav-link text-primary " href="{{ route('login') }}">Login</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                    <a class="nav-link text-primary " href="{{ route('register') }}">Registrati</a>
                                 </li>
                             @endauth
                         </ul>

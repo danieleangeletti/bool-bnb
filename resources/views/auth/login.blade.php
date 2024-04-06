@@ -12,7 +12,10 @@
     @endif
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
+        <div class=" d-flex flex-column align-items-center ">
+            <h1 class="mb-5 text-danger">
+                BoolBnb da mettere logo
+            </h1>
         <!-- Email Address -->
         <div>
             <label for="email">
@@ -27,7 +30,7 @@
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
+        <div class="mt-4  me-4">
             <label for="password">
                 Password
             </label>
@@ -47,16 +50,18 @@
             </label>
         </div>
 
-        <div class="mt-4">
+        <div class="mt-4 d-flex flex-column ">
+            <button type="submit" class=" mx-3 my-3 btn btn-primary rounded-4 ">
+                Log in
+            </button>
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                    {{ __('Password dimenticata?') }}
                 </a>
             @endif
 
-            <button type="submit">
-                Log in
-            </button>
+           
         </div>
+    </div>
     </form>
 @endsection
