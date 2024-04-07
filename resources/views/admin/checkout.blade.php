@@ -3,12 +3,15 @@
 @section('page-title', 'checkout')
 
 @section('main-content')
-    THIS IS THE CHECKOUT PAGE
-    {{ $sponsorship_id }}
+    <h3>THIS IS THE CHECKOUT PAGE FOR THE APARTMENT WITH ID <span class="text-danger">{{ $apartment->id }}</span></h3>
+    <h1 class="text-center">{{ $sponsorship->title }} SPONSORSHIP</h1>
+    <h1> COST: {{ $sponsorship->cost }}€ </h1>
     <form id="payment-form" action="processPayment" method="POST">
         @csrf
         <div id="dropin-container"></div>
         <input type="submit" />
+        <input type="hidden" name="sponsorship_id" value="{{ $sponsorship->id }}">
+        <input type="hidden" name="apartment_id" value="{{ $apartment->id }}">
         <input type="hidden" id="nonce" name="payment_method_nonce" />
     </form>
     <script type="text/javascript">
