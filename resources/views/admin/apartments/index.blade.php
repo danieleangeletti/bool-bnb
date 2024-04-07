@@ -197,8 +197,8 @@
                                             </td>
                                             <td scope="row" class="text-center">
                                                 <a href="{{ route('admin.apartments.show', ['apartment' => $apartment->slug]) }}">
-                                               
-                                                    @if($apartment->message && !$apartment->message->is_read == false)
+                                                    
+                                                    @if($apartment->message && $apartment->message)
                                                     <i class="fa-solid fa-envelope fa-xl" style="color: #0c2c64;"></i>
                                                     @else
                                                     <i class="fa-solid fa-envelope-open fa-xl"  style="color: #0c2c64;"></i>

@@ -50,34 +50,23 @@ class MessageController extends Controller
 
 
     }
-    public function reply(StoreMessageRequest $request)
-    {
-        // Validazione dei dati della risposta
-        $request->validate([
-            'reply_content' => 'required|string',
-            'message_id' => 'required|exists:messages,id',
-            // Aggiungi eventuali altre regole di validazione necessarie
-        ]);
-
-        // Salvataggio della risposta nel database
-        Reply::create([
-            'content' => $request->reply_content,
-            'user_id' => auth()->id(), // Assumendo che l'utente sia autenticato
-            'message_id' => $request->message_id,
-            // Aggiungi eventuali altri campi necessari per la risposta
-        ]);
-
-        return redirect()->back()->with('success', 'Risposta inviata con successo!');
-    }
+   
     /**
      * Display the specified resource.
      */
     public function isRead(Message $message)
-    {
+    {   
+        $message = Message::where('id', $message->id)->firstOrFail();
         $message->update([
+            'text'=> $message->text,
+            'name'=> $message->name,
+            'last_name'=> $message->last_name,
+            'apartment_id'=> $message->apartment_id,
+            'email'=>$message->email,
             'is_read' => true, // Contrassegna il messaggio come letto
         ]);
-
+        $message->save();
+     
         return redirect()->back()->with('success', 'Messaggio contrassegnato come letto');
     }
     public function show(Message $message)

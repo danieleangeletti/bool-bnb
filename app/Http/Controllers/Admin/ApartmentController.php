@@ -34,7 +34,15 @@ class ApartmentController extends Controller
         $apartments = Apartment::where('user_id', $user->id)->withTrashed()->get();;
         $sponsorhips = Sponsorship::all();
         $services = Service::all();
+
         $messages = Message::all();
+        $messagesReaded = [];
+        for ($i=0; $i < count($messages) ; $i++) { 
+           if ($messages[$i]->is_read) {
+            $messagesReaded[] = $messages[$i];
+           }
+        }
+        // dd($messagesReaded);
         return view("admin.apartments.index", compact("apartments"));
     }
 

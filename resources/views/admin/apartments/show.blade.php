@@ -36,7 +36,7 @@
                     <p>
                       Testo: {{$message->text}}
                     </p>
-                    <form action="{{ route('admin.messages.is_read', ['messages' => $message->id]) }}" method="POST">
+                    <form action="{{ route('admin.messages.is_read', ['message' => $message->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <button type="submit">Contrassegna come letto</button>
