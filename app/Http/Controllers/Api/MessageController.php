@@ -27,7 +27,7 @@ class MessageController extends Controller
         
         return response()->json([
             'success'=>true,
-            'result'=>'Messaggio ricevuto correttamente.'
+            'result'=>'Messaggio inviato correttamente.'
         ]);
     }
 }

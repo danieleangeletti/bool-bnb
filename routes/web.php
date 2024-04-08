@@ -22,6 +22,8 @@ use App\Http\Controllers\Admin\MessageController as AdminMessageController;
 
 Route::get('/', [MainController::class, 'index'])->name('home');
 
+ 
+
 Route::prefix('admin')
     ->name('admin.')
     ->middleware('auth')
