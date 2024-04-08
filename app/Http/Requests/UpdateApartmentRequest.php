@@ -35,8 +35,8 @@ class UpdateApartmentRequest extends FormRequest
             'n_baths' => 'required|numeric|gte:1|max:3',
             'price' => 'required|numeric|gte:1,00|max:1000,00',   
             'address' => 'required|string|max:100',
-            'services' => 'required|array|exists:services,id',
-            'img_cover_path' => 'nullable|string|max:1000',
+            'services' => 'array|exists:services,id',
+            'img_cover_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'availability' => 'required|boolean',
         ];
     }
