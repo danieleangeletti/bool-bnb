@@ -124,6 +124,7 @@
                                     @endif
                                 @endfor
                             </select>
+                            <input type="hidden" name="apartment_id" value="{{ $apartment->id }}">
                             <button type="submit" class="btn btn-success">BUY</button>
                         </form>
                     </div>
