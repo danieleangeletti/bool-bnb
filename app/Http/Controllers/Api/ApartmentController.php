@@ -32,19 +32,23 @@ class ApartmentController extends Controller
         ]);
     }
     public function getApartments(Request $request)
-    {
-        $allNames = $request->input('allName');
+    {   
+        $lat_center = $request->lat;
+        $lon_center = $request->lon;
+        
+        $apartments = Apartment::all();
 
-        // Eseguire la logica necessaria per ottenere gli appartamenti
-        $apartments = Apartment::whereIn('name', $allNames)->get();
+        list($apartments_in_radius, $distances) = filterApartmentsByDistance($apartments, $lat_center, $lon_center, 20);
 
-        return response()->json(['result' => $apartments]);
+        return response()->json(['result' => $apartments_in_radius]);
     }
     public function advancedResearch(Request $request)
     {   
-        $allName = $request->input('allName');
-        $nBeds = $request->input('nBeds');
+        $lat_center = $request->input('lat');
+        $lon_center = $request->input('lon');
         $nRooms = $request->input('nRooms');
+        $nBeds = $request->input('nBeds');
+        $distance = $request->input('distance');
         $services = $request->input('services');
 
         if ($nBeds == null) {
@@ -56,14 +60,10 @@ class ApartmentController extends Controller
         }
 
         $query = Apartment::query();
-        
-        if ($allName !== null) {
-            $query->whereIn('name', $allName);
-        }
 
         $apartments = $query
-            ->where('n_beds', '>=', $nBeds)
             ->where('n_rooms', '>=', $nRooms)
+            ->where('n_beds', '>=', $nBeds)
             ->whereHas('services', function (Builder $q) use ($services) {
                 if ($services !== null) {
                     $q = $q->whereIn('type_of_service', $services);
@@ -71,7 +71,49 @@ class ApartmentController extends Controller
 
                 return $q;
             })->get();
+            
+        list($apartments_in_radius, $distances) = filterApartmentsByDistance($apartments, $lat_center, $lon_center, $distance);
 
-        return response()->json(['result' => $apartments]);
+        return response()->json(['result' => $apartments_in_radius]);
     }
+}
+
+function filterApartmentsByDistance($apartments, $lat_center, $lon_center, $distance) {
+    $apartments_in_radius = [];
+
+    $distances = [];
+
+    for ($i = 0; $i < count($apartments); $i++) {
+        $distanceM = haversineGreatCircleDistance(
+            $apartments[$i]->latitude,
+            $apartments[$i]->longitude,
+            $lat_center,
+            $lon_center,
+        );
+
+        $distanceKm = $distanceM / 1000;
+
+        if ($distanceKm <= $distance) {
+            $apartments_in_radius[] = $apartments[$i];
+            $distances[] = $distanceKm;
+        }
+    }
+
+    return array($apartments_in_radius, $distances);
+}
+
+function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo) {
+    $earthRadius = 6371000;
+
+    $latFrom = deg2rad($latitudeFrom);
+    $lonFrom = deg2rad($longitudeFrom);
+    $latTo = deg2rad($latitudeTo);
+    $lonTo = deg2rad($longitudeTo);
+  
+    $latDelta = $latTo - $latFrom;
+    $lonDelta = $lonTo - $lonFrom;
+  
+    $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) + cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+
+    return $angle * $earthRadius;
 }
