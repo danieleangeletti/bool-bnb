@@ -34,7 +34,15 @@ class ApartmentController extends Controller
         $apartments = Apartment::where('user_id', $user->id)->withTrashed()->get();;
         $sponsorhips = Sponsorship::all();
         $services = Service::all();
+
         $messages = Message::all();
+        $messagesReaded = [];
+        for ($i=0; $i < count($messages) ; $i++) { 
+           if ($messages[$i]->is_read) {
+            $messagesReaded[] = $messages[$i];
+           }
+        }
+        // dd($messagesReaded);
         return view("admin.apartments.index", compact("apartments"));
     }
 
@@ -188,6 +196,26 @@ class ApartmentController extends Controller
         // $apartment->address = $validated_data['address'];
         // $apartment->city = $validated_data['city'];
         $apartment->address = $data['results'][0]['address']['freeformAddress'];
+
+        if ($request->has('delete_img_cover_path') && $request->delete_img_cover_path == true) {
+            // Elimina l'immagine corrente
+            if ($apartment->img_cover_path) {
+                Storage::disk('public')->delete($apartment->img_cover_path);
+                $apartment->img_cover_path = null;
+            }
+        }
+
+        // Aggiorna l'immagine se è stata fornita una nuova immagine
+        if (isset($validated_data['img_cover_path'])) {
+            $img_cover_path = Storage::disk('public')->put('img', $validated_data['img_cover_path']);
+            // Elimina la vecchia immagine se presente
+            if ($apartment->img_cover_path) {
+                Storage::disk('public')->delete($apartment->img_cover_path);
+            }
+            
+        }
+
+        $apartment->img_cover_path = $img_cover_path;
         // $apartment->img_cover_path = $validated_data['img_cover_path'];
 
         $apartment->save();
