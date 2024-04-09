@@ -38,7 +38,7 @@ class ApartmentController extends Controller
         
         $apartments = Apartment::all();
 
-        list($apartments_in_radius, $distances) = filterApartmentsByDistance($apartments, $lat_center, $lon_center, 20);
+        $apartments_in_radius = filterApartmentsByDistance($apartments, $lat_center, $lon_center, 20);
 
         return response()->json(['result' => $apartments_in_radius]);
     }
@@ -72,7 +72,7 @@ class ApartmentController extends Controller
                 return $q;
             })->get();
             
-        list($apartments_in_radius, $distances) = filterApartmentsByDistance($apartments, $lat_center, $lon_center, $distance);
+        $apartments_in_radius = filterApartmentsByDistance($apartments, $lat_center, $lon_center, $distance);
 
         return response()->json(['result' => $apartments_in_radius]);
     }
@@ -94,12 +94,21 @@ function filterApartmentsByDistance($apartments, $lat_center, $lon_center, $dist
         $distanceKm = $distanceM / 1000;
 
         if ($distanceKm <= $distance) {
+            $apartments[$i]['distance'] = $distanceKm;
             $apartments_in_radius[] = $apartments[$i];
             $distances[] = $distanceKm;
         }
     }
 
-    return array($apartments_in_radius, $distances);
+    usort($apartments_in_radius, function ($a, $b) {
+        // Questa funziona ritorna 0 se A = B, ritorna 1 se A > B, e ritorna -1 se A < B
+        if ($a['distance'] == $b['distance']){
+            return 0;
+        }
+        return ($a['distance'] < $b['distance']) ? -1 : 1;
+    });
+
+    return $apartments_in_radius;
 }
 
 function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo) {
