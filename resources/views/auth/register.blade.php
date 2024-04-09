@@ -50,7 +50,7 @@
                 {{-- Date of birth --}}
                 <div class="mt-2 w-25">
                     <label for="date_of_birth">
-                        Data di nascita
+                        Data di nascita<span class="text-danger">*</span>
                     </label>
                     <input value="{{ old('date_of_birth') }}" type="date" id="date_of_birth" name="date_of_birth">
                     @error('date_of_birth')
@@ -63,7 +63,7 @@
                 <!-- Email Address -->
                 <div class="mt-2 w-25">
                     <label for="email">
-                        Email
+                        Email<span class="text-danger">*</span>
                     </label>
                     <input value="{{ old('email') }}" type="email" id="email" name="email" required
                         maxlength="255">
@@ -77,7 +77,7 @@
                 <!-- Password -->
                 <div class="mt-2 w-25">
                     <label for="password">
-                        Password
+                        Password<span class="text-danger">*</span>
                     </label>
                     <input type="password" id="password" name="password" minlength="8" required>
                     @error('password')
@@ -90,7 +90,7 @@
                 <!-- Confirm Password -->
                 <div class="mt-2 w-25">
                     <label for="password_confirmation">
-                        Conferma Password
+                        Conferma Password<span class="text-danger">*</span>
                     </label>
                     <input type="password" id="password_confirmation" name="password_confirmation" minlength="8" required>
                     @error('password_confirmation')
