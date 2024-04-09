@@ -60,15 +60,18 @@ class PaymentController extends Controller
         if ($result->success) {
             // Pagamento completato con successo
             if (!$apartment->sponsorships()->where('sponsorship_id', $sponsorship_id)->exists()) {
-                    
                 $apartment->sponsorships()->attach($sponsorship_id, [
                     'created_at' => $now,
                     'updated_at' => $now,
                 ]);
             }
+            
+            // Chiamata alla funzione per calcolare la data di scadenza e aggiornare la sponsorship
+            $this->calculateEndDateAndExpireSponsorship($apartment_id, $sponsorship_id);
+    
             return redirect()->back()->with('success_message', 'Pagamento completato con successo.');
         } else {
-            // Gestire errori di pagamento
+            // Gestione degli errori di pagamento
             $error = $result->message;
             return redirect()->back()->withErrors([$error]);
         }
@@ -99,4 +102,5 @@ class PaymentController extends Controller
             // Puoi gestire questo caso come preferisci, ad esempio emettere un avviso o un log
         }
     }
+    
 }
