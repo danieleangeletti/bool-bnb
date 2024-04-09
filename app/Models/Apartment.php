@@ -6,8 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Apartment extends Model
-{   
+{
     use SoftDeletes;
     protected $fillable = [
         'name',
@@ -21,7 +22,7 @@ class Apartment extends Model
         'availability',
         'latitude',
         'longitude',
-        'slug', 
+        'slug',
         'address',
         'deleted_at',
         'img_cover_path'
@@ -29,14 +30,19 @@ class Apartment extends Model
     use HasFactory;
 
     //full_cover_img
-    public function getFullCoverImgAttribute() {
+    public function getFullCoverImgAttribute()
+    {
         // Se c'è una cover_img
         if ($this->img_cover_path) {
             // Allora mi restituisci il percorso completo
-            return asset('storage/'.$this->img_cover_path);
+            return asset('storage/' . $this->img_cover_path);
         } else {
             return null;
         }
+    }
+    public function unreadMessagesCount()
+    {
+        return $this->messages()->where('is_read', false)->count();
     }
 
     // Relationships
@@ -65,5 +71,4 @@ class Apartment extends Model
     {
         return $this->belongsToMany(Sponsorship::class);
     }
-    
 }

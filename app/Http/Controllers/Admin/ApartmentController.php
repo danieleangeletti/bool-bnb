@@ -42,8 +42,12 @@ class ApartmentController extends Controller
             $messagesReaded[] = $messages[$i];
            }
         }
+        $hasUnreadMessages = $apartments->contains(function ($apartment) {
+            return $apartment->unreadMessagesCount() > 0;
+        });
+
         // dd($messagesReaded);
-        return view("admin.apartments.index", compact("apartments"));
+        return view("admin.apartments.index", compact("apartments","hasUnreadMessages"));
     }
 
     /**
