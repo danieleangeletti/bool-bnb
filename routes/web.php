@@ -36,6 +36,7 @@ Route::prefix('admin')
         // payment
         Route::get('/checkout', [AdminPaymentController::class, 'checkout'])->name('checkout');
         Route::post('/processPayment', [AdminPaymentController::class, 'processPayment'])->name('processPayment');
+        Route::post('/payment/{apartment_id}/{sponsorship_id}', [AdminPaymentController::class, 'calculateEndDateAndExpireSponsorship'])->name('process_expired_sponsorship');
         Route::post('/messages', [AdminMessageController::class, 'store'])->name('messages.store'); // Route per salvare un nuovo messaggio
         Route::put('/messages/{message}/is_read', [AdminMessageController::class, 'isRead'])->name('messages.is_read');
     });

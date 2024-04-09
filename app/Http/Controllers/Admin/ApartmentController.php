@@ -250,4 +250,5 @@ class ApartmentController extends Controller
         // Restituzione della risposta appropriata (ad esempio, reindirizzamento, conferma, ecc.)
         return redirect()->route('admin.apartments.index');
     }
+   
 }

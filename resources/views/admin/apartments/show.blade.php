@@ -108,7 +108,7 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Aggiungi un modulo di acquisto qui -->
-                        <form action="{{ route('admin.checkout') }}" method="GET">
+                        <form action="{{ route('admin.checkout', ["apartment"=>$apartment->id]) }}" method="GET">
                             @csrf
                             <select id="sponsorship_id" name="sponsorship_id" class="form-select mb-3">
                                 <option value="">Scegli la tua sponsorship</option>

@@ -74,3 +74,46 @@ $allServices = [
             'Fumatori' => ' <i class="fa-solid fa-smoking"></i>',
             'Animali Consentiti' => '<i class="fa-solid fa-paw"></i>',
         ];
+        public function calculateEndDateAndExpireSponsorship($apartment_id, $sponsorship_id) {
+    $apartment = Apartment::find($apartment_id);
+    $sponsorship = $apartment->sponsorships()->where('id', $sponsorship_id)->first();
+
+    if ($sponsorship) {
+        // Calcola la data di fine aggiungendo le ore di durata alla data di creazione
+        $endDate = Carbon::now()->addHours($sponsorship->hour_duration);
+
+        // Aggiorna il campo end_date nella tabella pivot
+        $apartment->sponsorships()->updateExistingPivot($sponsorship_id, ['end_date' => $endDate]);
+        
+        // Salva l'appartamento dopo l'aggiornamento
+        $apartment->save();
+        
+        // Se la data di fine è passata, fai scadere la sponsorship
+        if (Carbon::now()->greaterThanOrEqualTo($endDate)) {
+            $apartment->sponsorships()->detach($sponsorship_id);
+            // Puoi anche fare altre operazioni qui, come notificare l'utente
+        }
+    } else {
+        // La sponsorship non è associata all'appartamento
+        // Puoi gestire questo caso come preferisci, ad esempio emettere un avviso o un log
+    }
+}
+
+
+
+
+
+public function handle()
+{
+    // Limita il numero di appartamenti elaborati per ogni esecuzione del comando
+    $apartments = Apartment::take(100)->get();
+
+    foreach ($apartments as $apartment) {
+        $sponsorships = $apartment->sponsorships()->get();
+
+        foreach ($sponsorships as $sponsorship) {
+            $this->calculateEndDateAndExpireSponsorship($apartment->id, $sponsorship->id);
+        }
+    }
+}
+questa funzione serve per limitare le interazione con la cessazzione delle sponsorizzazioni e va messa nel file commands sponsorship expire
