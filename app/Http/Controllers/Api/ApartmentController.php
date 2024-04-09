@@ -25,7 +25,7 @@ class ApartmentController extends Controller
 
     public function show(string $slug)
     {
-        $apartment = Apartment::all()->where("slug", $slug)->firstOrFail();
+        $apartment = Apartment::with('services')->where("slug", $slug)->firstOrFail();
         return response()->json([
             'success'=>true,
             'result'=>$apartment

@@ -215,7 +215,9 @@ class ApartmentController extends Controller
             
         }
 
-        $apartment->img_cover_path = $img_cover_path;
+        if (isset($img_cover_path)) {
+            $apartment->img_cover_path = $img_cover_path;
+        }
         // $apartment->img_cover_path = $validated_data['img_cover_path'];
 
         $apartment->save();

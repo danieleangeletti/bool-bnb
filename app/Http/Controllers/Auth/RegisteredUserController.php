@@ -52,4 +52,20 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+    public function getEmailfromBackend(){
+            if (Auth::check()) {
+        // Ottieni l'istanza dell'utente autenticato
+        $user = Auth::user();
+        var_dump($user);
+        // Ottieni l'email dell'utente
+        $email = $user->email;
+
+        
+    
+            return response()->json(['email' => $email]);
+        }
+        else{
+             return response()->json(['error' => 'Utente non autenticato'], 401);
+        }
+    }
 }
