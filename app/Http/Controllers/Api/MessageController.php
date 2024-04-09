@@ -11,7 +11,7 @@ class MessageController extends Controller
     public function store(Request $request, string $slug)
     {
         $request->validate([
-            'text' => ['string'],
+            'text' => ['required','string'],
             'name' => ['string', 'max:100'],
             'last_name' => ['string', 'max:100'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:100'],
