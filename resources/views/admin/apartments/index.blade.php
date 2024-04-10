@@ -140,25 +140,17 @@
                                             </td>
                                             <td>{{ $apartment->price }}</td>
                                             <td>
-                                                @foreach ($apartment->sponsorships as $sponsorship)
-                                                <p>DEBUG: ID dell'appartamento corrente nel ciclo: {{ $apartment->id }}</p>
-                                                @if ($sponsorship->apartment_sponsorship)
-                                                    <p>DEBUG: ID dell'appartamento nella tabella pivot: {{ $sponsorship->apartment_sponsorship->apartment_id }}</p>
-                                                    @if ($sponsorship->apartment_sponsorship->apartment_id == $apartment->id)
-                                                        <p>DEBUG: Sponsorizzazione associata all'appartamento corrente</p>
-                                                        <p>Tipo: {{ $sponsorship->title }}</p>
-                                                        @if (isset($sponsorship->apartment_sponsorship))
-                                                            <p>Data di scadenza: {{ $sponsorship->apartment_sponsorship->end_date }}</p>
-                                                        @else
-                                                            <p>Nessuna data di scadenza disponibile</p>
-                                                        @endif
+                                                <td>
+                                                    @if ($apartment->sponsorships->isNotEmpty())
+                                                        @foreach ($apartment->sponsorships as $sponsorship)
+                                                            <div>
+                                                                {{ $sponsorship->title }} - Scadenza: {{ $sponsorship->pivot->end_date }}
+                                                            </div>
+                                                        @endforeach
                                                     @else
-                                                        <p>DEBUG: Sponsorizzazione NON associata all'appartamento corrente</p>
+                                                        Sponsor non attiva
                                                     @endif
-                                                @else
-                                                    <p>DEBUG: Relazione apartment_sponsorship non definita</p>
-                                                @endif
-                                            @endforeach
+                                                </td>
                                             </td>
                                             <td class="{{ $apartment->availability == 1 ? 'bg-success' : 'bg-danger' }}">
                                             </td>
