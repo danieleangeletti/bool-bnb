@@ -113,7 +113,7 @@
                             <tbody>
                                 @foreach ($apartments as $apartment)
                                     @if ($apartment->deleted_at == null)
-                                        <tr class="tr-index-apartment {{ $apartment->availability == 1 ? '' : 'bg-warning !important' }}">
+                                        <tr class="">
 
                                             <td>
                                                 <img src="{{ $apartment->full_cover_img }}" class="cover-img">
