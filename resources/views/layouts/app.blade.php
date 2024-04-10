@@ -13,16 +13,16 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-bool  bg-white ">
+            <nav class="navbar navbar-expand-lg navbar-bool bg-white ">
                 <div class="container bg-white ">
                     <div class="box-img-logo">
-                        <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" class=" h-100 w-100 " alt="">
+                        <img src="{{ asset('img/loghi/boolbnb-rosa-sfondobianco-150px.JPG') }}" class=" h-100 w-100 " alt="">
                     </div>
                     {{-- <a class="navbar-brand" href="#">BoolBnb</a> --}}
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarText">
+                    </button> --}}
+                    <div class="collapse navbar-collapse mx-4 " id="navbarText">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a class="icon-link icon-link-hover text-decoration-none " style="--bs-link-hover-color-rgb: 25, 135, 84;"  href="{{ route('admin.dashboard') }}">
@@ -38,12 +38,6 @@
                                   </a>
 
                             </li>
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" href="#">Link 2</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link 3</a>
-                            </li> --}}
                         </ul>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
