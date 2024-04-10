@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ApartmentController as ApiApartment;
 use App\Http\Controllers\Api\ApartmentController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\ViewController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ Route::name('api.')->group(function(){
     Route::get('/advancedResearch', [ApartmentController::class, 'advancedResearch'])->name('advancedResearch');
     Route::post('/store/{slug}',[MessageController::class, 'store']);
     Route::get('/user/email', [RegisteredUserController::class,'getEmailfromBackend']);
-   
+    Route::post('/view/{slug}', [ViewController::class,'store']);
 });
 
 

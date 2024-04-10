@@ -21,6 +21,9 @@
             <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary">
                 Torna alla Home
             </a>
+            <p class="mt-2">
+               VIsualizzazioni appartamento: {{ $apartmentStats }}
+            </p>
         </div>
 
         <div class="row">
