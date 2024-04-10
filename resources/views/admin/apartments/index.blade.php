@@ -15,26 +15,29 @@
                 <div class="card">
                     <div class="card-body">
                         <h1 class="text-center text-danger my-5">
-                           I tuoi Appartamenti
+                            I tuoi Appartamenti
                         </h1>
                         <div class="row my-5 ">
                             <div class="col-12 d-flex justify-content-around ">
-                                <button type="button" class="btn btn-success mt-3" >
-                                    <a href="{{ route('admin.apartments.create') }}" class="btn btn-success">Aggiungi un Appartamento</a>
+                                <button type="button" class="btn btn-success mt-3">
+                                    <a href="{{ route('admin.apartments.create') }}" class="btn btn-success">Aggiungi un
+                                        Appartamento</a>
                                 </button>
-                
-                                
-                                <button type="button" class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+
+                                <button type="button" class="btn btn-danger mt-3" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
                                     Appartamenti archiviati
                                 </button>
-                
+
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Archivio Appartamenti</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Archivio Appartamenti
+                                                </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -55,18 +58,21 @@
                                                                 <tr>
                                                                     <th scope="row">{{ $apartment->id }}</th>
                                                                     <td>
-                                                                        <img src="{{ $apartment->full_cover_img }}" class="cover-img">
+                                                                        <img src="{{ $apartment->full_cover_img }}"
+                                                                            class="cover-img">
                                                                     </td>
                                                                     <td>{{ $apartment->name }}</td>
-                                                                   
+
                                                                     <td>{{ $apartment->price }}</td>
                                                                     <td>
                                                                         <div class="d-flex flex-column">
-                                                                            <form class="mt-5" id="deleteForm{{ $apartment->slug }}"
+                                                                            <form class="mt-5"
+                                                                                id="deleteForm{{ $apartment->slug }}"
                                                                                 action="{{ route('admin.restore', ['slug' => $apartment->slug]) }}"
                                                                                 method="post">
                                                                                 @csrf
-                                                                                <button type="submit" class="btn btn-danger"
+                                                                                <button type="submit"
+                                                                                    class="btn btn-danger"
                                                                                     data-bs-target="#deleteConfirmation{{ $apartment->slug }}">
                                                                                     Recupera
                                                                                 </button>
@@ -77,33 +83,30 @@
                                                             @endif
                                                         @endforeach
                                                     </tbody>
-                                                    </table>
-                                                </div>
+                                                </table>
+                                            </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Chiudi</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
 
                         <table class="table">
                             <thead>
                                 <tr>
-                                
+
                                     <th scope="col">Cover</th>
                                     <th scope="col">Nome</th>
                                     <th scope="col">Tipo di Struttura</th>
-                                    <th scope="col">Mq</th>
                                     <th scope="col">Indirizzo</th>
-                                    <th scope="col">Numero di persone ammesse</th>
-                                    <th scope="col">Numero di camere</th>
-                                    <th scope="col">Posti letto</th>
-                                    <th scope="col">Bagni</th>
                                     <th scope="col">Servizi</th>
                                     <th scope="col">Prezzo</th>
+                                    <th scope="col">Sponsorizzato</th>
                                     <th scope="col">Disponibile</th>
                                     <th scope="col">Azioni</th>
                                     <th scope="col">Email ricevute</th>
@@ -113,7 +116,7 @@
                                 @foreach ($apartments as $apartment)
                                     @if ($apartment->deleted_at == null)
                                         <tr class="{{ $apartment->availability == 1 ? '' : 'bg-warning !important' }}">
-                                            
+
                                             <td>
                                                 <img src="{{ $apartment->full_cover_img }}" class="cover-img">
                                             </td>
@@ -121,14 +124,7 @@
                                             <td>
                                                 {{ $apartment->type_of_accomodation }}
                                             </td>
-                                            <td>{{ $apartment->mq }}</td>
                                             <td>{{ $apartment->address }}</td>
-                                            <td>
-                                                {{ $apartment->n_guests }}
-                                            </td>
-                                            <td>{{ $apartment->n_rooms }}</td>
-                                            <td>{{ $apartment->n_beds }}</td>
-                                            <td>{{ $apartment->n_baths }}</td>
                                             <td>
                                                 @foreach ($apartment->services as $singleService)
                                                     @if (count($apartment->services) == 1)
@@ -143,6 +139,19 @@
                                                 @endforeach
                                             </td>
                                             <td>{{ $apartment->price }}</td>
+                                            <td>
+                                                
+                                                    @if ($apartment->sponsorships->isNotEmpty())
+                                                        @foreach ($apartment->sponsorships as $sponsorship)
+                                                            <div>
+                                                                {{ $sponsorship->title }} - Scadenza: {{ $sponsorship->pivot->end_date }}
+                                                            </div>
+                                                        @endforeach
+                                                    @else
+                                                        Sponsor non attiva
+                                                    @endif
+                                                
+                                            </td>
                                             <td class="{{ $apartment->availability == 1 ? 'bg-success' : 'bg-danger' }}">
                                             </td>
                                             <td>
@@ -150,9 +159,9 @@
                                                     <div class="ms-1 me-1 my-1 ">
                                                         <a href="{{ route('admin.apartments.show', ['apartment' => $apartment->slug]) }}"
                                                             class="btn btn-primary">SHOW</a>
-                                                            <span class="">
+                                                        <span class="">
 
-                                                            </span>
+                                                        </span>
                                                     </div>
                                                     <div class="ms-1 me-1 my-1">
                                                         <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}"
@@ -187,7 +196,8 @@
                                                                     method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger">Conferma archiviazione</button>
+                                                                    <button type="submit" class="btn btn-danger">Conferma
+                                                                        archiviazione</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -196,15 +206,26 @@
                                                 </div>
                                             </td>
                                             <td scope="row" class="text-center">
-                                                <a href="{{ route('admin.apartments.show', ['apartment' => $apartment->slug]) }}">
-                                                    
-                                                    @if($apartment->message && $apartment->message)
-                                                    <i class="fa-solid fa-envelope fa-xl" style="color: #0c2c64;"></i>
-                                                    @else
-                                                    <i class="fa-solid fa-envelope-open fa-xl"  style="color: #0c2c64;"></i>
-                                                    @endif
+                                                <button type="button" class="btn  position-relative">
+                                                    <a class=" text-decoration-none "
+                                                        href="{{ route('admin.apartments.show', ['apartment' => $apartment->slug]) }}">
+                                                        @if ($apartment->unreadMessagesCount() > 0)
+                                                            <i class="fa-solid fa-envelope fa-xl"
+                                                                style="color: #0c2c64;"></i> <span
+                                                                class=" counter-email">{{ $apartment->unreadMessagesCount() }}</span>
+                                                            {{-- <span
+                                                                class="position-absolute top-50 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                                                <span
+                                                                    class="visually-hidden">{{ $apartment->unreadMessagesCount() }}
+                                                                    new messages</span>
+                                                            </span> --}}
+                                                        @else
+                                                            <i class="fa-solid fa-envelope-open fa-xl"
+                                                                style="color: #0c2c64;"></i>
+                                                        @endif
+                                                </button>
+
                                                 </a>
-                                                
                                             </td>
                                         </tr>
                                     @endif
@@ -213,15 +234,11 @@
                         </table>
                     </div>
                 </div>
-                <!-- Button trigger modal -->
-               
+
             </div>
         </div>
-        </div>
-        
-    @endsection
-                                            
+
+    </div>
 
 
-
-
+@endsection
