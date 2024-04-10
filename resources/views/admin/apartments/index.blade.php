@@ -43,7 +43,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <table class="table">
-                                                    <thead>
+                                                    <thead  >
                                                         <tr>
                                                             <th scope="col">#</th>
                                                             <th scope="col">Cover</th>
@@ -137,7 +137,12 @@
                                                     @endif
                                                 
                                             </td>
-                                            <td class="{{ $apartment->availability == 1 ? 'bg-success' : 'bg-danger' }}">
+                                            <td class="">
+                                                @if($apartment->availability == 1)
+                                                <i class="fa-solid fa-check fa-2xl" style="color: #18b215;"></i>
+                                                @else
+                                                <i class="fa-solid fa-x fa-2xl" style="color: #ed1707;"></i>
+                                                @endif
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-column">

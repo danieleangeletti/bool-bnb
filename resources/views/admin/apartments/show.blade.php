@@ -58,7 +58,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <div class="p-3 shadow rounded w-50">
@@ -95,17 +94,13 @@
                 <h2 class="text-center text-primary title-box-email"> Casella Postale del Tuo appartamento</h2>
             </div>
         </div>
-
-
         <div class=" container d-flex flex-wrap box-email">
-
             @foreach ($messages as $message)
                 <div
                     class=" card-email p-3 mb-5 shadow rounded {{ $message->is_read ? 'bg-email-read' : 'bg-email-not-read' }}">
                     <h5 class="badge text-bg-primary ">{{ $message->email }}</h5>
                     <p class="card-subtitle mb-2 text-body-secondary"> Nome: {{ $message->name }}</p>
                     <p class="card-subtitle mb-2 text-body-secondary"> Cognome: {{ $message->last_name }}</p>
-
                     <div>
                         <div>
                             <!-- Button trigger modal -->
@@ -113,7 +108,6 @@
                                 data-bs-target="#exampleModal{{ $message->id }}">
                                 Leggi
                             </button>
-
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal{{ $message->id }}" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -139,25 +133,15 @@
                                                 <button type="submit" class="btn btn-secondary">Contrassegna come
                                                     letto</button>
                                             </form>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             @endforeach
-
-
         </div>
     </div>
-
-
     </div>
-
-
 @endsection
