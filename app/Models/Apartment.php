@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Sponsorship;
 
 class Apartment extends Model
 {
@@ -27,7 +28,7 @@ class Apartment extends Model
         'deleted_at',
         'img_cover_path'
     ];
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     //full_cover_img
     public function getFullCoverImgAttribute()
@@ -44,6 +45,7 @@ class Apartment extends Model
     {
         return $this->messages()->where('is_read', false)->count();
     }
+   
 
     // Relationships
 
@@ -69,6 +71,8 @@ class Apartment extends Model
     }
     public function sponsorships()
     {
-        return $this->belongsToMany(Sponsorship::class);
+        return $this->belongsToMany(Sponsorship::class)
+                    ->withPivot('end_date') // Aggiungi il campo 'end_date' della tabella pivot
+                    ->withTimestamps(); // Aggiungi i timestamp created_at e updated_at alla tabella pivot
     }
 }
