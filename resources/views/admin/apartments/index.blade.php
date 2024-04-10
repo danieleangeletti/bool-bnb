@@ -140,7 +140,7 @@
                                             </td>
                                             <td>{{ $apartment->price }}</td>
                                             <td>
-                                                <td>
+                                                
                                                     @if ($apartment->sponsorships->isNotEmpty())
                                                         @foreach ($apartment->sponsorships as $sponsorship)
                                                             <div>
@@ -150,7 +150,7 @@
                                                     @else
                                                         Sponsor non attiva
                                                     @endif
-                                                </td>
+                                                
                                             </td>
                                             <td class="{{ $apartment->availability == 1 ? 'bg-success' : 'bg-danger' }}">
                                             </td>
