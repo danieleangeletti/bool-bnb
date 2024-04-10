@@ -103,14 +103,10 @@
                                     <th scope="col">Cover</th>
                                     <th scope="col">Nome</th>
                                     <th scope="col">Tipo di Struttura</th>
-
                                     <th scope="col">Indirizzo</th>
-
-
-                                    <th scope="col">Posti letto</th>
-                                    <th scope="col">Bagni</th>
                                     <th scope="col">Servizi</th>
                                     <th scope="col">Prezzo</th>
+                                    <th scope="col">Sponsorizzato</th>
                                     <th scope="col">Disponibile</th>
                                     <th scope="col">Azioni</th>
                                     <th scope="col">Email ricevute</th>
@@ -129,10 +125,6 @@
                                                 {{ $apartment->type_of_accomodation }}
                                             </td>
                                             <td>{{ $apartment->address }}</td>
-
-
-                                            <td>{{ $apartment->n_beds }}</td>
-                                            <td>{{ $apartment->n_baths }}</td>
                                             <td>
                                                 @foreach ($apartment->services as $singleService)
                                                     @if (count($apartment->services) == 1)
@@ -147,6 +139,19 @@
                                                 @endforeach
                                             </td>
                                             <td>{{ $apartment->price }}</td>
+                                            <td>
+                                                
+                                                    @if ($apartment->sponsorships->isNotEmpty())
+                                                        @foreach ($apartment->sponsorships as $sponsorship)
+                                                            <div>
+                                                                {{ $sponsorship->title }} - Scadenza: {{ $sponsorship->pivot->end_date }}
+                                                            </div>
+                                                        @endforeach
+                                                    @else
+                                                        Sponsor non attiva
+                                                    @endif
+                                                
+                                            </td>
                                             <td class="{{ $apartment->availability == 1 ? 'bg-success' : 'bg-danger' }}">
                                             </td>
                                             <td>
@@ -205,7 +210,9 @@
                                                     <a class=" text-decoration-none "
                                                         href="{{ route('admin.apartments.show', ['apartment' => $apartment->slug]) }}">
                                                         @if ($apartment->unreadMessagesCount() > 0)
-                                                        <i class="fa-solid fa-envelope fa-xl" style="color: #0c2c64;"></i> <span class=" counter-email">{{ $apartment->unreadMessagesCount() }}</span>
+                                                            <i class="fa-solid fa-envelope fa-xl"
+                                                                style="color: #0c2c64;"></i> <span
+                                                                class=" counter-email">{{ $apartment->unreadMessagesCount() }}</span>
                                                             {{-- <span
                                                                 class="position-absolute top-50 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                                                                 <span
@@ -213,7 +220,8 @@
                                                                     new messages</span>
                                                             </span> --}}
                                                         @else
-                                                        <i class="fa-solid fa-envelope-open fa-xl" style="color: #0c2c64;"></i>
+                                                            <i class="fa-solid fa-envelope-open fa-xl"
+                                                                style="color: #0c2c64;"></i>
                                                         @endif
                                                 </button>
 
@@ -229,8 +237,8 @@
 
             </div>
         </div>
-        
+
     </div>
-  
+
 
 @endsection
