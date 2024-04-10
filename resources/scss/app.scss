@@ -43,3 +43,25 @@
     width: 120px;
 
 }
+.card-email{
+    margin: 30px;
+    width: calc((100% / 4) - 60px);
+}
+.bg-email-not-read{
+    background-color: rgba($color: #000000, $alpha: 0.2);
+}
+.counter-email{
+    display: inline-block;
+    line-height: 13px;
+    text-align: center;
+    width: 13px;
+    height: 13px;
+    background-color: red;
+    font-size: 13px;
+    border: 1px solid red;
+    border-radius: 50%;
+    color: white;
+    position: absolute;
+    top: 5%;
+    right: 15%;
+}
