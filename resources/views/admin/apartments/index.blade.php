@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="card">
+                <div class="">
                     <div class="card-body">
                         <h1 class="text-center text-danger my-5">
                             I tuoi Appartamenti
@@ -96,7 +96,7 @@
                         </div>
 
 
-                        <table class="table">
+                        <table class="table shadow-lg p-3 mb-5 bg-body-tertiary rounded">
                             <thead>
                                 <tr>
 
@@ -104,8 +104,6 @@
                                     <th scope="col">Nome</th>
                                     <th scope="col">Tipo di Struttura</th>
                                     <th scope="col">Indirizzo</th>
-                                    <th scope="col">Servizi</th>
-                                    <th scope="col">Prezzo</th>
                                     <th scope="col">Sponsorizzato</th>
                                     <th scope="col">Disponibile</th>
                                     <th scope="col">Azioni</th>
@@ -115,7 +113,7 @@
                             <tbody>
                                 @foreach ($apartments as $apartment)
                                     @if ($apartment->deleted_at == null)
-                                        <tr class="{{ $apartment->availability == 1 ? '' : 'bg-warning !important' }}">
+                                        <tr class="tr-index-apartment {{ $apartment->availability == 1 ? '' : 'bg-warning !important' }}">
 
                                             <td>
                                                 <img src="{{ $apartment->full_cover_img }}" class="cover-img">
@@ -125,20 +123,7 @@
                                                 {{ $apartment->type_of_accomodation }}
                                             </td>
                                             <td>{{ $apartment->address }}</td>
-                                            <td>
-                                                @foreach ($apartment->services as $singleService)
-                                                    @if (count($apartment->services) == 1)
-                                                        <span>
-                                                            {{ $singleService->type_of_service }}
-                                                        </span>
-                                                    @else
-                                                        <span>
-                                                            {{ $singleService->type_of_service }},
-                                                        </span>
-                                                    @endif
-                                                @endforeach
-                                            </td>
-                                            <td>{{ $apartment->price }}</td>
+                             
                                             <td>
                                                 
                                                     @if ($apartment->sponsorships->isNotEmpty())
