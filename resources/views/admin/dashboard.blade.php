@@ -5,7 +5,7 @@
 @section('main-content')
 
     <div class="row h-50">
-        <div class="card">
+        <div class=" card-dashboard">
             <div class="card-body">
                 <h1 class="text-center text-danger">
                     Ciao {{ auth()->user()->name }}!
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class=" d-flex  justify-content-center h-50 ">
-            <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" class=" w-50 h-100 " alt="">
+            <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" class=" w-50 h-100 logo-dashboard" alt="">
         </div>
        
     </div>

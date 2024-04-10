@@ -122,15 +122,15 @@
     <div class="container mt-4 ">
         <div class=" row ">
             <div class=" col-12">
-                <h2 class=" text-center "> Casella Postale del Tuo appartamento</h2>
+                <h2 class=" text-center text-primary  title-box-email "> Casella Postale del Tuo appartamento</h2>
             </div>
         </div>
 
 
-        <div class=" container d-flex flex-wrap">
+        <div class=" container d-flex flex-wrap box-email">
         
                 @foreach ($messages as $message)
-                    <div class="card card-email p-3 {{$message->is_read ? 'bg-email-read': 'bg-email-not-read'}}">
+                    <div class=" card-email p-3 mb-5 shadow bg-body-tertiary rounded {{$message->is_read ? 'bg-email-read': 'bg-email-not-read'}}">
                         <h5 class="badge text-bg-primary ">{{ $message->email }}</h5>
                         <p class="card-subtitle mb-2 text-body-secondary"> Nome: {{ $message->name }}</p>
                         <p class="card-subtitle mb-2 text-body-secondary"> Cognome: {{ $message->last_name }}</p>

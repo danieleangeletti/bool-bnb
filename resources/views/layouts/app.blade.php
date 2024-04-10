@@ -13,7 +13,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg  bg-white ">
+            <nav class="navbar navbar-expand-lg navbar-bool  bg-white ">
                 <div class="container bg-white ">
                     <div class="box-img-logo">
                         <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" class=" h-100 w-100 " alt="">
