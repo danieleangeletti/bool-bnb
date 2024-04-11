@@ -33,15 +33,15 @@ class ServiceSeeder extends Seeder
         ];
 
         $serviceIcons = [
-            'Wifi' => '<i class="fa-solid fa-wifi"></i>',
-            'Aria Condizionata' => '<i class="fa-solid fa-wind"></i>',
-            'Piscina' => '<i class="fa-solid fa-water-ladder"></i>',
-            'Spiaggia Privata' => '<i class="fa-solid fa-umbrella-beach"></i>',
-            'Parcheggio' => '<i class="fa-solid fa-car"></i>',
-            'Navetta' => '<i class="fa-solid fa-van-shuttle"></i>',
-            'Lavanderia' => '<i class="fa-solid fa-jug-detergent"></i>',
-            'Fumatori' => '<i class="fa-solid fa-smoking"></i>',
-            'Animali Consentiti' => '<i class="fa-solid fa-paw"></i>'
+            'Wifi' => 'fa-wifi',
+            'Aria Condizionata' => 'fa-wind',
+            'Piscina' => 'fa-water-ladder',
+            'Spiaggia Privata' => 'fa-umbrella-beach',
+            'Parcheggio' => 'fa-car',
+            'Navetta' => 'fa-van-shuttle',
+            'Lavanderia' => 'fa-jug-detergent',
+            'Fumatori' => 'fa-smoking',
+            'Animali Consentiti' => 'fa-paw'
         ];
         
         foreach ($allServices as $singleService) {
