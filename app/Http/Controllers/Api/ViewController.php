@@ -111,9 +111,13 @@ class ViewController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(View $view)
+    public function show($id)
     {
-        //
+        $apartment = Apartment::findOrFail($id);
+        $messagesCount = $apartment->messages()->count();
+        $viewsCount = $apartment->views_count;
+
+        return view('apartments.show', compact('apartment', 'messagesCount', 'viewsCount'));
     }
 
     /**
