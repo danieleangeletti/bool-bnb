@@ -110,3 +110,15 @@
     top: 5%;
     right: 15%;
 }
+
+// Create - Aggiungi indirizzo
+
+#suggestions {
+    width: 100%;
+    li {
+        cursor: pointer;
+    }
+}
+.suggestions-border {
+    border: 1px solid lightgray;
+}
