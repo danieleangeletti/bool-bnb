@@ -24,9 +24,13 @@
         <h1 class="title-apartment text-center mb-5">{{ $apartment->name }}</h1>
         <div class="row d-flex  justify-content-center">
             <div class="col-md-5">
-                <div style="max-height: 60vh;" class="overflow-hidden p-3 mb-5 shadow rounded">
-                    <img src="{{ $apartment->full_cover_img }}" class="img-fluid w-100 rounded" alt="">
-                </div>
+                @if (!empty($apartment->full_cover_img))
+                    <img src="{{ $apartment->full_cover_img }}" class="card-img-top "
+                        alt="Cover Image">
+                @else
+                    <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}"
+                        class="card-img-top" alt="Default Cover Image">
+                @endif
             </div>
             <div class="col-md-3">
                 <div class=" me-5 ">
