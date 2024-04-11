@@ -10,7 +10,7 @@
             </ul>
         </div>
     @endif
-
+    
     <form id="registrationForm" method="POST" action="{{ route('register') }}">
         @csrf
         <div class="container">
@@ -26,7 +26,7 @@
                     <label for="name">
                         Nome
                     </label>
-                    <input value="{{ old('name') }}" type="text" id="name" name="name" maxlength="255">
+                    <input class="form-control" value="{{ old('name') }}" type="text" id="name" name="name" maxlength="255">
                     @error('name')
                         <div class="alert alert-danger">
                             {{ $message }}
@@ -39,7 +39,7 @@
                     <label for="last_name">
                         Cognome
                     </label>
-                    <input value="{{ old('last_name') }}" type="text" id="last_name" name="last_name" maxlength="255">
+                    <input class="form-control" value="{{ old('last_name') }}" type="text" id="last_name" name="last_name" maxlength="255">
                     @error('last_name')
                         <div class="alert alert-danger">
                             {{ $message }}
@@ -52,7 +52,7 @@
                     <label for="date_of_birth">
                         Data di nascita<span class="text-danger">*</span>
                     </label>
-                    <input value="{{ old('date_of_birth') }}" type="date" id="date_of_birth" name="date_of_birth">
+                    <input class="form-control" value="{{ old('date_of_birth') }}" type="date" id="date_of_birth" name="date_of_birth">
                     @error('date_of_birth')
                         <div class="alert alert-danger">
                             {{ $message }}
@@ -65,7 +65,7 @@
                     <label for="email">
                         Email<span class="text-danger">*</span>
                     </label>
-                    <input value="{{ old('email') }}" type="email" id="email" name="email" required
+                    <input class="form-control" value="{{ old('email') }}" type="email" id="email" name="email" required
                         maxlength="255">
                     @error('email')
                         <div class="alert alert-danger">
@@ -73,13 +73,14 @@
                         </div>
                     @enderror
                 </div>
+           
 
-                <!-- Password -->
+             
+                     <!-- Password -->
                 <div class="mt-2 w-25">
-                    <label for="password">
-                        Password<span class="text-danger">*</span>
-                    </label>
-                    <input type="password" id="password" name="password" minlength="8" required>
+                    <label for="password">Password<span class="text-danger">*</span></label>
+                    <input class="form-control" type="password" id="password"  minlength="8" name="password"  required>
+                    <div id="password-error" class="alert alert-danger" style="display:none;"></div>
                     @error('password')
                         <div class="alert alert-danger">
                             {{ $message }}
@@ -89,18 +90,17 @@
 
                 <!-- Confirm Password -->
                 <div class="mt-2 w-25">
-                    <label for="password_confirmation">
-                        Conferma Password<span class="text-danger">*</span>
-                    </label>
-                    <input type="password" id="password_confirmation" name="password_confirmation" minlength="8" required>
-                    @error('password_confirmation')
+                    <label for="password_confirmation">Conferma Password<span class="text-danger">*</span></label>
+                    <input class="form-control" type="password" id="password_confirmation"  minlength="8" name="password_confirmation"  required>
+                    <div id="password-confirmation-error" class="alert alert-danger" style="display:none;"></div>
+                     @error('password_confirmation')
                         <div class="alert alert-danger">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
-
                 <div class="m-2 d-flex flex-column ">
+
                     <button type="submit" class=" mx-3 my-3 btn btn-primary rounded-4 ">
                         Registrati
                     </button>
@@ -108,11 +108,11 @@
                         {{ __('Already registered?') }}
                     </a>
 
-
                 </div>
 
             </div>
         </div>
+
 
         <script>
             document.getElementById("registrationForm").addEventListener("submit", function(event) {
@@ -128,6 +128,30 @@
                     event.preventDefault(); // Impedisce l'invio del form
                 }
             });
+            const passwordInput = document.getElementById('password');
+            const passwordConfirmationInput = document.getElementById('password_confirmation');
+            const passwordError = document.getElementById('password-error');
+            const passwordConfirmationError = document.getElementById('password-confirmation-error');
+            const submitform = document.getElementById('registrationForm');
+
+            submitform.addEventListener('submit', (event) => {
+                if(passwordInput.value.length < 8){
+                    event.preventDefault();
+                    passwordError.style.display = 'block';
+                    passwordError.textContent = 'La password deve contenere almeno 8 caratteri.';
+                }
+                else if (passwordInput.value !== passwordConfirmationInput.value) {
+                    event.preventDefault();
+                    passwordError.style.display = 'block';
+                    passwordError.textContent = 'Le password non coincidono.';
+                    passwordConfirmationError.style.display = 'block';
+                    passwordConfirmationError.textContent = 'Le password non coincidono.';
+                } else {
+                    passwordError.style.display = 'none';
+                    passwordConfirmationError.style.display = 'none';
+                }
+            });
         </script>
+       
     </form>
 @endsection
