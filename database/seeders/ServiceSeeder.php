@@ -32,11 +32,24 @@ class ServiceSeeder extends Seeder
             'Animali Consentiti'
         ];
 
+        $serviceIcons = [
+            'Wifi' => '<i class="fa-solid fa-wifi"></i>',
+            'Aria Condizionata' => '<i class="fa-solid fa-wind"></i>',
+            'Piscina' => '<i class="fa-solid fa-water-ladder"></i>',
+            'Spiaggia Privata' => '<i class="fa-solid fa-umbrella-beach"></i>',
+            'Parcheggio' => '<i class="fa-solid fa-car"></i>',
+            'Navetta' => '<i class="fa-solid fa-van-shuttle"></i>',
+            'Lavanderia' => '<i class="fa-solid fa-jug-detergent"></i>',
+            'Fumatori' => '<i class="fa-solid fa-smoking"></i>',
+            'Animali Consentiti' => '<i class="fa-solid fa-paw"></i>'
+        ];
+        
         foreach ($allServices as $singleService) {
             $service = Service::create([
                 'type_of_service' => $singleService,
-                'icon' => 'ciao'
+                'icon' => $serviceIcons[$singleService]
             ]);
-        };
+        }
+        
     }
 }

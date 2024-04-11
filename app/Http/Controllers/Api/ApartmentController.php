@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 
 //Models
 use App\Models\Apartment;
+use App\Models\View;
 use GrahamCampbell\ResultType\Success;
 
 class ApartmentController extends Controller
@@ -27,10 +28,14 @@ class ApartmentController extends Controller
     public function show(string $slug)
     {
         $apartment = Apartment::with('services')->where("slug", $slug)->firstOrFail();
+        
+     
         return response()->json([
             'success'=>true,
             'result'=>$apartment
         ]);
+       
+
     }
     public function getApartments(Request $request)
     {   

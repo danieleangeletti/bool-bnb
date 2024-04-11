@@ -10,7 +10,7 @@
                     </div>
                     <div>
                         <h4 class="text-center text-primary">
-                            Benvenuto nell'area di registrazione di BoolBnB
+                            Benvenuto nella tua area personale di BoolBnB
                         </h4>
                     </div>
                     

@@ -37,13 +37,17 @@ class ApartmentController extends Controller
 
         $messages = Message::all();
         $messagesReaded = [];
-        for ($i=0; $i < count($messages) ; $i++) { 
-           if ($messages[$i]->is_read) {
-            $messagesReaded[] = $messages[$i];
-           }
+        for ($i = 0; $i < count($messages); $i++) {
+            if ($messages[$i]->is_read) {
+                $messagesReaded[] = $messages[$i];
+            }
         }
+        $hasUnreadMessages = $apartments->contains(function ($apartment) {
+            return $apartment->unreadMessagesCount() > 0;
+        });
+
         // dd($messagesReaded);
-        return view("admin.apartments.index", compact("apartments"));
+        return view("admin.apartments.index", compact("apartments", "hasUnreadMessages"));
     }
 
     /**
@@ -54,7 +58,7 @@ class ApartmentController extends Controller
         $apartments = Apartment::all();
         $accomodation = config('db.allTypeOfAccomodation');
         $sponsorships = Sponsorship::all();
-        
+
         $services = Service::all();
         return view("admin.apartments.create", compact('apartments', 'sponsorships', 'services', 'accomodation'));
     }
@@ -107,6 +111,19 @@ class ApartmentController extends Controller
                 $apartment->services()->attach($singleServiceId);
             }
         }
+        if (isset($validated_data['sponsorships'])) {
+            foreach ($validated_data['sponsorships'] as $sponsorshipId) {
+                // Calcola la data di inizio della sponsorizzazione in base alle sponsorizzazioni esistenti
+                $startDate = Sponsorship::calculateStartDate($sponsorshipId);
+                
+                // Aggiungi la sponsorizzazione all'appartamento
+                $apartment->sponsorships()->attach($sponsorshipId);
+                
+                // Imposta la data di inizio della sponsorizzazione utilizzando updateExistingPivot
+                $apartment->sponsorships()->updateExistingPivot($sponsorshipId, ['start_date' => $startDate]);
+            }
+        }
+        
 
         return redirect()->route('admin.apartments.show', ['apartment' => $apartment->slug]);
     }
@@ -119,25 +136,17 @@ class ApartmentController extends Controller
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
         $sponsorships = Sponsorship::all();
         $messages = Message::where('apartment_id', $apartment->id)->get();
-        $myView = View::where('apartment_id', $apartment->id)->where('ip_address', $request->ip())->get()->last();
+        $myView = View::where('apartment_id', $apartment->id)->get();
+        $apartmentStats = count($myView);
 
-
-        // dd($myView->last());
-        $now = Carbon::now();
-        // $formattedDate = $now->format('Y-m-d');
-        if ($myView && $now->diffInHours($myView->created_at) >= 12) {
-            $view = new View;
-            $view->ip_address = $request->ip();
-            $view->apartment_id = $apartment->id;
-            $view->save();
-        }
+       
 
         // Verifica se l'appartamento appartiene all'utente loggato
         if ($apartment->user_id != auth()->id()) {
             // Gestisci il caso in cui l'appartamento non appartenga all'utente loggato
             return back()->withErrors('error', 'Something went wrong!');
         }
-        return view("admin.apartments.show", compact("apartment", "sponsorships","messages"));
+        return view("admin.apartments.show", compact("apartment", "sponsorships","messages",'apartmentStats'));
     }
 
 
@@ -212,7 +221,6 @@ class ApartmentController extends Controller
             if ($apartment->img_cover_path) {
                 Storage::disk('public')->delete($apartment->img_cover_path);
             }
-            
         }
 
         if (isset($img_cover_path)) {
@@ -239,6 +247,14 @@ class ApartmentController extends Controller
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
 
         $apartment->delete();
+        // Ottieni tutte le sponsorizzazioni scadute associate all'appartamento
+        $expiredSponsorships = $apartment->sponsorships()->wherePivot('end_date', '<=', now())->get();
+
+        // Rimuovi le sponsorizzazioni scadute
+        foreach ($expiredSponsorships as $sponsorship) {
+            $apartment->sponsorships()->detach($sponsorship->id);
+        }
+
 
         return redirect()->route('admin.apartments.index');
     }
@@ -252,5 +268,4 @@ class ApartmentController extends Controller
         // Restituzione della risposta appropriata (ad esempio, reindirizzamento, conferma, ecc.)
         return redirect()->route('admin.apartments.index');
     }
-   
 }
