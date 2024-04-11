@@ -3,13 +3,12 @@
 @section('page-title', 'checkout')
 
 @section('main-content')
-    <h3>THIS IS THE CHECKOUT PAGE FOR THE APARTMENT WITH ID <span class="text-danger">{{ $apartment->id }}</span></h3>
-    <h1 class="text-center">{{ $sponsorship->title }} SPONSORSHIP</h1>
+    <h1 class="text-center">{{ $sponsorship->title }} Sponsorship</h1>
     <h1> COST: {{ $sponsorship->cost }}€ </h1>
-    <form id="payment-form" action="processPayment" method="POST">
+    <form id="payment-form" action="processPayment" method="POST" class=" shadow ">
         @csrf
         <div id="dropin-container"></div>
-        <input type="submit" />
+        <input type="submit" class="mx-3 my-3 btn btn-primary rounded-4 "/>
         <input type="hidden" name="sponsorship_id" value="{{ $sponsorship->id }}">
         <input type="hidden" name="apartment_id" value="{{ $apartment->id }}">
         <input type="hidden" id="nonce" name="payment_method_nonce" />
@@ -35,9 +34,17 @@
         //   a server-side integration
         document.getElementById('nonce').value = payload.nonce;
         form.submit();
+        
                 });
             });
         });
         
     </script>
+   
+    
+    <style>
+        h1{
+            color:#EA4E59;
+        }
+        </style>
 @endsection
