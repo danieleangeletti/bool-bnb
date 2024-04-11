@@ -65,6 +65,10 @@ class ApartmentController extends Controller
             $nRooms = 0;
         }
 
+        if ($services == null) {
+            $services = [];
+        }
+
         // Per stampare il codice SQL generato da Eloquent:
         //
         // DB::enableQueryLog();
@@ -102,12 +106,13 @@ class ApartmentController extends Controller
             ->select('apartments.id')
             ->join('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
             ->join('services', 'apartment_service.service_id', '=', 'services.id')
-            ->where('n_rooms', '>=', $nRooms)
-            ->where('n_beds', '>=', $nBeds)
             ->groupBy('apartments.id')
             ->havingRaw("GROUP_CONCAT(services.type_of_service ORDER BY services.type_of_service) LIKE ?", [$servicesFilter])
-        )->get();
-            
+        )
+        ->where('n_rooms', '>=', $nRooms)
+        ->where('n_beds', '>=', $nBeds)
+        ->get();
+
         $apartments_in_radius = filterApartmentsByDistance($apartments, $lat_center, $lon_center, $distance);
 
         return response()->json(['result' => $apartments_in_radius]);
