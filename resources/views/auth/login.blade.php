@@ -23,7 +23,7 @@
             <label for="email">
                 Email
             </label>
-            <input type="email" id="email" name="email" required maxlength="255">
+            <input class="form-control" type="email" id="email" name="email" required maxlength="255">
             @error('email')
                 <div class="alert alert-danger">
                     {{ $message }}
@@ -32,11 +32,11 @@
         </div>
 
         <!-- Password -->
-        <div class="mt-4  me-4">
+        <div class="mt-4  ">
             <label for="password">
                 Password
             </label>
-            <input type="password" id="password" name="password" required>
+            <input class="form-control" type="password" id="password" name="password" required>
             @error('password')
                 <div class="alert alert-danger">
                     {{ $message }}

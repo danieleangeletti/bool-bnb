@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Illuminate\Support\Str;
 
 //Models
 use App\Models\Apartment;
+use App\Models\View;
 use GrahamCampbell\ResultType\Success;
 
 class ApartmentController extends Controller
@@ -26,10 +28,14 @@ class ApartmentController extends Controller
     public function show(string $slug)
     {
         $apartment = Apartment::with('services')->where("slug", $slug)->firstOrFail();
+        
+     
         return response()->json([
             'success'=>true,
             'result'=>$apartment
         ]);
+       
+
     }
     public function getApartments(Request $request)
     {   
@@ -59,18 +65,48 @@ class ApartmentController extends Controller
             $nRooms = 0;
         }
 
-        $query = Apartment::query();
+        // Per stampare il codice SQL generato da Eloquent:
+        //
+        // DB::enableQueryLog();
+        // $queries = DB::getQueryLog();
+        // dd($queries);
 
-        $apartments = $query
+        // SELECT
+        //     *
+        // FROM
+        //     `apartments`
+        // WHERE
+        //     `id` IN(
+        //     SELECT
+        //         `apartments`.`id`
+        //     FROM
+        //         `apartments`
+        //     INNER JOIN `apartment_service` ON `apartments`.`id` = `apartment_service`.`apartment_id`
+        //     INNER JOIN `services` ON `apartment_service`.`service_id` = `services`.`id`
+        //     WHERE
+        //         `n_rooms` >= 2 AND `n_beds` >= 3 AND `apartments`.`deleted_at` IS NULL
+        //     GROUP BY
+        //         `apartments`.`id`
+        //     HAVING
+        //         GROUP_CONCAT(services.type_of_service) LIKE '%Aria Condizionata%Piscina%Spiaggia Privata%'
+        // ) AND `apartments`.`deleted_at` IS NULL
+
+        sort($services);
+
+        $servicesFilter = "%";
+        foreach ($services as $service) {
+            $servicesFilter .= $service . '%';
+        }
+
+        $apartments = Apartment::whereIn('id', Apartment::query()
+            ->select('apartments.id')
+            ->join('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
+            ->join('services', 'apartment_service.service_id', '=', 'services.id')
             ->where('n_rooms', '>=', $nRooms)
             ->where('n_beds', '>=', $nBeds)
-            ->whereHas('services', function (Builder $q) use ($services) {
-                if ($services !== null) {
-                    $q = $q->whereIn('type_of_service', $services);
-                }
-
-                return $q;
-            })->get();
+            ->groupBy('apartments.id')
+            ->havingRaw("GROUP_CONCAT(services.type_of_service ORDER BY services.type_of_service) LIKE ?", [$servicesFilter])
+        )->get();
             
         $apartments_in_radius = filterApartmentsByDistance($apartments, $lat_center, $lon_center, $distance);
 
