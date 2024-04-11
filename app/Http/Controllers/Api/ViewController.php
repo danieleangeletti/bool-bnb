@@ -75,24 +75,30 @@ class ViewController extends Controller
         public function store(Request $request, string $slug)
 {
     $apartment = Apartment::where("slug", $slug)->firstOrFail();
-    $oldView = View::where('apartment_id', $apartment->id)->first();
+    $oldView = View::where('apartment_id', $apartment->id)->orderByDesc('created_at')->first();
+              
 
     if ($oldView != null && $oldView->ip_address == $request->input('ipAddress')) {
-        if ($oldView->created_at->addHours(6) <= Carbon::now()) {
-            // Se sono passate almeno 6 ore
-            $message = 'ciao1';
-        } else {
-            // Se non sono passate 6 ore
-            $message = 'ciao2';
-        }
+        if ($oldView->created_at->addHours(6) < Carbon::now()) {
+            
+            $view = new View;
+            $view->ip_address = $request->input('ipAddress');
+            $view->apartment_id = $apartment->id;
+            $view->save();
     } else {
-        // Se $oldView non esiste o l'indirizzo IP non corrisponde
-        $message = 'ciao3';
-        $view = new View;
-        $view->ip_address = $request->input('ipAddress'); 
-        $view->apartment_id = $apartment->id;
-        $view->save();
+      
+        $message = 'ciao2';
     }
+             
+} else {
+  
+   
+    $view = new View;
+    $view->ip_address = $request->input('ipAddress'); 
+    $view->apartment_id = $apartment->id;
+    $view->save();
+}
+            
 
     return response()->json([
         'success' => true,
