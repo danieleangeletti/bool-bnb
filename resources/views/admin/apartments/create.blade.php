@@ -30,6 +30,12 @@
                         });
                         suggestionsContainer.appendChild(suggestion);
                     });
+                    if (suggestionsContainer.getElementsByTagName("li").length > 0) {
+                        // Aggiungi la classe se ha figli LI
+                        suggestionsContainer.classList.add("suggestions-border");
+                    } else if (suggestionsContainer.getElementsByTagName("li").length == 0){
+                        suggestionsContainer.classList.remove("suggestions-border");
+                    }
                 })
                 .catch(error => console.error("Errore durante il recupero dei suggerimenti:", error));
         });
