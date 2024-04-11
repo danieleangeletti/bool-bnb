@@ -21,17 +21,16 @@
                 </a>
             </div>
         </div>
-        <h1 class=" text-center mb-5">{{ $apartment->name }}</h1>
+        <h1 class="title-apartment text-center mb-5">{{ $apartment->name }}</h1>
         <div class="row d-flex  justify-content-center">
             <div class="col-md-5">
-                <div style="max-height: 60vh;" class="overflow-hidden p-3 mb-5 shadow rounded">
-                    <img src="{{ $apartment->full_cover_img }}" class="img-fluid w-100 rounded" alt="">            
-                </div>
-                <div class="">
-                    <p class="mt-2">
-                        Visualizzazioni appartamento: {{ $apartmentStats }}
-                    </p>
-                </div>
+                @if (!empty($apartment->full_cover_img))
+                    <img src="{{ $apartment->full_cover_img }}" class="card-img-top "
+                        alt="Cover Image">
+                @else
+                    <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}"
+                        class="card-img-top" alt="Default Cover Image">
+                @endif
             </div>
             <div class="col-md-3">
                 <div class=" me-5 ">
@@ -142,6 +141,56 @@
                 </div>
             @endforeach
         </div>
+        <div class=" row mt-5 shadow">
+            <div class="col-12 d-flex flex-column justify-content-center  align-items-center">
+                <div class="title-chart">
+                    <h3>Andamento del tuo appartamento</h3>
+                </div>
+                <div class="container-chart">
+                    <canvas id="apartmentChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('apartmentChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Totale Visualizzazioni appartamento', 'Totale messaggi ricevuti'],
+                datasets: [{
+                    label: 'Statistiche dell\'Appartamento',
+                    data: [{{ $apartmentStats }}, {{ $apartment->messages()->count() }}],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <style>
+        .title-apartment{
+                color: rgb(234, 78, 89)
+             }   
+        .title-chart{
+            color: rgb(234, 78, 89)
+        }
+        .container-chart{
+            height: 400px;
+        }
+    </style>
 @endsection

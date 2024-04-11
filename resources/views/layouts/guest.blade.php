@@ -15,24 +15,14 @@
             <nav class="navbar navbar-expand-lg bg-white">
                 <div class="container">
                     <div class="box-img-logo">
-                        <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" class=" h-100 w-100 " alt="">
+                        <img src="{{ asset('img/loghi/boolbnb-rosa-sfondobianco-150px.JPG') }}" class=" h-100 w-100 " alt="">
                     </div>
-                  
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             @auth
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                                 </li>
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" href="#">Link 2</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Link 3</a>
-                                </li> --}}
                             @else
                                 <li class="nav-item">
                                     <a class="nav-link text-primary " href="{{ route('login') }}">Login</a>

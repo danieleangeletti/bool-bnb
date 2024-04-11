@@ -85,6 +85,9 @@
 .box-img-logo{
     height: 50px;
     width: 170px;
+    img{
+        object-fit: contain;
+    }
 
 }
 .card-email{
@@ -110,15 +113,23 @@
     top: 5%;
     right: 15%;
 }
-
-// Create - Aggiungi indirizzo
-
-#suggestions {
-    width: 100%;
-    li {
-        cursor: pointer;
-    }
+// index blade
+.card {
+    border: none;
 }
-.suggestions-border {
-    border: 1px solid lightgray;
+
+.card-img-top {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.counter-email {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #dc3545;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 50%;
 }

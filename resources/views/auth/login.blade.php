@@ -12,10 +12,10 @@
     @endif
     <form method="POST" action="{{ route('login') }}">
         @csrf
-        <div class="container d-flex flex-column  align-items-center">
+        <div class="container w-50 d-flex flex-column  align-items-center shadow-lg p-3 mb-5 rounded">
            
-            <div class=" w-50 h-50 d-flex flex-column  align-items-center">
-                <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" class=" h-50 w-50 " alt="">
+            <div class=" w-50 h-50 d-flex flex-column  align-items-center mb-5">
+                <img src="{{ asset('img/loghi/boolbnb-rosa-sfondobianco-300px.JPG') }}" class=" h-75 w-75 " alt="">
             </div>
         <!-- Email Address -->
         <div>
@@ -23,7 +23,7 @@
             <label for="email">
                 Email
             </label>
-            <input type="email" id="email" name="email" required maxlength="255">
+            <input class="form-control" type="email" id="email" name="email" required maxlength="255">
             @error('email')
                 <div class="alert alert-danger">
                     {{ $message }}
@@ -32,11 +32,11 @@
         </div>
 
         <!-- Password -->
-        <div class="mt-4  me-4">
+        <div class="mt-4  ">
             <label for="password">
                 Password
             </label>
-            <input type="password" id="password" name="password" required>
+            <input class="form-control" type="password" id="password" name="password" required>
             @error('password')
                 <div class="alert alert-danger">
                     {{ $message }}

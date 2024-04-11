@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="icon" type="image/jpg" href="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" />
+        <link rel="icon" type="image/jpg" href="{{ asset('img/loghi/boolairbnb-favicon.PNG') }}" />
         <title>@yield('page-title') | {{ config('app.name', 'BoolBnb') }}</title>
 
         <!-- Scripts -->
@@ -18,8 +18,8 @@
                     <div class="box-img-logo">
                         <img src="{{ asset('img/loghi/boolbnb-rosa-sfondobianco-150px.JPG') }}" class=" h-100 w-100 " alt="">
                     </div>
-                    {{-- <a class="navbar-brand" href="#">BoolBnb</a> --}}
-                    {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    {{-- <a class="navbar-brand" href="#">BoolBnb</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button> --}}
                     <div class="collapse navbar-collapse mx-4 " id="navbarText">
@@ -29,7 +29,6 @@
                                     Dashboard
                                     <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
                                   </a>
-                          
                             </li>
                             <li class="nav-item">
                                 <a class="icon-link icon-link-hover text-decoration-none" style="--bs-link-hover-color-rgb: 25, 135, 84;" href="{{ route('admin.apartments.index') }}">
