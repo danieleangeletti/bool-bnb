@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('apartment_id')->nullable();
             $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('set null')->onUpdate('cascade');
             $table->text('text');
-            $table->string('name', 100);
-            $table->string('last_name', 100);
+            $table->string('name', 100)->nullable();
+            $table->string('last_name', 100)->nullable();
             $table->boolean('is_read')->default(false);
             $table->string('email', 100);
             $table->timestamps();

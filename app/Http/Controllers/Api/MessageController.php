@@ -19,10 +19,11 @@ class MessageController extends Controller
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
         $message = new Message;
         $validated_data = $request->all();
+
         $message->text = $validated_data['text'];
-        $message->name = $validated_data['name'];
-        $message->last_name = $validated_data['last_name'];
         $message->email = $validated_data['email'];
+        $message->name = $validated_data['name'] ?? null;
+        $message->last_name = $validated_data['last_name'] ?? null;
         $apartment->messages()->save($message);
         
         return response()->json([
