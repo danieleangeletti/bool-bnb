@@ -17,7 +17,7 @@ class ApartmentSponsorshipSeeder extends Seeder
      */
     public function run(): void
     {
-        $apartments = Apartment::all();
+        $apartments = Apartment::take(25)->get();
         $sponsorships = Sponsorship::all()->pluck('id')->toArray();
     
         if ($apartments->isEmpty() || empty($sponsorships)) {
