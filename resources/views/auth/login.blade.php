@@ -12,7 +12,7 @@
     @endif
     <form method="POST" action="{{ route('login') }}">
         @csrf
-        <div class="container w-50 d-flex flex-column  align-items-center shadow-lg p-3 mb-5 rounded">
+        <div class="container w-50 d-flex flex-column  align-items-center p-3 mb-5 rounded">
            
             <div class=" w-50 h-50 d-flex flex-column  align-items-center mb-5">
                 <img src="{{ asset('img/loghi/boolbnb-rosa-sfondobianco-300px.JPG') }}" class=" h-75 w-75 " alt="">

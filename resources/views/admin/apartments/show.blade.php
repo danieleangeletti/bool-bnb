@@ -14,19 +14,18 @@
         </div>
     @endif
     <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-end ">
-                <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary">
+        <div class="">
+            <button class="btn-turn-back">
+                <a class=" text-decoration-none " href="{{ route('admin.apartments.index') }}" class="">
                     Torna alla Home
                 </a>
-            </div>
+            </button>
         </div>
         <h1 class="title-apartment text-center mb-5">{{ $apartment->name }}</h1>
         <div class="row d-flex  justify-content-center">
             <div class="col-md-5">
                 @if (!empty($apartment->full_cover_img))
-                    <img src="{{ $apartment->full_cover_img }}" class="card-img-top "
-                        alt="Cover Image">
+                    <img src="{{ $apartment->full_cover_img }}" class="card-img-top " alt="Cover Image">
                 @else
                     <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}"
                         class="card-img-top" alt="Default Cover Image">
@@ -93,7 +92,64 @@
                 <h2 class="text-center text-primary title-box-email"> Casella Postale del Tuo appartamento</h2>
             </div>
         </div>
-        <div class=" container d-flex flex-wrap box-email">
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Nome</th>
+                            <th>Cognome</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($messages as $message)
+                            <tr>
+                                <td>{{ $message->email }}</td>
+                                <td>{{ $message->name }}</td>
+                                <td>{{ $message->last_name }}</td>
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal{{ $message->id }}">
+                                        Leggi
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @foreach ($messages as $message)
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal{{ $message->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $message->email }}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{ $message->text }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                            <form action="{{ route('admin.messages.is_read', ['message' => $message->id]) }}"
+                                method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-secondary">Contrassegna come letto</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        {{-- <div class=" container d-flex flex-wrap box-email">
             @foreach ($messages as $message)
                 <div
                     class=" card-email p-3 mb-5 shadow rounded {{ $message->is_read ? 'bg-email-read' : 'bg-email-not-read' }}">
@@ -140,7 +196,7 @@
                     </div>
                 </div>
             @endforeach
-        </div>
+        </div> --}}
         <div class=" row mt-5 shadow">
             <div class="col-12 d-flex flex-column justify-content-center  align-items-center">
                 <div class="title-chart">
@@ -181,15 +237,40 @@
                 }
             }
         });
+        document.addEventListener('DOMContentLoaded', function() {
+            $('#chartModal').on('show.bs.modal', function() {
+                var canvas = document.getElementById('apartmentChart');
+                var modalCanvas = document.getElementById('modalApartmentChart');
+                var ctx = modalCanvas.getContext('2d');
+
+                ctx.drawImage(canvas, 0, 0, modalCanvas.width, modalCanvas.height);
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const modals = document.querySelectorAll('.modal');
+
+            modals.forEach((modal) => {
+                modal.addEventListener('show.bs.modal', function(event) {
+                    modals.forEach((m) => {
+                        if (m !== modal) {
+                            m.classList.remove('show');
+                            m.setAttribute('aria-hidden', 'true');
+                        }
+                    });
+                });
+            });
+        });
     </script>
     <style>
-        .title-apartment{
-                color: rgb(234, 78, 89)
-             }   
-        .title-chart{
+        .title-apartment {
             color: rgb(234, 78, 89)
         }
-        .container-chart{
+
+        .title-chart {
+            color: rgb(234, 78, 89)
+        }
+
+        .container-chart {
             height: 400px;
         }
     </style>

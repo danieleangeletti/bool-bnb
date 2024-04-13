@@ -9,7 +9,7 @@
                         <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" class=" h-100 w-100 " alt="">
                     </div>
                     <div>
-                        <h4 class="text-center text-primary">
+                        <h4 class="text-center">
                             Benvenuto nella tua area personale di BoolBnB
                         </h4>
                     </div>

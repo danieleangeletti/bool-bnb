@@ -75,10 +75,13 @@
         </div>
     @endif
     <div class=" container ">
-        <div class="mb-4 d-flex justify-content-end ">
-            <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary">
-                Torna alla Home
-            </a>
+        <div class=" d-flex ">
+            <button class="btn-turn-back">
+                <a class=" text-decoration-none " href="{{ route('admin.apartments.index') }}" class="">
+                    Torna alla Home
+                </a>
+              </button>
+            
         </div>
 
         <h1 class=" text-danger  mb-5 text-center ">Crea il tuo appartamento</h1>
