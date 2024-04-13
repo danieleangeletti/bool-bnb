@@ -36,28 +36,9 @@
 }
 .navbar-bool{
     height: 150px;
-    opacity: 0; /* Imposta l'opacità iniziale a 0 */
-    animation: fadeIn 4s ease forwards; /* Applica l'animazione di dissolvenza */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
+ 
 }
 .user-name-dashboard{
-    opacity: 0; /* Imposta l'opacità iniziale a 0 */
-    animation: fadeIn 5s ease forwards; /* Applica l'animazione di dissolvenza */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
     h1{
         color: #EB5964;
     }
@@ -67,16 +48,6 @@
     z-index: 0;
     position: relative;
 
-    opacity: 0; /* Imposta l'opacità iniziale a 0 */
-    animation: fadeIn 4s ease forwards; /* Applica l'animazione di dissolvenza */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
 }
 
 // .modal{
@@ -98,21 +69,7 @@
 .bg-email-not-read{
     background-color: rgba($color: #000000, $alpha: 0.2);
 }
-.counter-email{
-    display: inline-block;
-    line-height: 13px;
-    text-align: center;
-    width: 13px;
-    height: 13px;
-    background-color: red;
-    font-size: 13px;
-    border: 1px solid red;
-    border-radius: 50%;
-    color: white;
-    position: absolute;
-    top: 5%;
-    right: 15%;
-}
+
 // index blade
 .card {
     border: none;
@@ -126,10 +83,53 @@
 
 .counter-email {
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: -8px;
+    right: -6px;
     background-color: #dc3545;
     color: #fff;
-    padding: 5px 10px;
     border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    vertical-align: 15px;
+    font-size: 11px;
 }
+.btn-turn-back {
+    color: #dc3545;
+    text-transform: uppercase;
+    border: 2px solid#dc3545;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    background: transparent;
+    position: relative;
+    transition: all 1s;
+    overflow: hidden;
+      a{
+        color: #dc3545;
+    }
+  }
+  
+  .btn-turn-back :hover {
+    color: white;
+    a{
+        color: white;
+    }
+  }
+  
+  .btn-turn-back ::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: -40px;
+    transform: skewX(45deg);
+    background-color: #dc3545;
+   
+    z-index: -1;
+    transition: all 1s;
+  }
+  
+  .btn-turn-back :hover::before {
+    width: 160%;
+  }

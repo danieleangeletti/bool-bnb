@@ -25,13 +25,13 @@
                     <div class="collapse navbar-collapse mx-4 " id="navbarText">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="icon-link icon-link-hover text-decoration-none " style="--bs-link-hover-color-rgb: 25, 135, 84;"  href="{{ route('admin.dashboard') }}">
+                                <a class="icon-link  text-decoration-none "   href="{{ route('admin.dashboard') }}">
                                     Dashboard
                                     <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
                                   </a>
                             </li>
                             <li class="nav-item">
-                                <a class="icon-link icon-link-hover text-decoration-none" style="--bs-link-hover-color-rgb: 25, 135, 84;" href="{{ route('admin.apartments.index') }}">
+                                <a class="icon-link  text-decoration-none"  href="{{ route('admin.apartments.index') }}">
                                     Appartamenti
                                     <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
                                   </a>

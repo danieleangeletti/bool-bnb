@@ -52,8 +52,8 @@
                                                     @endif
                                                 </p>
                                             </div>
-                                            <div class="card-footer">
-                                                <div class="d-flex justify-content-between align-items-center">
+                                            <div class="card-footer p-0">
+                                                <div class="d-flex justify-content-between align-items-center  ">
                                                     <div>
                                                         <a href="{{ route('admin.apartments.show', ['apartment' => $apartment->slug]) }}"
                                                             class="btn btn-link" title="Visualizza"><i
@@ -94,12 +94,12 @@
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <button type="button" class="btn btn-link text-decoration-none"
+                                                        <button type="button" class="btn btn-link text-decoration-none "
                                                             title="Messaggi">
-                                                            <a
+                                                            <a class="position-relative w-25"
                                                                 href="{{ route('admin.apartments.show', ['apartment' => $apartment->slug]) }}">
                                                                 @if ($apartment->unreadMessagesCount() > 0)
-                                                                    <i class="fa-solid fa-envelope fa-xl"
+                                                                    <i class="fa-solid fa-envelope fa-xl "
                                                                         style="color: #0c2c64;"></i> <span
                                                                         class="counter-email">{{ $apartment->unreadMessagesCount() }}</span>
                                                                 @else
@@ -117,8 +117,8 @@
                             @endforeach
                         </div>
                         <div class="row mt-5 ">
-                            <div class="col-12 d-flex justify-content-around shadow">
-                                <button type="button" class="btn btn-success mt-3">
+                            <div class="col-12 d-flex justify-content-around ">
+                                <button type="button" class="btn btn-success">
                                     <a href="{{ route('admin.apartments.create') }}" class="btn btn-success">Aggiungi un
                                         Appartamento</a>
                                 </button>
@@ -182,9 +182,8 @@
                                                 </table>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">Chiudi</button>
                                             </div>
                                         </div>
                                     </div>
@@ -208,7 +207,8 @@
     <style>
         /* Imposta un'altezza fissa per le righe della griglia */
         .card {
-            height: 500px;
+            width: 300px;
+            height: 400px;
             /* Altezza fissa per tutte le card */
             margin: 10px;
             /* Aggiungi margine tra le card */
@@ -217,7 +217,7 @@
         /* Fissa l'altezza delle immagini all'interno delle card */
         .card-img-top {
             padding: 10px;
-            height: 50%;
+            height: 200px;
             /* Altezza desiderata per l'immagine */
             object-fit: cover;
             /* Assicura che l'immagine venga ridimensionata per adattarsi */
@@ -232,22 +232,6 @@
         } 
         */
 
-        .container-index {
-            opacity: 0;
-            /* Imposta l'opacità iniziale a 0 */
-            animation: fadeIn 4s ease forwards;
-
-            /* Applica l'animazione di dissolvenza */
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                }
-
-                to {
-                    opacity: 1;
-                }
-            }
-        }
       
     </style>
 
