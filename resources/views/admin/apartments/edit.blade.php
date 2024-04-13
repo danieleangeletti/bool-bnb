@@ -64,11 +64,11 @@
     @endif
 
     <div class=" container ">
-        <div class="mb-4">
-            <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary">
+        <button class="btn-turn-back">
+            <a class=" text-decoration-none " href="{{ route('admin.apartments.index') }}" class="">
                 Torna alla Home
             </a>
-        </div>
+          </button>
         
         <h1 class=" text-danger  mb-5 text-center ">Modifica il tuo appartamento</h1>
         <form action="{{ route('admin.apartments.update', ['apartment' => $apartment->slug]) }}" id="myForm" method="POST" enctype="multipart/form-data">

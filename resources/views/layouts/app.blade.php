@@ -25,13 +25,13 @@
                     <div class="collapse navbar-collapse mx-4 " id="navbarText">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="icon-link  text-decoration-none "   href="{{ route('admin.dashboard') }}">
+                                <a class="icon-link text-black text-decoration-none hov-underline "   href="{{ route('admin.dashboard') }}">
                                     Dashboard
                                     <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
                                   </a>
                             </li>
                             <li class="nav-item">
-                                <a class="icon-link  text-decoration-none"  href="{{ route('admin.apartments.index') }}">
+                                <a class="icon-link text-black text-decoration-none hov-underline"  href="{{ route('admin.apartments.index') }}">
                                     Appartamenti
                                     <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
                                   </a>
@@ -57,3 +57,33 @@
         </main>
     </body>
 </html>
+<style>
+     .hov-underline {
+        position: relative;
+        display: inline-block;
+        font-size: 1.2  rem;
+        //padding-bottom: 3px;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: border-color 0.3s ease; /* Aggiungi una transizione fluida per l'effetto hover */
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+    /* Animazione per la sottolineatura */
+    .hov-underline::after {
+    content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0; /* Inizia senza larghezza */
+        height: 2px; /* Altezza della sottolineatura */
+        background-color: #EB5A63; 
+        transition: width 0.3s ease; /* Aggiungi una transizione fluida per l'animazione */
+        transform: scale(1.1);
+    }
+    .hov-underline:hover::after {
+        width: 80%; /* Espandi la larghezza al 100% durante l'hover */
+        
+    }
+</style>
