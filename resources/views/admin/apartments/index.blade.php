@@ -67,31 +67,31 @@
                                                             data-bs-target="#deleteConfirmation{{ $apartment->id }}"><i
                                                                 class="fa-solid fa-trash-can fa-xl"
                                                                 style="color: #ff470a;"></i></button>
-                                                            <div class="offcanvas offcanvas-end " tabindex="-1"
-                                                                id="deleteConfirmation{{ $apartment->id }}" >
-                                                                <div class="offcanvas-header">
-                                                                    <h5 class="offcanvas-title"
-                                                                        id="deleteConfirmationLabel{{ $apartment->id }}">
-                                                                        Conferma archiviazione
-                                                                    </h5>
-                                                                    <button type="button" class="btn-close text-reset"
-                                                                        data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="offcanvas-body">
-                                                                    <p>Vuoi realmente archiviare questo appartamento?
-                                                                    <h5 class=" d-inline-block ">{{ $apartment->name }}</h5> ?
-                                                                    </p>
-                                                                    <form class="mt-5" id="deleteForm{{ $apartment->slug }}"
-                                                                        action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->slug]) }}"
-                                                                        method="POST">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="submit" class="btn btn-danger">Conferma
-                                                                            archiviazione
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
+                                                        <div class="offcanvas offcanvas-end " tabindex="-1"
+                                                            id="deleteConfirmation{{ $apartment->id }}">
+                                                            <div class="offcanvas-header">
+                                                                <h5 class="offcanvas-title"
+                                                                    id="deleteConfirmationLabel{{ $apartment->id }}">
+                                                                    Conferma archiviazione
+                                                                </h5>
+                                                                <button type="button" class="btn-close text-reset"
+                                                                    data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                                             </div>
+                                                            <div class="offcanvas-body">
+                                                                <p>Vuoi realmente archiviare questo appartamento?
+                                                                <h5 class=" d-inline-block ">{{ $apartment->name }}</h5> ?
+                                                                </p>
+                                                                <form class="mt-5" id="deleteForm{{ $apartment->slug }}"
+                                                                    action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->slug]) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger">Conferma
+                                                                        archiviazione
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div>
                                                         <button type="button" class="btn btn-link text-decoration-none"
@@ -122,23 +122,25 @@
                                     <a href="{{ route('admin.apartments.create') }}" class="btn btn-success">Aggiungi un
                                         Appartamento</a>
                                 </button>
-                                <button type="button" class="btn btn-danger mt-3" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#my-modal">
                                     Appartamenti archiviati
                                 </button>
-                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="my-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Archivio Appartamenti
-                                                </h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <table class="table">
-                                                    <thead>
+                                                 <table class="table">
+                                                    <thead  >
                                                         <tr>
                                                             <th scope="col">#</th>
                                                             <th scope="col">Cover</th>
@@ -157,7 +159,6 @@
                                                                             class="cover-img">
                                                                     </td>
                                                                     <td>{{ $apartment->name }}</td>
-
                                                                     <td>{{ $apartment->price }}</td>
                                                                     <td>
                                                                         <div class="d-flex flex-column">
@@ -182,7 +183,8 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Chiudi</button>
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
                                             </div>
                                         </div>
                                     </div>
@@ -194,6 +196,15 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+    
     <style>
         /* Imposta un'altezza fissa per le righe della griglia */
         .card {
@@ -213,12 +224,13 @@
         }
 
         /* Imposta l'altezza delle sezioni di testo all'interno delle card */
-        .card-body {
+        /* .card-body {
             height: 50%;
             /* Altezza desiderata per la sezione di testo */
             overflow: hidden;
             /* Nasconde il testo in eccesso oltre l'altezza specificata */
-        }
+        } 
+        */
 
         .container-index {
             opacity: 0;
@@ -236,6 +248,7 @@
                 }
             }
         }
+      
     </style>
 
 @endsection
