@@ -4,6 +4,16 @@
 
 @section('main-content')
     <h1 class="text-center">{{ $sponsorship->title }} Sponsorship</h1>
+    @if (session('success_message'))
+        <div class="alert alert-success">
+            {{ session('success_message') }}
+        </div>
+    @elseif (session('error_message')) 
+        <div class="alert alert-danger">
+            {{ session('error_message') }}
+        </div>
+    @endif
+    <h2 class="text-center">Sponsorizazione per: {{ $apartment->name }} in via {{ $apartment->address }}</h2>
     <h1> COST: {{ $sponsorship->cost }}€ </h1>
     <form id="payment-form" action="processPayment" method="POST" class=" shadow ">
         @csrf
