@@ -62,7 +62,7 @@
         </div>
     </main>
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/@openai/openai-js"></script>
 </html>
 <style>
     .hov-underline {
