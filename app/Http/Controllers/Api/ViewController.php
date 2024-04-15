@@ -103,8 +103,7 @@ class ViewController extends Controller
     return response()->json([
         'success' => true,
         'result' => $apartment,
-        'old view' => $oldView,
-        'message' => $message
+        'old view' => $oldView
     ]);
 }
 
