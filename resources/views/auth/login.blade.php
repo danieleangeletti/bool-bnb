@@ -15,7 +15,7 @@
         <div class="container w-50 d-flex flex-column  align-items-center p-3 mb-5 rounded">
            
             <div class=" w-50 h-50 d-flex flex-column  align-items-center mb-5">
-                <img src="{{ asset('img/loghi/boolbnb-rosa-sfondobianco-300px.JPG') }}" class=" h-75 w-75 " alt="">
+                <img src="{{ asset('img/loghi/boolbnb-rosa-trasparente-300px.PNG') }}" class=" h-75 w-75 " alt="">
             </div>
         <!-- Email Address -->
         <div>
@@ -53,11 +53,11 @@
         </div>
 
         <div class="mt-4 d-flex flex-column ">
-            <button type="submit" class=" mx-3 my-3 btn btn-primary rounded-4 ">
+            <button type="submit" class=" mx-3 my-3 btn-turn-back rounded-4 ">
                 Log in
             </button>
             @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}">
+                <a class=" text-decoration-none " href="{{ route('password.request') }}">
                     {{ __('Password dimenticata?') }}
                 </a>
             @endif

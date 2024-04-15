@@ -20,24 +20,16 @@
 
         <h1 class="title-apartment text-center mb-5">{{ $apartment->name }}</h1>
         <div class="row d-flex  justify-content-center">
-            <div class="col-md-5">
-                @if (!empty($apartment->full_cover_img))
-                    <img src="{{ $apartment->full_cover_img }}" class="card-img-top " alt="Cover Image">
-                @else
-                    <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" class="card-img-top"
-                        alt="Default Cover Image">
-                @endif
-            </div>
             <div class="col-md-3">
                 <div class=" me-5 ">
                     <h4>{{ $apartment->type_of_accomodation }}</h4>
                     <p>{{ $apartment->address }}</p>
-                    <p>Grandezza alloggio: {{ $apartment->mq }}m²</p>
-                    <p>Prezzo: {{ $apartment->price }}€ per notte</p>
-                    <p>{{ $apartment->n_guests }} Ospiti | {{ $apartment->n_rooms }} Stanze | {{ $apartment->n_beds }}
-                        Letti
-                        | {{ $apartment->n_baths }} Bagni</p>
-                    <p>Servizi presenti:
+                    <p> <strong>Grandezza alloggio:</strong> {{ $apartment->mq }}m²</p>
+                    <p> <strong> Prezzo:</strong> {{ $apartment->price }}€ per notte</p>
+                    <p>{{ $apartment->n_guests }} <strong>Ospiti | </strong>{{ $apartment->n_rooms }} <strong> Stanze |</strong> {{ $apartment->n_beds }}
+                       <strong>Letti
+                        | </strong> {{ $apartment->n_baths }} <strong>Bagni</strong></p>
+                    <p> <strong>Servizi presenti:</strong>
                         @foreach ($apartment->services as $service)
                             @if (count($apartment->services) == 1)
                                 <span>
@@ -52,11 +44,20 @@
                     </p>
                 </div>
             </div>
+            <div class="col-md-5">
+                @if (!empty($apartment->full_cover_img))
+                <img src="{{ $apartment->full_cover_img }}" class="card-img-top " alt="Cover Image">
+            @else
+                <img src="{{ asset('img/loghi/boolbnb-rosa-sfondobianco-300px.JPG') }}" class="card-img-top"
+                    alt="Default Cover Image">
+            @endif
+              
+            </div>
         </div>
         <div class="row mt-4">
             <div class="col-12 d-flex justify-content-center">
                 <div class="p-3 shadow rounded w-50 bg-white ">
-                    <div class="card-body">
+                    <div class="card-body ">
                         <!-- Aggiungi un modulo di acquisto qui -->
                         <form action="{{ route('admin.checkout', ['apartment' => $apartment->id]) }}" method="GET">
                             @csrf

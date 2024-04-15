@@ -258,7 +258,7 @@
             </div>
             <div class="row">
                 <div class="col-12 d-flex  justify-content-center ">
-                    <button type="submit" class="btn btn-success w-25">
+                    <button type="submit" class="btn-turn-back">
                         Crea
                     </button>
                 </div>
