@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class=" text-center mt-5">
-        <p>Ricordati che per qualsiasi bisogno non esitare a contattare l'assistenza di BoolBnB</p>
+        <p>Ricordati che per qualsiasi bisogno non esitare a contattare l'assistenza di BoolBnB, per avviare una conversazione clicca sull'icona in fondo alla pagina</p>
     </div>
     
 
