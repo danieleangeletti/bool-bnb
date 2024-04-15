@@ -59,9 +59,32 @@
     <main class="py-4">
         <div class="container">
             @yield('main-content')
+            <!-- Icona del chat bot -->
+            <div class="chat-icon" id="chatIcon">
+                
+                <img src="{{ asset('img/loghi/boolairbnb-favicon.PNG') }}" class="w-100 h-100" alt="Chat Icon">
+            </div>
+
+            <!-- Finestra della chat -->
+            <div class="chat-box" id="chatBox">
+                <div class="chat-header">
+                    <h4 class="">BoolBot</h4>
+                    <span class="close-btn" id="closeBtn">&times;</span>
+                </div>
+                <div class="chat-body">
+                    <div class="message received">
+                        <p>Ciao sono BoolBot! Come posso aiutarti?</p>
+                    </div>
+                </div>
+                <div class="chat-footer">
+                    <input type="text"id="userMessage" placeholder="Scrivi un messaggio...">
+                    <button id="sendMessage" class="btn btn-danger">Invia</button>
+                </div>
+            </div>
         </div>
     </main>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@openai/openai-js"></script>
 
 </html>
 <style>
@@ -101,4 +124,148 @@
         /* Espandi la larghezza al 100% durante l'hover */
 
     }
+
+    .chat-icon {
+        height: 60px;
+        width: 60px;
+        border: 1px solid #EB5A63;
+        border-radius: 50%;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        cursor: pointer;
+
+    }
+
+    @keyframes chatIconAnimation {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-5px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    .chat-icon img {
+        animation: chatIconAnimation 2s infinite;
+    }
+
+    h4 {
+        color: #EB5A63;
+    }
+
+    .chat-box {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        display: none;
+    }
+
+    .chat-header {
+        background-color: #f1f1f1;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .close-btn {
+        cursor: pointer;
+    }
+
+    .chat-body {
+        height: 200px;
+        overflow-y: auto;
+        padding: 10px;
+    }
+
+    .message {
+        margin-bottom: 10px;
+    }
+
+    .received {
+        background-color: white;
+        padding: 5px;
+        border-radius: 5px;
+        max-width: 70%;
+    }
+
+    .chat-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+    }
+
+    #userMessage {
+        flex-grow: 1;
+        margin-right: 10px;
+    }
 </style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatIcon = document.getElementById('chatIcon');
+        const chatBox = document.getElementById('chatBox');
+        const closeBtn = document.getElementById('closeBtn');
+        const userMessage = document.getElementById('userMessage');
+        const sendMessageBtn = document.getElementById('sendMessage');
+        const chatBody = document.querySelector('.chat-body');
+
+        chatIcon.addEventListener('click', function() {
+            chatBox.style.display = 'block';
+        });
+
+        closeBtn.addEventListener('click', function() {
+            chatBox.style.display = 'none';
+        });
+
+        sendMessageBtn.addEventListener('click', function() {
+            const message = userMessage.value.trim();
+
+            if (message !== '') {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message sent';
+                messageDiv.innerHTML = `<p>${message}</p>`;
+                chatBody.appendChild(messageDiv);
+
+                // Simulazione della risposta del bot
+                setTimeout(function() {
+                    const replyDiv = document.createElement('div');
+                    replyDiv.className = 'message received';
+                    replyDiv.innerHTML =
+                        '<p>Contatteremo immediatamente il nostro team di sviluppo e risolveremo il problema il prima possibile ci scusiamo per il disagio</p>';
+                    chatBody.appendChild(replyDiv);
+                }, 1000);
+
+                userMessage.value = ''; // Pulisce l'input
+            }
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatIcon = document.getElementById('chatIcon');
+        const chatBox = document.getElementById('chatBox');
+        const closeBtn = document.getElementById('closeBtn');
+
+        // Mostra la chat box e nasconde l'icona del chat bot
+        chatIcon.addEventListener('click', function() {
+            chatBox.style.display = 'block';
+            chatIcon.style.display = 'none'; // Nasconde l'icona del chat bot
+        });
+
+        // Nasconde la chat box e mostra di nuovo l'icona del chat bot
+        closeBtn.addEventListener('click', function() {
+            chatBox.style.display = 'none';
+            chatIcon.style.display = 'block'; // Mostra di nuovo l'icona del chat bot
+        });
+    });
+</script>
