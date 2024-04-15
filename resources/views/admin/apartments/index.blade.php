@@ -12,8 +12,8 @@
     <div class="container container-index">
         <div class="row">
             <div class="col">
-                <div class="">
-                    <div class="card-body">
+                
+                   
                         <h1 class="text-center text-danger">
                             I tuoi Appartamenti
                         </h1>
@@ -21,7 +21,7 @@
                             @foreach ($apartments as $apartment)
                                 @if ($apartment->deleted_at == null)
                                     <div class="col">
-                                        <div class="card shadow ">
+                                        <div  class="card shadow ">
                                             @if (!empty($apartment->full_cover_img))
                                                 <img src="{{ $apartment->full_cover_img }}" class="card-img-top"
                                                     alt="Cover Image">
@@ -29,7 +29,7 @@
                                                 <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}"
                                                     class="card-img-top" alt="Default Cover Image">
                                             @endif
-                                            <div class="card-body overflow-hidden ">
+                                            <div id="scrollbar2" class="card-body ">
                                                 <h5 class="card-title">{{ $apartment->name }}</h5>
                                                 <p class="card-text">
                                                     <strong>Tipo di Struttura:</strong>
@@ -190,8 +190,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    
+                
             </div>
         </div>
     </div>
@@ -202,7 +202,8 @@
             height: 450px;
             /* Altezza fissa per tutte le card */
             margin: 10px;
-
+            
+         
             /* Aggiungi margine tra le card */
             .card-img-top {
                 padding: 10px;
