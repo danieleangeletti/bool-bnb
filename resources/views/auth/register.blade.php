@@ -18,7 +18,7 @@
             <div
                 class=" position-absolute top-50 start-50 translate-middle d-flex flex-column justify-content-center align-items-center ">
                 <div class=" w-100 h-50 d-flex flex-column  align-items-center">
-                    <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}" class=" h-25 w-50 pt-1"
+                    <img src="{{ asset('img/loghi/boolbnb-rosa-sfondobianco-600px.JPG') }}" class=" h-25 w-50 pt-1"
                         alt="">
                 </div>
                 <!-- Name -->
