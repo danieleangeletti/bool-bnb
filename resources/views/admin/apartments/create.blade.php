@@ -75,14 +75,7 @@
         </div>
     @endif
     <div class=" container ">
-        <div class=" d-flex ">
-            <button class="btn-turn-back">
-                <a class=" text-decoration-none " href="{{ route('admin.apartments.index') }}" class="">
-                    Torna alla Home
-                </a>
-              </button>
-            
-        </div>
+   
 
         <h1 class=" text-danger  mb-5 text-center ">Crea il tuo appartamento</h1>
         <form id="myForm" action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">

@@ -1,8 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
 
-// main {
-//     background-color: lightcoral;
-// }
+main {
+    background-color: #F5F5F7;
+
+}
+
 
 .cover-img {
     width: 80px;
@@ -35,7 +37,8 @@
     }
 }
 .navbar-bool{
-    height: 150px;
+    height: 100px;
+
  
 }
 .user-name-dashboard{
@@ -73,13 +76,14 @@
 // index blade
 .card {
     border: none;
+    .card-img-top {
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+    }
 }
 
-.card-img-top {
-    width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-}
+
 
 .counter-email {
     position: absolute;
@@ -94,42 +98,52 @@
     font-size: 11px;
 }
 .btn-turn-back {
-    color: #dc3545;
-    text-transform: uppercase;
-    border: 2px solid#dc3545;
-    padding: 10px 20px;
-    font-size: 17px;
-    font-weight: bold;
-    background: transparent;
+    background-color: white;
+    --color:  #dc3545;
+    font-family: inherit;
+    display: inline-block;
+    width: 10em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 20px;
     position: relative;
-    transition: all 1s;
     overflow: hidden;
-      a{
-        color: #dc3545;
-    }
-  }
-  
-  .btn-turn-back :hover {
-    color: white;
-    a{
-        color: white;
-    }
-  }
-  
-  .btn-turn-back ::before {
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 0%;
-    top: 0;
-    left: -40px;
-    transform: skewX(45deg);
-    background-color: #dc3545;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--color);
+    
+   }
    
+   .btn-turn-back:before {
+    content: "";
+    position: absolute;
     z-index: -1;
-    transition: all 1s;
-  }
-  
-  .btn-turn-back :hover::before {
-    width: 160%;
-  }
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+   }
+   
+   .btn-turn-back:hover {
+    color: #fff;
+   }
+   
+   .btn-turn-back:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+   }
+   
+   .btn-turn-back:hover:before {
+    top: -30px;
+    left: -30px;
+   }
+   
+   .btn-turn-back:active:before {
+    background:  #dc3545;
+    transition: background 0s;
+   }
