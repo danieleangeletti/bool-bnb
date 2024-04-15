@@ -20,24 +20,24 @@
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             @auth
-                                <li class="nav-item">
+                                <li class="nav-item mx-2">
                                     <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                                 </li>
                             @else
-                                <li class="nav-item">
-                                    <a class="nav-link text-primary " href="{{ route('login') }}">Login</a>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link hov-underline" href="{{ route('login') }}">Login</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-primary " href="{{ route('register') }}">Registrati</a>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link hov-underline" href="{{ route('register') }}">Registrati</a>
                                 </li>
                             @endauth
                         </ul>
-
+                        
                         @auth
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" class="m-0" action="{{ route('logout') }}">
                                 @csrf
 
-                                <button type="submit" class="btn btn-outline-danger">
+                                <button type="submit" class="btn btn-turn-back">
                                     Log Out
                                 </button>
                             </form>
@@ -53,4 +53,34 @@
             </div>
         </main>
     </body>
+    <style>
+        .hov-underline {
+           position: relative;
+           display: inline-block;
+           font-size: 1.2  rem;
+           //padding-bottom: 3px;
+           cursor: pointer;
+           border-bottom: 2px solid transparent;
+           transition: border-color 0.3s ease; /* Aggiungi una transizione fluida per l'effetto hover */
+           &:hover{
+               transform: scale(1.1);
+           }
+       }
+       /* Animazione per la sottolineatura */
+       .hov-underline::after {
+       content: '';
+           position: absolute;
+           left: 0;
+           bottom: 0;
+           width: 0; /* Inizia senza larghezza */
+           height: 2px; /* Altezza della sottolineatura */
+           background-color: #EB5A63; 
+           transition: width 0.3s ease; /* Aggiungi una transizione fluida per l'animazione */
+           transform: scale(1.1);
+       }
+       .hov-underline:hover::after {
+           width: 100%; /* Espandi la larghezza al 100% durante l'hover */
+           
+       }
+   </style>
 </html>

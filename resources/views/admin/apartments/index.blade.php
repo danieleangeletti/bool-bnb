@@ -21,7 +21,7 @@
                             @foreach ($apartments as $apartment)
                                 @if ($apartment->deleted_at == null)
                                     <div class="col">
-                                        <div class="card shadow">
+                                        <div class="card shadow ">
                                             @if (!empty($apartment->full_cover_img))
                                                 <img src="{{ $apartment->full_cover_img }}" class="card-img-top"
                                                     alt="Cover Image">
@@ -29,7 +29,7 @@
                                                 <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}"
                                                     class="card-img-top" alt="Default Cover Image">
                                             @endif
-                                            <div class="card-body">
+                                            <div class="card-body overflow-hidden ">
                                                 <h5 class="card-title">{{ $apartment->name }}</h5>
                                                 <p class="card-text">
                                                     <strong>Tipo di Struttura:</strong>
@@ -139,8 +139,8 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                 <table class="table">
-                                                    <thead  >
+                                                <table class="table">
+                                                    <thead>
                                                         <tr>
                                                             <th scope="col">#</th>
                                                             <th scope="col">Cover</th>
@@ -195,44 +195,23 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-    
     <style>
         /* Imposta un'altezza fissa per le righe della griglia */
         .card {
             width: 300px;
-            height: 400px;
+            height: 450px;
             /* Altezza fissa per tutte le card */
             margin: 10px;
+
             /* Aggiungi margine tra le card */
+            .card-img-top {
+                padding: 10px;
+                height: 200px;
+                /* Altezza desiderata per l'immagine */
+                object-fit: cover;
+                /* Assicura che l'immagine venga ridimensionata per adattarsi */
+            }
         }
-
-        /* Fissa l'altezza delle immagini all'interno delle card */
-        .card-img-top {
-            padding: 10px;
-            height: 200px;
-            /* Altezza desiderata per l'immagine */
-            object-fit: cover;
-            /* Assicura che l'immagine venga ridimensionata per adattarsi */
-        }
-
-        /* Imposta l'altezza delle sezioni di testo all'interno delle card */
-        /* .card-body {
-            height: 50%;
-            /* Altezza desiderata per la sezione di testo */
-            overflow: hidden;
-            /* Nasconde il testo in eccesso oltre l'altezza specificata */
-        } 
-        */
-
-      
     </style>
 
 @endsection
