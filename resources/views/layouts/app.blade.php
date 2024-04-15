@@ -50,18 +50,21 @@
                         </li>
                     </ul>
                     <div>
-                        <a class=" " href="{{ route('admin.apartments.index') }}" class="">
+                        <a class="mb-1" href="{{ route('admin.apartments.index') }}" class="">
                             <button class=" btn-turn-back ">
                                 Torna alla Home
                             </button>
                         </a>
                     </div>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="btn-turn-back">
-                            Log Out
-                        </button>
-                    </form>
+                    <div>
+                        <form method="POST" action="{{ route('logout') }}" class="m-0">
+                            @csrf
+                            <button type="submit" class="btn-turn-back">
+                                Log Out
+                            </button>
+                        </form>
+                    </div>
+                    
                 </div>
             </div>
         </nav>

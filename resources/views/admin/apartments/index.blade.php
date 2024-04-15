@@ -21,7 +21,7 @@
                             @foreach ($apartments as $apartment)
                                 @if ($apartment->deleted_at == null)
                                     <div class="col">
-                                        <div class="card shadow">
+                                        <div class="card shadow ">
                                             @if (!empty($apartment->full_cover_img))
                                                 <img src="{{ $apartment->full_cover_img }}" class="card-img-top"
                                                     alt="Cover Image">
@@ -29,7 +29,7 @@
                                                 <img src="{{ asset('img/Immagine_WhatsApp_2024-04-03_ore_14.06.30_25a33b0a.jpg') }}"
                                                     class="card-img-top" alt="Default Cover Image">
                                             @endif
-                                            <div class="card-body">
+                                            <div class="card-body overflow-hidden ">
                                                 <h5 class="card-title">{{ $apartment->name }}</h5>
                                                 <p class="card-text">
                                                     <strong>Tipo di Struttura:</strong>
@@ -199,7 +199,7 @@
         /* Imposta un'altezza fissa per le righe della griglia */
         .card {
             width: 300px;
-            min-height: 450px;
+            height: 450px;
             /* Altezza fissa per tutte le card */
             margin: 10px;
 

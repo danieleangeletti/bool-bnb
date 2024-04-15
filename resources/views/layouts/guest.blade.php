@@ -34,7 +34,7 @@
                         </ul>
                         
                         @auth
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" class="m-0" action="{{ route('logout') }}">
                                 @csrf
 
                                 <button type="submit" class="btn btn-turn-back">
