@@ -9,7 +9,7 @@
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/jpg" href="{{ asset('img/loghi/boolairbnb-favicon.PNG') }}" />
-    <title>@yield('page-title') | {{ config('app.name', 'BoolBnb') }}</title>
+    <title>@yield('page-title') | {{ config('', 'BoolBnb') }}</title>
 
     <!-- Scripts -->
     @vite('resources/js/app.js')

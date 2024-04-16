@@ -125,7 +125,7 @@ class ApartmentController extends Controller
         }
         
 
-        return redirect()->route('admin.apartments.show', ['apartment' => $apartment->slug]);
+        return redirect()->route('admin.apartments.index');
     }
 
     /**
