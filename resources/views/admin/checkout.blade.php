@@ -13,8 +13,9 @@
             {{ session('error_message') }}
         </div>
     @endif
-    <h2 class="text-center">Sponsorizazione per: {{ $apartment->name }} in via {{ $apartment->address }}</h2>
-    <h1> COST: {{ $sponsorship->cost }}€ </h1>
+    <h2 class="text-center">Sponsorizazione per appartamento: {{ $apartment->name }}</h2>
+    <h3 class="text-center">in {{ $apartment->address }}</h3> 
+    <h1 class="text-center"> COST: {{ $sponsorship->cost }}€ </h1>
     <form id="payment-form" action="processPayment" method="POST" class=" shadow ">
         @csrf
         <div id="dropin-container"></div>

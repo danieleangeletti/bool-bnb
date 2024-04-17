@@ -57,10 +57,12 @@
         <div class="row mt-4">
             <div class="col-12 d-flex justify-content-center">
                 <div class="p-3 shadow rounded w-50 bg-white ">
+
                     <div class="card-body ">
                         <!-- Aggiungi un modulo di acquisto qui -->
                         <form action="{{ route('admin.checkout', ['apartment' => $apartment->id]) }}" method="GET">
                             @csrf
+                            <label for="sponsorship_id" class="sponsorhip-label text-center p-3 my-3">Scegli il tipo di sponsorizzazione, nella home page il tuo appartamento sarà posizionato in evidenza!</label>
                             <select id="sponsorship_id" name="sponsorship_id" class="form-select mb-3 ">
                                 <option value="">Scegli la tua sponsorship</option>
                                 @for ($i = 0; $i < count($sponsorships); $i++)
