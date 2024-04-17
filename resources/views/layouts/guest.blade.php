@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'BoolBnb') }}</title>
+        <link rel="icon" type="image/jpg" href="{{ asset('img/loghi/boolairbnb-favicon.PNG') }}" />
+        <title>{{ config('', 'BoolBnb') }}</title>
 
         <!-- Scripts -->
         @vite('resources/js/app.js')
