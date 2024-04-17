@@ -67,212 +67,212 @@ return ['allNameApartments' => [
 'addressesWithCoordinates' => [
     // Milano
     [
-        "address" => "Via Montenapoleone",
+        "address" => "Via Montenapoleone, 5",
         "city" => "Milano"
     ],
     [
-        "address" => "Corso Como",
+        "address" => "Corso Como, 11",
         "city" => "Milano"
     ],
     [
-        "address" => "Via della Spiga",
+        "address" => "Via della Spiga, 19",
         "city" => "Milano"
     ],
     [
-        "address" => "Corso Buenos Aires",
+        "address" => "Corso Buenos Aires, 7",
         "city" => "Milano"
     ],
     [
-        "address" => "Via Dante",
+        "address" => "Via Dante, 15",
         "city" => "Milano"
     ],
     // Bergamo
     [
-        "address" => "Via XX Settembre",
+        "address" => "Via XX Settembre, 50",
         "city" => "Bergamo"
     ],
     [
-        "address" => "Via Pignolo",
+        "address" => "Via Pignolo, 67",
         "city" => "Bergamo"
     ],
     [
-        "address" => "Via Gombito",
+        "address" => "Via Gombito, 8",
         "city" => "Bergamo"
     ],
     [
-        "address" => "Via Colleoni",
+        "address" => "Via Colleoni, 17",
         "city" => "Bergamo"
     ],
     [
-        "address" => "Via San Lupo",
+        "address" => "Via Mario Lupo, 6",
         "city" => "Bergamo"
     ],
     // Brescia
     [
-        "address" => "Via Musei",
+        "address" => "Via dei Musei, 71",
         "city" => "Brescia"
     ],
     [
-        "address" => "Corso Zanardelli",
+        "address" => "Corso Giuseppe Zanardelli, 5",
         "city" => "Brescia"
     ],
     [
-        "address" => "Corso Magenta",
+        "address" => "Corso Magenta, 39",
         "city" => "Brescia"
     ],
     [
-        "address" => "Via dei Mille",
+        "address" => "Via dei Mille, 39",
         "city" => "Brescia"
     ],
     [
-        "address" => "Corso Palestro",
+        "address" => "Corso Palestro, 36",
         "city" => "Brescia"
     ],
     // Altre città della Lombardia...
     // Varese
     [
-        "address" => "Corso Matteotti",
+        "address" => "Corso Giacomo Matteotti, 29",
         "city" => "Varese"
     ],
     [
-        "address" => "Via Milano",
+        "address" => "Viale Milano, 18",
         "city" => "Varese"
     ],
     [
-        "address" => "Via Morosini",
+        "address" => "Via Emilio Morosini, 3",
         "city" => "Varese"
     ],
     [
-        "address" => "Via Sacco",
+        "address" => "Via Luigi Sacco, 10",
         "city" => "Varese"
     ],
     [
-        "address" => "Via Sanvito Silvestro",
+        "address" => "Via Silvestro Sanvito, 68",
         "city" => "Varese"
     ],
     // Lecco
     [
-        "address" => "Via Roma",
+        "address" => "Via Roma, 43",
         "city" => "Lecco"
     ],
     [
-        "address" => "Via Manzoni",
+        "address" => "Via Francesca Manzoni, 8",
         "city" => "Lecco"
     ],
     [
-        "address" => "Corso Matteotti",
+        "address" => "Corso Giacomo Matteotti, 90",
         "city" => "Lecco"
     ],
     [
-        "address" => "Via Garibaldi",
+        "address" => "Piazza Giuseppe Garibaldi, 3",
         "city" => "Lecco"
     ],
     [
-        "address" => "Via Volta",
+        "address" => "Via Alessandro Volta, 1",
         "city" => "Lecco"
     ],
     [
-        "address" => "Via Italia",
+        "address" => "Via Italia, 29",
         "city" => "Monza"
     ],
     [
-        "address" => "Corso Milano",
+        "address" => "Corso Milano, 38",
         "city" => "Monza"
     ],
     [
-        "address" => "Via Vittorio Emanuele II",
+        "address" => "Via Vittorio Emanuele II, 1",
         "city" => "Monza"
     ],
     [
-        "address" => "Via Matteotti",
+        "address" => "Piazza Giacomo Matteotti",
         "city" => "Monza"
     ],
     [
-        "address" => "Via Cavallotti",
+        "address" => "Via Felice Cavallotti, 82",
         "city" => "Monza"
     ],
     // Como
     [
-        "address" => "Via Vittorio Emanuele II",
+        "address" => "Via Vittorio Emanuele II, 72",
         "city" => "Como"
     ],
     [
-        "address" => "Via Pretorio",
+        "address" => "Via Pretorio, 7",
         "city" => "Como"
     ],
     [
-        "address" => "Via Odescalchi",
+        "address" => "Via Odescalchi, 15",
         "city" => "Como"
     ],
     [
-        "address" => "Via Giovio",
+        "address" => "Via Giovio, 12",
         "city" => "Como"
     ],
     [
-        "address" => "Via Cantù",
+        "address" => "Via Cesare Cantù, 1",
         "city" => "Como"
     ],
     // Mantova
     [
-        "address" => "Via dei Gonzaga",
+        "address" => "Via dei Gonzaga, 6",
         "city" => "Mantova"
     ],
     [
-        "address" => "Corso Vittorio Emanuele II",
+        "address" => "Corso Vittorio Emanuele II, 29",
         "city" => "Mantova"
     ],
     [
-        "address" => "Via Verdi",
+        "address" => "Via Giuseppe Verdi, 40",
         "city" => "Mantova"
     ],
     [
-        "address" => "Via Cairoli",
+        "address" => "Via Fratelli Cairoli, 8",
         "city" => "Mantova"
     ],
     [
-        "address" => "Corso Umberto I",
+        "address" => "Corso Umberto I, 26",
         "city" => "Mantova"
     ],
     // Pavia
     [
-        "address" => "Corso Cavour",
+        "address" => "Corso Cavour, 161",
         "city" => "Pavia"
     ],
     [
-        "address" => "Via XX Settembre",
+        "address" => "Via XX Settembre, 21",
         "city" => "Pavia"
     ],
     [
-        "address" => "Via Mentana",
+        "address" => "Via Mentana, 2",
         "city" => "Pavia"
     ],
     [
-        "address" => "Via Mazzini",
+        "address" => "Corso Giuseppe Mazzini, 10",
         "city" => "Pavia"
     ],
     [
-        "address" => "Via Giuseppe Verdi",
+        "address" => "Via Giuseppe Verdi, 22",
         "city" => "Pavia"
     ],
     // Cremona
     [
-        "address" => "Corso Campi",
+        "address" => "Corso Campi, 52",
         "city" => "Cremona"
     ],
     [
-        "address" => "Via Solferino",
+        "address" => "Via Solferino, 12",
         "city" => "Cremona"
     ],
     [
-        "address" => "Corso Garibaldi",
+        "address" => "Corso Garibaldi, 191",
         "city" => "Cremona"
     ],
     [
-        "address" => "Via Milano",
+        "address" => "Via Milano, 7",
         "city" => "Cremona"
     ],
     [
-        "address" => "Via Palestro",
+        "address" => "Via Palestro, 30",
         "city" => "Cremona"
     ]
 ]]
