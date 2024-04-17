@@ -143,7 +143,7 @@
                                             @foreach ($apartments as $apartment)
                                                 @if ($apartment->deleted_at != null)
                                                     <tr>
-                                                        <th scope="row">{{ $apartment->id }}</th>
+                                                        
                                                         <td>
                                                             @if (!empty($apartment->full_cover_img))
                                                             <img src="{{ $apartment->full_cover_img }}"  alt="Cover Image">
