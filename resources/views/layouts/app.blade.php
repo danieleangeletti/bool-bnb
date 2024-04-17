@@ -39,7 +39,7 @@
                     </ul>
                     <div>
                         <a class="mb-1" href="{{ route('admin.dashboard') }}" class="">
-                            <button class=" btn-turn-back ">
+                            <button class=" btn-turn-back rounded-4">
                                 Torna alla Home
                             </button>
                         </a>
@@ -47,7 +47,7 @@
                     <div>
                         <form method="POST" action="{{ route('logout') }}" class="m-0">
                             @csrf
-                            <button type="submit" class="btn-turn-back">
+                            <button type="submit" class="btn-turn-back rounded-4">
                                 Log Out
                             </button>
                         </form>

@@ -18,10 +18,10 @@
                 <img src="{{ asset('img/loghi/boolbnb-rosa-trasparente-300px.PNG') }}" class=" h-75 w-75 " alt="">
             </div>
         <!-- Email Address -->
-        <div>
+        <div class="w-50">
           
             <label for="email">
-                Email
+                <strong>Email</strong>
             </label>
             <input class="form-control" type="email" id="email" name="email" required maxlength="255">
             @error('email')
@@ -32,9 +32,9 @@
         </div>
 
         <!-- Password -->
-        <div class="mt-4  ">
+        <div class="mt-4 w-50 ">
             <label for="password">
-                Password
+               <strong>Password</strong> 
             </label>
             <input class="form-control" type="password" id="password" name="password" required>
             @error('password')
@@ -57,7 +57,7 @@
                 Log in
             </button>
             @if (Route::has('password.request'))
-                <a class=" text-decoration-none " href="{{ route('password.request') }}">
+                <a class=" text-decoration-none text-black hov-underline mx-5" href="{{ route('password.request') }}">
                     {{ __('Password dimenticata?') }}
                 </a>
             @endif

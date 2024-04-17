@@ -10,8 +10,8 @@
         </h1>
     </div>
     <div class="container d-flex justify-content-center">
-        <div class="card">
-            <a class="card1 shadow " href="{{ route('admin.apartments.index') }}">
+        <div class="card mx-5">
+            <a class="card1 shadow" href="{{ route('admin.apartments.index') }}">
                 <p>Gestione</p>
                 <p class="small">In questa sezione potrai gestire e controllare l' andamento dei tuoi appartamenti.</p>
                 <div class="go-corner" href="#">
@@ -21,7 +21,7 @@
                 </div>
             </a>
         </div>
-        <div class="card mx-3">
+        <div class="card mx-5">
             <a class="card1 shadow" href="{{ route('admin.apartments.create') }}">
                 <p>Creazione</p>
                 <p class="small">Crea appartamenti e sponsorizzali per ottenere maggiore visibilità, cosa aspetti?.</p>
@@ -46,6 +46,8 @@
     <style>
         .card {
             background-color: #F5F5F7;
+            width: 315px;
+            height: 280px;
         }
 
         .card p {
@@ -86,7 +88,8 @@
         .card1 {
             display: block;
             position: relative;
-            max-width: 262px;
+            width: 100%;
+            height: 100%;
             background-color: #f2f8f9;
             border-radius: 4px;
             padding: 32px 24px;
