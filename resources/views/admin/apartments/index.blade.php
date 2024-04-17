@@ -115,7 +115,7 @@
                     @endforeach
                 </div>
                 <div>
-                    <button type="button" class="btn-turn-back" data-bs-toggle="modal" data-bs-target="#my-modal">
+                    <button type="button" class="btn-turn-back rounded-4" data-bs-toggle="modal" data-bs-target="#my-modal">
                         Appartamenti
                         archiviati
                     </button>
@@ -189,6 +189,7 @@
             height: 450px;
             /* Altezza fissa per tutte le card */
             margin: 10px;
+            
 
 
             /* Aggiungi margine tra le card */
@@ -200,6 +201,9 @@
                 /* Assicura che l'immagine venga ridimensionata per adattarsi */
             }
         }
+        .card:hover{
+                background-color: #F5F5F7;
+            }
     </style>
 
 @endsection

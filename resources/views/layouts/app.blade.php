@@ -78,7 +78,7 @@
                 </div>
                 <div class="chat-footer">
                     <input type="text"id="userMessage" placeholder="Scrivi un messaggio...">
-                    <button id="sendMessage" class="btn btn-danger">Invia</button>
+                    <button id="sendMessage" class="btn btn-danger rounded-4">Invia</button>
                 </div>
             </div>
         </div>

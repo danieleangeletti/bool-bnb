@@ -276,7 +276,7 @@
 
             <div class="row">
                 <div class="col-12 d-flex  justify-content-center ">
-                    <button type="submit" class="btn-turn-back">
+                    <button type="submit" class="btn-turn-back rounded-4">
                         Modifica
                     </button>
                 </div>

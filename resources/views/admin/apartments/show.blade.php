@@ -78,7 +78,7 @@
                                 @endfor
                             </select>
                             <input type="hidden" name="apartment_id" value="{{ $apartment->id }}">
-                            <button type="submit" class="btn-turn-back">BUY</button>
+                            <button type="submit" class="btn-turn-back rounded-4">BUY</button>
                         </form>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                                 <td>{{ $message->last_name }}</td>
                                 <td>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn-turn-back read-button" data-bs-toggle="modal"
+                                    <button type="button" class="btn-turn-back read-button rounded-4" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal{{ $message->id }}">
                                         Leggi
 
