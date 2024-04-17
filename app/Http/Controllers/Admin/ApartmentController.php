@@ -185,7 +185,7 @@ class ApartmentController extends Controller
             'verify' => false, // Impostare a true per abilitare la verifica del certificato SSL
             // Specificare il percorso del certificato CA
         ]);
-        $response = $client->get('https://api.tomtom.com/search/2/geocode/query=' . $apartment['address'] . '.json?key=03zxGHB5yWE9tQEW9M7m9s46vREYKHct');
+        $response = $client->get('https://api.tomtom.com/search/2/geocode/query=' . $validated_data['address'] . '.json?key=03zxGHB5yWE9tQEW9M7m9s46vREYKHct');
         $data = json_decode($response->getBody(), true);
 
         $apartment->name = $validated_data['name'];

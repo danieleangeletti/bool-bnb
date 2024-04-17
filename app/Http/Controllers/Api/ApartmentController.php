@@ -42,7 +42,7 @@ class ApartmentController extends Controller
         $lat_center = $request->lat;
         $lon_center = $request->lon;
         
-        $apartments = Apartment::with('services')->get();
+        $apartments = Apartment::with('services','sponsorships')->get();
 
         $apartments_in_radius = filterApartmentsByDistance($apartments, $lat_center, $lon_center, 20);
 
@@ -111,7 +111,7 @@ class ApartmentController extends Controller
         )
         ->where('n_rooms', '>=', $nRooms)
         ->where('n_beds', '>=', $nBeds)
-        ->with('services')
+        ->with('services','sponsorships')
         ->get();
 
         $apartments_in_radius = filterApartmentsByDistance($apartments, $lat_center, $lon_center, $distance);
