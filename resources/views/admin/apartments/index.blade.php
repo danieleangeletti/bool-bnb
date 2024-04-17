@@ -125,7 +125,7 @@
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Archivio BoolBnB</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -133,8 +133,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Cover</th>
+                                                <th scope="col">Img</th>
                                                 <th scope="col">Nome</th>
                                                 <th scope="col">Prezzo</th>
                                                 <th scope="col">Azioni</th>
@@ -146,8 +145,14 @@
                                                     <tr>
                                                         <th scope="row">{{ $apartment->id }}</th>
                                                         <td>
-                                                            <img src="{{ $apartment->full_cover_img }}"
-                                                                class="cover-img">
+                                                            @if (!empty($apartment->full_cover_img))
+                                                            <img src="{{ $apartment->full_cover_img }}"  alt="Cover Image">
+                                                        @else
+                                                            <img src="{{ asset('img/loghi/boolairbnb-favicon.PNG') }}"
+                                                                class="card-img-top object-fit-contain " alt="Default Cover Image">
+                                                        @endif
+                                                            {{-- <img src="{{ $apartment->full_cover_img }}"
+                                                                class="cover-img"> --}}
                                                         </td>
                                                         <td>{{ $apartment->name }}</td>
                                                         <td>{{ $apartment->price }}</td>
