@@ -146,7 +146,7 @@
                                                         
                                                         <td>
                                                             @if (!empty($apartment->full_cover_img))
-                                                            <img src="{{ $apartment->full_cover_img }}"  alt="Cover Image">
+                                                            <img class="card-img-top object-fit-contain " src="{{ $apartment->full_cover_img }}"  alt="Cover Image">
                                                         @else
                                                             <img src="{{ asset('img/loghi/boolairbnb-favicon.PNG') }}"
                                                                 class="card-img-top object-fit-contain " alt="Default Cover Image">
