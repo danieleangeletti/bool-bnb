@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreViewRequest;
 use App\Http\Requests\UpdateViewRequest;
 use App\Models\View;
+use App\Models\Apartment;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Http\Request;
 class ViewController extends Controller
 {
     /**
@@ -14,23 +15,23 @@ class ViewController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreViewRequest $request)
+    public function store(Request $request, string $slug)
     {
-        //
+     
     }
 
     /**
@@ -38,7 +39,7 @@ class ViewController extends Controller
      */
     public function show(View $view)
     {
-        //
+    
     }
 
     /**

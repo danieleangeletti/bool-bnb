@@ -3,13 +3,17 @@
 @section('main-content')
     <div class="row">
         <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="text-center text-primary">
-                        Welcome!
-                    </h1>
-                    <br>
-                    La welcome page è una pagina pubblica (NON protetta)
+            <div class="">
+                <div class="border-white d-flex flex-column align-items-center   ">
+                    <div class=" w-25  h-50 ">
+                        <img src="{{ asset('img/loghi/boolbnb-rosa-trasparente-600px.PNG') }}" class=" h-100 w-100 " alt="">
+                    </div>
+                    <div>
+                        <h4 class="text-center mt-5">
+                            Benvenuto nella tua area personale di BoolBnB
+                        </h4>
+                    </div>
+                    
                 </div>
             </div>
         </div>

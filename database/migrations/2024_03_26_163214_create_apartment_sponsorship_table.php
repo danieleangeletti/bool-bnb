@@ -28,9 +28,9 @@ return new class extends Migration {
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->timestamps();
-            $table->date('end_date')->nullable();
+            $table->dateTime('end_date')->nullable();
             $table->primary(['apartment_id', 'sponsorship_id']);
+            $table->timestamps();
         });
     }
 

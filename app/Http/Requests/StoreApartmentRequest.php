@@ -34,11 +34,11 @@ class StoreApartmentRequest extends FormRequest
             'n_baths' => 'required|numeric|gte:0|max:255',
             'price' => 'required|numeric|max:10000',
             'availability' => 'required|boolean',
-            'latitude' => 'required|string|max:100',
-            'longitude' => 'required|string|max:100',
-            'slug' => 'required|string|max:100',
             'address' => 'required|string|max:100',
-            'img_cover_path' => 'nullable|string|max:1000',
+            // 'city' => 'required|string|max:64',
+            'img_cover_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'mq' => 'required|numeric|gte:0|max:150',
+            'services' => 'required|array|exists:services,id'
             // L'img_cover_path è nullable solo momentaneamente, poi dovrà essere required.
         ];
     }

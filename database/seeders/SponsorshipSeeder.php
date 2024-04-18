@@ -35,7 +35,7 @@ class SponsorshipSeeder extends Seeder
             ],
             [
                 'title' => 'Premium',
-                'hour_duration' => 67,
+                'hour_duration' => 144,
                 'cost' => 9.99,
                 'description' => 'Pacchetto Premium con sponsorizzazione per 144 ore.',
             ],

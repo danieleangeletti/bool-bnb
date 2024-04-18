@@ -65,252 +65,215 @@ return ['allNameApartments' => [
     'Baita'
 ],
 'addressesWithCoordinates' => [
+    // Milano
     [
-        'address' => "Via Roma 1, Milano, Italy",
-        'latitude' => 45.4641,
-        'longitude' => 9.1919,
+        "address" => "Via Montenapoleone, 5",
+        "city" => "Milano"
     ],
     [
-        'address' => "Piazza San Marco, Venice, Italy",
-        'latitude' => 45.4344,
-        'longitude' => 12.3386,
+        "address" => "Corso Como, 11",
+        "city" => "Milano"
     ],
     [
-        'address' => "Champs-Élysées, Paris, France",
-        'latitude' => 48.8698,
-        'longitude' => 2.3074,
+        "address" => "Via della Spiga, 19",
+        "city" => "Milano"
     ],
     [
-        'address' => "5th Avenue, New York, USA",
-        'latitude' => 40.7128,
-        'longitude' => -74.0060,
+        "address" => "Corso Buenos Aires, 7",
+        "city" => "Milano"
     ],
     [
-        'address' => "Alexanderplatz, Berlin, Germany",
-        'latitude' => 52.5200,
-        'longitude' => 13.4050,
+        "address" => "Via Dante, 15",
+        "city" => "Milano"
+    ],
+    // Bergamo
+    [
+        "address" => "Via XX Settembre, 50",
+        "city" => "Bergamo"
     ],
     [
-        'address' => "Gran Vía, Madrid, Spain",
-        'latitude' => 40.4209,
-        'longitude' => -3.6977,
+        "address" => "Via Pignolo, 67",
+        "city" => "Bergamo"
     ],
     [
-        'address' => "Shibuya Crossing, Tokyo, Japan",
-        'latitude' => 35.6591,
-        'longitude' => 139.7002,
+        "address" => "Via Gombito, 8",
+        "city" => "Bergamo"
     ],
     [
-        'address' => "Trafalgar Square, London, UK",
-        'latitude' => 51.5080,
-        'longitude' => -0.1281,
+        "address" => "Via Colleoni, 17",
+        "city" => "Bergamo"
     ],
     [
-        'address' => "Piazza del Duomo, Florence, Italy",
-        'latitude' => 43.7731,
-        'longitude' => 11.2550,
+        "address" => "Via Mario Lupo, 6",
+        "city" => "Bergamo"
+    ],
+    // Brescia
+    [
+        "address" => "Via dei Musei, 71",
+        "city" => "Brescia"
     ],
     [
-        'address' => "Plaça de Catalunya, Barcelona, Spain",
-        'latitude' => 41.3868,
-        'longitude' => 2.1698,
+        "address" => "Corso Giuseppe Zanardelli, 5",
+        "city" => "Brescia"
     ],
     [
-        'address' => "Red Square, Moscow, Russia",
-        'latitude' => 55.7539,
-        'longitude' => 37.6208,
+        "address" => "Corso Magenta, 39",
+        "city" => "Brescia"
     ],
     [
-        'address' => "Sydney Opera House, Sydney, Australia",
-        'latitude' => -33.8568,
-        'longitude' => 151.2153,
+        "address" => "Via dei Mille, 39",
+        "city" => "Brescia"
     ],
     [
-        'address' => "Copacabana Beach, Rio de Janeiro, Brazil",
-        'latitude' => -22.9719,
-        'longitude' => -43.1822,
+        "address" => "Corso Palestro, 36",
+        "city" => "Brescia"
+    ],
+    // Altre città della Lombardia...
+    // Varese
+    [
+        "address" => "Corso Giacomo Matteotti, 29",
+        "city" => "Varese"
     ],
     [
-        'address' => "Great Wall of China, Beijing, China",
-        'latitude' => 40.4319,
-        'longitude' => 116.5704,
+        "address" => "Viale Milano, 18",
+        "city" => "Varese"
     ],
     [
-        'address' => "Petronas Towers, Kuala Lumpur, Malaysia",
-        'latitude' => 3.1579,
-        'longitude' => 101.7119,
+        "address" => "Via Emilio Morosini, 3",
+        "city" => "Varese"
     ],
     [
-        'address' => "Table Mountain, Cape Town, South Africa",
-        'latitude' => -33.9628,
-        'longitude' => 18.4098,
+        "address" => "Via Luigi Sacco, 10",
+        "city" => "Varese"
     ],
     [
-        'address' => "Statue of Liberty, New York, USA",
-        'latitude' => 40.6892,
-        'longitude' => -74.0445,
+        "address" => "Via Silvestro Sanvito, 68",
+        "city" => "Varese"
+    ],
+    // Lecco
+    [
+        "address" => "Via Roma, 43",
+        "city" => "Lecco"
     ],
     [
-        'address' => "Eiffel Tower, Paris, France",
-        'latitude' => 48.8584,
-        'longitude' => 2.2945,
+        "address" => "Via Francesca Manzoni, 8",
+        "city" => "Lecco"
     ],
     [
-        'address' => "Burj Khalifa, Dubai, UAE",
-        'latitude' => 25.1972,
-        'longitude' => 55.2744,
+        "address" => "Corso Giacomo Matteotti, 90",
+        "city" => "Lecco"
     ],
     [
-        'address' => "Machu Picchu, Cusco, Peru",
-        'latitude' => -13.1631,
-        'longitude' => -72.5450,
+        "address" => "Piazza Giuseppe Garibaldi, 3",
+        "city" => "Lecco"
     ],
     [
-        'address' => "Colosseum, Rome, Italy",
-        'latitude' => 41.8902,
-        'longitude' => 12.4922,
+        "address" => "Via Alessandro Volta, 1",
+        "city" => "Lecco"
     ],
     [
-        'address' => "Golden Gate Bridge, San Francisco, USA",
-        'latitude' => 37.8199,
-        'longitude' => -122.4783,
+        "address" => "Via Italia, 29",
+        "city" => "Monza"
     ],
     [
-        'address' => "Neuschwanstein Castle, Bavaria, Germany",
-        'latitude' => 47.5576,
-        'longitude' => 10.7498,
+        "address" => "Corso Milano, 38",
+        "city" => "Monza"
     ],
     [
-        'address' => "Acropolis of Athens, Athens, Greece",
-        'latitude' => 37.9715,
-        'longitude' => 23.7265,
+        "address" => "Via Vittorio Emanuele II, 1",
+        "city" => "Monza"
     ],
     [
-        'address' => "Angkor Wat, Siem Reap, Cambodia",
-        'latitude' => 13.4125,
-        'longitude' => 103.8667,
+        "address" => "Piazza Giacomo Matteotti",
+        "city" => "Monza"
     ],
     [
-        'address' => "Saint Basil's Cathedral, Moscow, Russia",
-        'latitude' => 55.7525,
-        'longitude' => 37.6231,
+        "address" => "Via Felice Cavallotti, 82",
+        "city" => "Monza"
+    ],
+    // Como
+    [
+        "address" => "Via Vittorio Emanuele II, 72",
+        "city" => "Como"
     ],
     [
-        'address' => "Buckingham Palace, London, UK",
-        'latitude' => 51.5014,
-        'longitude' => -0.1419,
+        "address" => "Via Pretorio, 7",
+        "city" => "Como"
     ],
     [
-        'address' => "Forbidden City, Beijing, China",
-        'latitude' => 39.9163,
-        'longitude' => 116.3972,
+        "address" => "Via Odescalchi, 15",
+        "city" => "Como"
     ],
     [
-        'address' => "White House, Washington D.C., USA",
-        'latitude' => 38.8977,
-        'longitude' => -77.0365,
+        "address" => "Via Giovio, 12",
+        "city" => "Como"
     ],
     [
-        'address' => "Christ the Redeemer, Rio de Janeiro, Brazil",
-        'latitude' => -22.9519,
-        'longitude' => -43.2106,
+        "address" => "Via Cesare Cantù, 1",
+        "city" => "Como"
+    ],
+    // Mantova
+    [
+        "address" => "Via dei Gonzaga, 6",
+        "city" => "Mantova"
     ],
     [
-        'address' => "Louvre Museum, Paris, France",
-        'latitude' => 48.8606,
-        'longitude' => 2.3376,
+        "address" => "Corso Vittorio Emanuele II, 29",
+        "city" => "Mantova"
     ],
     [
-        'address' => "Stonehenge, Wiltshire, UK",
-        'latitude' => 51.1789,
-        'longitude' => -1.8262,
+        "address" => "Via Giuseppe Verdi, 40",
+        "city" => "Mantova"
     ],
     [
-        'address' => "Sagrada Família, Barcelona, Spain",
-        'latitude' => 41.4036,
-        'longitude' => 2.1744,
+        "address" => "Via Fratelli Cairoli, 8",
+        "city" => "Mantova"
     ],
     [
-        'address' => "Alhambra, Granada, Spain",
-        'latitude' => 37.1773,
-        'longitude' => -3.5986,
+        "address" => "Corso Umberto I, 26",
+        "city" => "Mantova"
+    ],
+    // Pavia
+    [
+        "address" => "Corso Cavour, 161",
+        "city" => "Pavia"
     ],
     [
-        'address' => "Hagia Sophia, Istanbul, Turkey",
-        'latitude' => 41.0086,
-        'longitude' => 28.9802,
+        "address" => "Via XX Settembre, 21",
+        "city" => "Pavia"
     ],
     [
-        'address' => "Brandenburg Gate, Berlin, Germany",
-        'latitude' => 52.5163,
-        'longitude' => 13.3777,
+        "address" => "Via Mentana, 2",
+        "city" => "Pavia"
     ],
     [
-        'address' => "Museo del Prado, Madrid, Spain",
-        'latitude' => 40.4138,
-        'longitude' => -3.6941,
+        "address" => "Corso Giuseppe Mazzini, 10",
+        "city" => "Pavia"
     ],
     [
-        'address' => "Tower Bridge, London, UK",
-        'latitude' => 51.5055,
-        'longitude' => -0.0754,
+        "address" => "Via Giuseppe Verdi, 22",
+        "city" => "Pavia"
+    ],
+    // Cremona
+    [
+        "address" => "Corso Campi, 52",
+        "city" => "Cremona"
     ],
     [
-        'address' => "Great Pyramid of Giza, Giza, Egypt",
-        'latitude' => 29.9792,
-        'longitude' => 31.1342,
+        "address" => "Via Solferino, 12",
+        "city" => "Cremona"
     ],
     [
-        'address' => "Sistine Chapel, Vatican City",
-        'latitude' => 41.9022,
-        'longitude' => 12.4539,
-    ],[
-        'address' => "Sistine Chapel, Vatican City",
-        'latitude' => 41.9022,
-        'longitude' => 12.4539,
-    ],[
-        'address' => "Sistine Chapel, Vatican City",
-        'latitude' => 41.9022,
-        'longitude' => 12.4539,
-    ],[
-        'address' => "Sistine Chapel, Vatican City",
-        'latitude' => 41.9022,
-        'longitude' => 12.4539,
+        "address" => "Corso Garibaldi, 191",
+        "city" => "Cremona"
     ],
     [
-        'address' => "Sistine Chapel, Vatican City",
-        'latitude' => 41.9022,
-        'longitude' => 12.4539,
+        "address" => "Via Milano, 7",
+        "city" => "Cremona"
     ],
     [
-        'address' => "Sistine Chapel, Vatican City",
-        'latitude' => 41.9022,
-        'longitude' => 12.4539,
-    ],
-    [
-        'address' => "Sistine Chapel, Vatican City",
-        'latitude' => 41.9022,
-        'longitude' => 12.4539,
-    ],
-    [
-        'address' => "Sistine Chapel, Vatican City",
-        'latitude' => 41.9022,
-        'longitude' => 12.4539,
-    ],
-    [
-        'address' => "Sistine Chapel, Vatican City",
-        'latitude' => 41.9022,
-        'longitude' => 12.4539,
-    ],
-    [
-        'address' => "Sistine Chapel, Vatican City",
-        'latitude' => 41.9022,
-        'longitude' => 12.4539,
-    ],
-    [
-        'address' => "Sistine Chapel, Vatican City",
-        'latitude' => 41.9022,
-        'longitude' => 12.4539,
-    ],
+        "address" => "Via Palestro, 30",
+        "city" => "Cremona"
+    ]
 ]]
 ?>

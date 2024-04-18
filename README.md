@@ -74,3 +74,108 @@ $allServices = [
             'Fumatori' => ' <i class="fa-solid fa-smoking"></i>',
             'Animali Consentiti' => '<i class="fa-solid fa-paw"></i>',
         ];
+        public function calculateEndDateAndExpireSponsorship($apartment_id, $sponsorship_id) {
+    $apartment = Apartment::find($apartment_id);
+    $sponsorship = $apartment->sponsorships()->where('id', $sponsorship_id)->first();
+
+    if ($sponsorship) {
+        // Calcola la data di fine aggiungendo le ore di durata alla data di creazione
+        $endDate = Carbon::now()->addHours($sponsorship->hour_duration);
+
+        // Aggiorna il campo end_date nella tabella pivot
+        $apartment->sponsorships()->updateExistingPivot($sponsorship_id, ['end_date' => $endDate]);
+        
+        // Salva l'appartamento dopo l'aggiornamento
+        $apartment->save();
+        
+        // Se la data di fine è passata, fai scadere la sponsorship
+        if (Carbon::now()->greaterThanOrEqualTo($endDate)) {
+            $apartment->sponsorships()->detach($sponsorship_id);
+            // Puoi anche fare altre operazioni qui, come notificare l'utente
+        }
+    } else {
+        // La sponsorship non è associata all'appartamento
+        // Puoi gestire questo caso come preferisci, ad esempio emettere un avviso o un log
+    }
+}
+
+
+
+
+
+public function handle()
+{
+    // Limita il numero di appartamenti elaborati per ogni esecuzione del comando
+    $apartments = Apartment::take(100)->get();
+
+    foreach ($apartments as $apartment) {
+        $sponsorships = $apartment->sponsorships()->get();
+
+        foreach ($sponsorships as $sponsorship) {
+            $this->calculateEndDateAndExpireSponsorship($apartment->id, $sponsorship->id);
+        }
+    }
+}
+questa funzione serve per limitare le interazione con la cessazzione delle sponsorizzazioni e va messa nel file commands sponsorship expire
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Archivio Appartamenti
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table">
+                                                    <thead  >
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Cover</th>
+                                                            <th scope="col">Nome</th>
+                                                            <th scope="col">Prezzo</th>
+                                                            <th scope="col">Azioni</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($apartments as $apartment)
+                                                            @if ($apartment->deleted_at != null)
+                                                                <tr>
+                                                                    <th scope="row">{{ $apartment->id }}</th>
+                                                                    <td>
+                                                                        <img src="{{ $apartment->full_cover_img }}"
+                                                                            class="cover-img">
+                                                                    </td>
+                                                                    <td>{{ $apartment->name }}</td>
+                                                                    <td>{{ $apartment->price }}</td>
+                                                                    <td>
+                                                                        <div class="d-flex flex-column">
+                                                                            <form class="mt-5"
+                                                                                id="deleteForm{{ $apartment->slug }}"
+                                                                                action="{{ route('admin.restore', ['slug' => $apartment->slug]) }}"
+                                                                                method="post">
+                                                                                @csrf
+                                                                                <button type="submit"
+                                                                                    class="btn btn-danger"
+                                                                                    data-bs-target="#deleteConfirmation{{ $apartment->slug }}">
+                                                                                    Recupera
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            @endif
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Chiudi</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>

@@ -27,11 +27,11 @@ class ApartmentServiceSeeder extends Seeder
             return;
         }
         $apartments->each(function ($apartment) use ($services) {
-            shuffle($services); 
+            shuffle($services);
             $servicesForApartment = array_slice($services, 0, rand(1, count($services)));
             $apartment->services()->attach($servicesForApartment); 
         });
-    
-
+        
+        }
     }
-}
+    

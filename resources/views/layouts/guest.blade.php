@@ -4,47 +4,40 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <link rel="icon" type="image/jpg" href="{{ asset('img/loghi/boolairbnb-favicon.PNG') }}" />
+        <title>{{ config('', 'BoolBnb') }}</title>
 
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <nav class="navbar navbar-expand-lg bg-white">
                 <div class="container">
-                    <a class="navbar-brand" href="/">Template</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                    <div class="box-img-logo">
+                        <img src="{{ asset('img/loghi/boolbnb-rosa-sfondobianco-150px.JPG') }}" class=" h-100 w-100 " alt="">
+                    </div>
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             @auth
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Link 2</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Link 3</a>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                                 </li>
                             @else
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link hov-underline" href="{{ route('login') }}">Login</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link hov-underline" href="{{ route('register') }}">Registrati</a>
                                 </li>
                             @endauth
                         </ul>
-
+                        
                         @auth
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" class="m-0" action="{{ route('logout') }}">
                                 @csrf
 
-                                <button type="submit" class="btn btn-outline-danger">
+                                <button type="submit" class="btn btn-turn-back">
                                     Log Out
                                 </button>
                             </form>
@@ -60,4 +53,34 @@
             </div>
         </main>
     </body>
+    <style>
+        .hov-underline {
+           position: relative;
+           display: inline-block;
+           font-size: 1.2  rem;
+           //padding-bottom: 3px;
+           cursor: pointer;
+           border-bottom: 2px solid transparent;
+           transition: border-color 0.3s ease; /* Aggiungi una transizione fluida per l'effetto hover */
+           &:hover{
+               transform: scale(1.1);
+           }
+       }
+       /* Animazione per la sottolineatura */
+       .hov-underline::after {
+       content: '';
+           position: absolute;
+           left: 0;
+           bottom: 0;
+           width: 0; /* Inizia senza larghezza */
+           height: 2px; /* Altezza della sottolineatura */
+           background-color: #EB5A63; 
+           transition: width 0.3s ease; /* Aggiungi una transizione fluida per l'animazione */
+           transform: scale(1.1);
+       }
+       .hov-underline:hover::after {
+           width: 100%; /* Espandi la larghezza al 100% durante l'hover */
+           
+       }
+   </style>
 </html>

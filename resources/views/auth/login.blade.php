@@ -1,23 +1,47 @@
 @extends('layouts.guest')
 
 @section('main-content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
+        <div class="container w-50 d-flex flex-column  align-items-center p-3 mb-5 rounded">
+           
+            <div class=" w-50 h-50 d-flex flex-column  align-items-center mb-5">
+                <img src="{{ asset('img/loghi/boolbnb-rosa-trasparente-300px.PNG') }}" class=" h-75 w-75 " alt="">
+            </div>
         <!-- Email Address -->
-        <div>
+        <div class="w-50">
+          
             <label for="email">
-                Email
+                <strong>Email</strong>
             </label>
-            <input type="email" id="email" name="email">
+            <input class="form-control" type="email" id="email" name="email" required maxlength="255">
+            @error('email')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
+        <div class="mt-4 w-50 ">
             <label for="password">
-                Password
+               <strong>Password</strong> 
             </label>
-            <input type="password" id="password" name="password">
+            <input class="form-control" type="password" id="password" name="password" required>
+            @error('password')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <!-- Remember Me -->
@@ -28,16 +52,18 @@
             </label>
         </div>
 
-        <div class="mt-4">
+        <div class="mt-4 d-flex flex-column ">
+            <button type="submit" class=" mx-3 my-3 btn-turn-back rounded-4 ">
+                Log in
+            </button>
             @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                <a class=" text-decoration-none text-black hov-underline mx-5" href="{{ route('password.request') }}">
+                    {{ __('Password dimenticata?') }}
                 </a>
             @endif
 
-            <button type="submit">
-                Log in
-            </button>
+           
         </div>
+    </div>
     </form>
 @endsection

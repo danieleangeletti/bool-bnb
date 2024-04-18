@@ -17,7 +17,7 @@
         </div>
 
         <div>
-            <button type="submit">
+            <button type="btn-turn-back">
                 Confirm
             </button>
         </div>
