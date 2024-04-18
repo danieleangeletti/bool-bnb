@@ -50,7 +50,7 @@
                                                 <i class="fa-solid fa-x" style="color: #ed1707;"></i>
                                             @endif
                                         </p>
-                                    </div>
+                                    </div> 
                                     <div class="card-footer p-0">
                                         <div class="d-flex justify-content-between align-items-center  ">
                                             <div>
